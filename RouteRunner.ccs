@@ -1,0 +1,20 @@
+<Solution>
+  <PropertyGroup Name="RouteRunner" Version="2.3.3.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="MainScene1.csd" Type="Scene" />
+        <Image Name="Player_idle.png" />
+        <Project Name="MainScene.csd" Type="Scene" />
+        <Image Name="BackgroundStatic.png" />
+        <Image Name="BackgroundParallax.png" />
+        <Image Name="Player_idle2.png" />
+        <Image Name="StartBackground.png" />
+        <Image Name="restartScreen.png" />
+        <Image Name="square1.png" />
+        <Project Name="Level2.csd" Type="Scene" />
+        <Project Name="Level1.csd" Type="Scene" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
