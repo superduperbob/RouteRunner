@@ -14,6 +14,8 @@
         <Image Name="square1.png" />
         <Project Name="Level2.csd" Type="Scene" />
         <Project Name="Level1.csd" Type="Scene" />
+        <Image Name="tempSpike.png" />
+        <Image Name="tempSpring.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

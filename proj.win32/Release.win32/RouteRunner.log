@@ -1,0 +1,16 @@
+﻿  AppDelegate.cpp
+  HelloWorldScene.cpp
+  main.cpp
+..\Classes\AppDelegate.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
+..\Classes\HelloWorldScene.cpp(92): warning C4305: '=': truncation from 'double' to 'float'
+..\Classes\HelloWorldScene.cpp(104): warning C4305: '+=': truncation from 'double' to 'float'
+  60 File(s) copied
+     Creating library E:\TGPProject\BaseProjectBlackBox\RouteRunner\proj.win32\Release.win32\RouteRunner.lib and object E:\TGPProject\BaseProjectBlackBox\RouteRunner\proj.win32\Release.win32\RouteRunner.exp
+  Generating code
+  All 544 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  RouteRunner.vcxproj -> E:\TGPProject\BaseProjectBlackBox\RouteRunner\proj.win32\Release.win32\RouteRunner.exe
+  E:\TGPProject\BaseProjectBlackBox\RouteRunner\Resources\res\HelloWorld.png -> E:\TGPProject\BaseProjectBlackBox\RouteRunner\proj.win32\Release.win32\res\HelloWorld.png
+  E:\TGPProject\BaseProjectBlackBox\RouteRunner\Resources\res\MainScene.csb -> E:\TGPProject\BaseProjectBlackBox\RouteRunner\proj.win32\Release.win32\res\MainScene.csb
+  E:\TGPProject\BaseProjectBlackBox\RouteRunner\Resources\res\Player_idle.png -> E:\TGPProject\BaseProjectBlackBox\RouteRunner\proj.win32\Release.win32\res\Player_idle.png
+  3 File(s) copied

@@ -171,6 +171,28 @@
             <FileData Type="Normal" Path="square1.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="tempSpike_1" ActionTag="684618565" Tag="24" IconVisible="False" LeftMargin="979.0988" RightMargin="740.9012" TopMargin="287.8470" BottomMargin="692.1530" ctype="SpriteObjectData">
+            <Size X="200.0000" Y="100.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1079.0988" Y="742.1530" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5620" Y="0.6872" />
+            <PreSize X="0.1042" Y="0.0926" />
+            <FileData Type="Normal" Path="tempSpike.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="tempSpring_1" ActionTag="-645876360" Tag="25" IconVisible="False" LeftMargin="1040.1093" RightMargin="779.8907" TopMargin="714.2422" BottomMargin="265.7578" ctype="SpriteObjectData">
+            <Size X="100.0000" Y="100.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="1090.1093" Y="315.7578" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5678" Y="0.2924" />
+            <PreSize X="0.0521" Y="0.0926" />
+            <FileData Type="Normal" Path="tempSpring.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
           <AbstractNodeData Name="restartBackground" ActionTag="647687840" Tag="69" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" TopMargin="-1080.0000" BottomMargin="1080.0000" Scale9Width="1152" Scale9Height="648" ctype="ImageViewObjectData">
             <Size X="1920.0000" Y="1080.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

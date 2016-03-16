@@ -38,17 +38,23 @@ public:
 	void StartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void CheckIfDead();
+	void CheckIfDead(Rect);
+	void PlayerDead();
 
 	void update(float);
 
 	bool checkPlayerCollision();
 	bool checkTerrainCollision(Rect);
+	void checkSpringCollision(Rect);
 	void checkFloorCollision();
 
 	void drawPoint(int x, int y);
 
 private:
+
+	void updateline(cocos2d::Touch* touch, cocos2d::Event* event);
+	void updateJetpackDirection(cocos2d::Touch* touch);
+
 	Sprite* player;
 	Direction playerDirection;
 	bool playerIsFalling;
@@ -65,6 +71,10 @@ private:
 	Vec2 LineArray[500];
 	int lineArrayCount;
 
+	//input states, 0 = drawlines, 1 = jetpack
+	int inputState;
+	bool jetpack;
+
 	cocos2d::Sprite* square_5;
 	cocos2d::Sprite* square_6;
 	cocos2d::Sprite* square_7;
@@ -77,6 +87,10 @@ private:
 	cocos2d::Sprite* square_13;
 	cocos2d::Sprite* square_14;
 	cocos2d::Sprite* square_15;
+
+	cocos2d::Sprite* spikes_0;
+
+	cocos2d::Sprite* spring_0;
 
 	ui::Button* startButton;
 	ui::Button* pauseButton;

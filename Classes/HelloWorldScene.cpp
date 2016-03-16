@@ -45,6 +45,9 @@ bool HelloWorld::init()
 		drawLayer[i] = new bool[(int)ScreenResolution.y];//init the height of the array
 	}
 
+	inputState = 1;
+	jetpack = false;
+
 	lineSize = 10;
 	moveSpeed = 2;
 	backgroundParallaxMain = (Sprite*)rootNode->getChildByName("BackgroundParallaxMain");
@@ -62,7 +65,9 @@ bool HelloWorld::init()
 	square_14 = (Sprite*)rootNode->getChildByName("square_14");
 	square_15 = (Sprite*)rootNode->getChildByName("square_15");
 
+	spikes_0 = (Sprite*)rootNode->getChildByName("tempSpike_1");
 
+	spring_0 = (Sprite*)rootNode->getChildByName("tempSpring_1");
 
 	for (int i = 0; i < ScreenResolution.x-1; i++)
 	{
@@ -127,39 +132,47 @@ void HelloWorld::update(float dTime)
 	if (GameManager::sharedGameManager()->isGameLive && !GameManager::sharedGameManager()->isDead)
 		{
 			//PLAYER GRAVITY
-			////////////////////////////////////////////////////////////////////
-			//if (checkPlayerCollision())
-			//{
-			//	playerIsFalling = false;
-			//	playerFallSpeed = 0.4;//this wont be applied to the player (because he isn't falling now), but it is default set to this value so the player falls a little faster to start off.
-			//	player->setRotation(0);
-			//}
-			//else
-			//{
-			//	playerIsFalling = true;
-			//}
+
 			if (playerIsFalling)
 			{
 				player->setPositionY(player->getPositionY() - playerFallSpeed);
-				//player->setRotation(player->getRotation() + 10);
+			}
+			else{
+				if (playerFallSpeed < 0)
+				player->setPositionY(player->getPositionY() - playerFallSpeed);
 			}
 			if (playerIsFalling && playerFallSpeed < 3)
 			{
 				playerFallSpeed += 0.1;
 			}
-			////////////////////////////////////////////////////////////////////
+
+			//PLAYER JETPACK CONTROL
+			if (jetpack){
+				if (ScreenResolution.x / 2 < oldPoint.x){
+
+					playerDirection = Direction::RIGHT;
+
+				}
+				else{
+
+					playerDirection = Direction::LEFT;
+
+				}
+				if (playerFallSpeed > -5.0f){
+					playerFallSpeed += -0.25f;
+				}
+			}
 
 			checkFloorCollision();
-			CheckIfDead();
+			CheckIfDead(player->getBoundingBox());
+			checkSpringCollision(player->getBoundingBox());
 			if (checkTerrainCollision(player->getBoundingBox()))
 			{
 				playerIsFalling = false;
-				//player->setPositionY(pos);
 			}
-			////////////////////////////////////////////////////////////////////
+
 
 			//PLAYER DIRECTION CONTROL
-			////////////////////////////////////////////////////////////////////
 			if (playerDirection == Direction::LEFT)
 			{
 				player->setFlippedX(true);
@@ -171,31 +184,11 @@ void HelloWorld::update(float dTime)
 				player->setFlippedX(false);
 				player->setPositionX(player->getPositionX() + moveSpeed);
 			}
-			////////////////////////////////////////////////////////////////////
 
-
-			//if (secondCounter >= 1)
-			//{
 			lineDrawNode->clear();
-			//for (int i = 0; i < ScreenResolution.x - 1; i++)
-			//{
-			//	for (int ii = 0; ii < ScreenResolution.y - 1; ii++)
-			//	{
-			//		if (drawLayer[i][ii] == true)//if the pixel is coloured
-			//		{
-			//			lineDrawNode->drawPoint(Vec2(i, ii), 1, Color4F(1.0f, 0.0f, 0.0f, 1.0f));
 
-			//			//move the lines drawn to the left, making the line appear to move
-			//			//drawLayer[i][ii] = false;
-			//			//if (i > 0)
-			//			//{
-			//			//	drawLayer[i - 1][ii] = true;
-			//			//}
-			//		}
 
-			//	}
-			//}
-
+			
 			for (int i = 0; i < 500 - 1; i++)
 			{
 				lineDrawNode->drawPoint(LineArray[i], 10, Color4F(1.0f, 1.0f, 0.0f, 1.0f));
@@ -247,21 +240,6 @@ void HelloWorld::update(float dTime)
 				}
 				
 			}
-
-			//secondCounter = secondCounter - 1;
-			//}
-
-			//stop the player from going out of screen.
-			//if (player->getPositionX() >= ScreenResolution.x - player->getBoundingBox().size.width)//if the player is close to the edge of the screen
-			//{
-			//	playerDirection = Direction::LEFT;
-			//}
-			//if (player->getPositionX() <= 0 + player->getBoundingBox().size.width)//if the player is close to the edge of the screen
-			//{
-			//	playerDirection = Direction::RIGHT;
-			//}
-
-
 			backgroundParallaxMain->setPositionX(backgroundParallaxMain->getPositionX() - moveSpeed / 2);
 			backgroundParallaxRight->setPositionX(backgroundParallaxRight->getPositionX() - moveSpeed / 2);
 
@@ -288,18 +266,69 @@ void HelloWorld::update(float dTime)
 			square_14->setPositionX(square_14->getPositionX() - squareSpeed);
 			square_15->setPositionX(square_15->getPositionX() - squareSpeed);
 
+			spikes_0->setPositionX(spikes_0->getPositionX() - squareSpeed);
+			spring_0->setPositionX(spring_0->getPositionX() - squareSpeed);
+
 			secondCounter += dTime;
 		}
 }
 
-bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
-{
+bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
+
 	oldPoint = touch->getLocation();
-	return 1;
+
+	switch (inputState){
+
+	case 0:
+		return 1;
+
+	case 1:
+		jetpack = true;
+		return 1;
+
+	default:return false;
+
+	}
 }
 
 void HelloWorld::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
 {
+
+	switch (inputState){
+
+	case 0:
+		updateline(touch, event);
+		break;
+	case 1:
+		updateJetpackDirection(touch);
+		break;
+	default:break;
+
+	}
+}
+
+void HelloWorld::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+	switch (inputState){
+
+	case 0:
+		break;
+	case 1:
+		jetpack = false;
+		break;
+	default:
+		break;
+	}
+}
+
+void HelloWorld::updateJetpackDirection(cocos2d::Touch* touch){
+
+	oldPoint = touch->getLocation();
+
+}
+
+void HelloWorld::updateline(cocos2d::Touch* touch, cocos2d::Event* event){
+
 	Vec2 newPoint = touch->getLocation();
 
 	//draw a line in pixels between the new point and the previous point
@@ -391,11 +420,6 @@ void HelloWorld::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
 		}
 	}
 	oldPoint = touch->getLocation();
-}
-
-void HelloWorld::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
-{
-
 }
 
 bool HelloWorld::checkPlayerCollision()
@@ -501,13 +525,7 @@ void HelloWorld::RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventTyp
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-		//auto scene = Scene::create();
-		//Director::getInstance()->replaceScene(scene);
-		//Director::getInstance()->restart();
-		//player->setPosition(Vec2(playerStartPos));
 		GameManager::sharedGameManager()->isDead = false;
-		//playerDirection = Direction::RIGHT;
-		//playerFallSpeed = 0.0;
 
 		auto scene = HelloWorld::createScene();
 		Director::getInstance()->replaceScene(scene);
@@ -571,6 +589,17 @@ bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 	}
 	return false;
 }
+
+void HelloWorld::checkSpringCollision(Rect collisionBox){
+
+	Rect mSpring_0 = spring_0->getBoundingBox();
+
+	if (mSpring_0.intersectsRect(player->getBoundingBox())){
+		playerFallSpeed *= -0.8f;
+		playerFallSpeed += -6;
+	}
+}
+
 void HelloWorld::checkFloorCollision()
 {
 		for (int i = 0; i < player->getBoundingBox().size.width; i++)
@@ -646,77 +675,41 @@ void HelloWorld::checkFloorCollision()
 				}
 			}
 		}
-
-		//if (playerDirection == Direction::RIGHT)
-		//{
-		//	if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY()] == true)
-		//	{
-		//		if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//		{
-		//			player->setPositionY(player->getPositionY() + 3);
-
-		//			if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//			{
-		//				player->setPositionY(player->getPositionY() + 3);
-		//			}
-		//		}
-		//		player->setPositionY(player->getPositionY() + 3);
-		//	}
-		//}
-
-		//if (playerDirection == Direction::LEFT)
-		//{
-		//	if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY()] == true)
-		//	{
-		//		if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//		{
-		//			player->setPositionY(player->getPositionY() + 3);
-
-		//			if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//			{
-		//				player->setPositionY(player->getPositionY() + 3);
-		//			}
-		//		}
-		//		player->setPositionY(player->getPositionY() + 3);
-		//	}
-		//}
-
-		//if (playerDirection == Direction::RIGHT)
-		//{
-		//	//check for a direction change
-		//	if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMaxY() + 2] == true)
-		//	{
-		//		playerDirection = Direction::LEFT;
-		//	}
-		//}
-		//if (playerDirection == Direction::LEFT)
-		//{
-		//	//check for a direction change
-		//	if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMaxY() + 2] == true)
-		//	{
-		//		playerDirection = Direction::RIGHT;
-		//	}
-		//}
 }
 
-void HelloWorld::CheckIfDead()
+void HelloWorld::CheckIfDead(Rect collisionBox)
 {
+	//checks if player hits the edge of the screen
 	if (player->getPosition().y < 0 || (player->getBoundingBox().getMaxX() + 13) > ScreenResolution.x || (player->getBoundingBox().getMinX() - 13) < 0)
 	{
-		GameManager::sharedGameManager()->isDead = true;
+		PlayerDead();
+	}
 
-		auto winSize = Director::getInstance()->getVisibleSize();
-		auto moveButtonTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
-		auto moveBackgroundTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
-		restartMenuButton->runAction(moveButtonTo);
-		restartBackground->runAction(moveBackgroundTo);
+	//checks if players hits spikes
+	Rect mSpikes_0 = spikes_0->getBoundingBox();
 
-		for (int i = 0; i < ScreenResolution.x - 1; i++)
+	if (mSpikes_0.intersectsRect(collisionBox)){
+			PlayerDead();
+	}
+	
+}
+
+void HelloWorld::PlayerDead(){
+
+	GameManager::sharedGameManager()->isDead = true;
+
+	auto winSize = Director::getInstance()->getVisibleSize();
+	auto moveButtonTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
+	auto moveBackgroundTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
+	restartMenuButton->runAction(moveButtonTo);
+	restartBackground->runAction(moveBackgroundTo);
+
+	for (int i = 0; i < ScreenResolution.x - 1; i++)
+	{
+		for (int ii = 0; ii < ScreenResolution.y - 1; ii++)
 		{
-			for (int ii = 0; ii < ScreenResolution.y - 1; ii++)
-			{
-				drawLayer[i][ii] = false;//set each value int the array to false
-			}
+			drawLayer[i][ii] = false;//set each value int the array to false
 		}
 	}
+
 }

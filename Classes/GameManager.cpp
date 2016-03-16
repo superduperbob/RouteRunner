@@ -18,24 +18,28 @@ GameManager::GameManager()
 	
 	isGameLive = false;
 	isDead = false;
+	score = 0;
 }
 
 GameManager::~GameManager()
 {
 
 }
+void GameManager::UpdateScore(int increment)
+{
+	this->score += increment;
+}
 
-//void GameManager::UpdateScore(int increment)
-//{
-//	this->score += increment;
-//}
-//
-//void GameManager::ResetScore()
-//{
-//	score = 0;
-//}
-//
-//int GameManager::GetScore()
-//{
-//	return score;
-//}
+void GameManager::ResetScore()
+{
+	score = 0;
+}
+
+int GameManager::GetScore()
+{
+	return score;
+}
+enum MyEnum
+{
+
+};
