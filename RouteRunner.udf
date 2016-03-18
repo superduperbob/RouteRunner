@@ -32,8 +32,10 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="Level2.csd" />
+          <FilePathData Path="StartMenu.csd" />
+          <FilePathData Path="Level3.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="Level2.csd" />
+        <ActiveDocument Path="Level3.csd" />
       </Value>
     </Item>
   </Properties>

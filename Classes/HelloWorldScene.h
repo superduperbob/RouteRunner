@@ -48,6 +48,10 @@ public:
 
 	void drawPoint(int x, int y);
 
+	void LoadStartMenu();
+	void LoadLevel2();
+	void LoadLevel3();
+
 private:
 	Sprite* player;
 	Direction playerDirection;
@@ -68,7 +72,6 @@ private:
 	cocos2d::Sprite* square_5;
 	cocos2d::Sprite* square_6;
 	cocos2d::Sprite* square_7;
-
 	cocos2d::Sprite* square_8;
 	cocos2d::Sprite* square_9;
 	cocos2d::Sprite* square_10;
@@ -77,14 +80,14 @@ private:
 	cocos2d::Sprite* square_13;
 	cocos2d::Sprite* square_14;
 	cocos2d::Sprite* square_15;
-
-	ui::Button* startButton;
+	
+	cocos2d::Sprite* startBackground;
+	ui::Button* startMenuButton;
 	ui::Button* pauseButton;
 	ui::Button* restartButton;
-	ui::Button* restartMenuButton;
-	Sprite*		startBackground;
-	Sprite*		restartBackground;
 	Vec2		playerStartPos;
+
+	Node* Squares;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -30,84 +30,10 @@ bool HelloWorld::init()
     if ( !Layer::init() )
     {
         return false;
-    }
-    
-    auto rootNode = CSLoader::createNode("Level2.csb");
-	player = (Sprite*)rootNode->getChildByName("Player");
-	
-	playerStartPos = Vec2(player->getPosition().x, player->getPosition().y);
-	
-	ScreenResolution = Vec2(rootNode->getBoundingBox().getMaxX(), rootNode->getBoundingBox().getMaxY());//get the resolution of the screen.
-
-	drawLayer = new bool*[(int)ScreenResolution.x];//init the width of the array
-	for (int i = 0; i < ScreenResolution.x-1; i++)
-	{
-		drawLayer[i] = new bool[(int)ScreenResolution.y];//init the height of the array
-	}
-
-	lineSize = 10;
-	moveSpeed = 2;
-	backgroundParallaxMain = (Sprite*)rootNode->getChildByName("BackgroundParallaxMain");
-	backgroundParallaxRight = (Sprite*)rootNode->getChildByName("BackgroundParallaxRight");
-
-	square_5 = (Sprite*)rootNode->getChildByName("square_5");
-	square_6 = (Sprite*)rootNode->getChildByName("square_6");
-	square_7 = (Sprite*)rootNode->getChildByName("square_7");
-	square_8 = (Sprite*)rootNode->getChildByName("square_8");
-	square_9 = (Sprite*)rootNode->getChildByName("square_9");
-	square_10 = (Sprite*)rootNode->getChildByName("square_10");
-	square_11 = (Sprite*)rootNode->getChildByName("square_11");
-	square_12 = (Sprite*)rootNode->getChildByName("square_12");
-	square_13 = (Sprite*)rootNode->getChildByName("square_13");
-	square_14 = (Sprite*)rootNode->getChildByName("square_14");
-	square_15 = (Sprite*)rootNode->getChildByName("square_15");
-
-
-
-	for (int i = 0; i < ScreenResolution.x-1; i++)
-	{
-		for (int ii = 0; ii < ScreenResolution.y-1; ii++)
-		{
-			drawLayer[i][ii] = false;//set each value int the array to false
-		}
-	}
-
-	for (int i = 0; i < 500; i++)
-	{
-		LineArray[i] = Vec2(0, 0);
-	}
-
-	lineArrayCount = 0;
-
-	playerDirection = Direction::RIGHT;
-
-	playerIsFalling = true;	
-	secondCounter = 0;
-
-	lineDrawNode = DrawNode::create();
-	
-
-    addChild(rootNode);
-	//addChild(background);
-	addChild(lineDrawNode);
-	addChild(player);
-
-	startBackground = (Sprite*)rootNode->getChildByName("startBackground");
-	restartBackground = (Sprite*)rootNode->getChildByName("restartBackground");
-
-	startButton = (ui::Button*)rootNode->getChildByName("startButton");
-	startButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::StartPressed, this));
-	pauseButton = (ui::Button*)rootNode->getChildByName("pause");
-	pauseButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::PausePressed, this));
-	pauseButton->setVisible(false);
-	restartButton = (ui::Button*)rootNode->getChildByName("restart");
-	restartButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::RestartPressed, this));
-	restartButton->setVisible(false);
-
-	restartMenuButton = (ui::Button*)rootNode->getChildByName("restartMenuButton");
-	restartMenuButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::RestartPressed, this));
-
+    }    
 	GameManager::sharedGameManager()->isGameLive = false;
+
+	LoadStartMenu();
 
 	//call the touch functions when the touch listener detects a touch;
 	auto touchListener = EventListenerTouchOneByOne::create();
@@ -276,7 +202,13 @@ void HelloWorld::update(float dTime)
 
 			float squareSpeed = 1;
 
-			square_5->setPositionX(square_5->getPositionX() - squareSpeed);
+			for (int i = 0; i < Squares->getChildren().size(); i++)
+			{
+				Sprite* currentSquare = (Sprite*)Squares->getChildren().at(i);
+				currentSquare->setPositionX(currentSquare->getPositionX() - squareSpeed);
+			}
+
+			/*square_5->setPositionX(square_5->getPositionX() - squareSpeed);
 			square_6->setPositionX(square_6->getPositionX() - squareSpeed);
 			square_7->setPositionX(square_7->getPositionX() - squareSpeed);
 			square_8->setPositionX(square_8->getPositionX() - squareSpeed);
@@ -286,7 +218,7 @@ void HelloWorld::update(float dTime)
 			square_12->setPositionX(square_12->getPositionX() - squareSpeed);
 			square_13->setPositionX(square_13->getPositionX() - squareSpeed);
 			square_14->setPositionX(square_14->getPositionX() - squareSpeed);
-			square_15->setPositionX(square_15->getPositionX() - squareSpeed);
+			square_15->setPositionX(square_15->getPositionX() - squareSpeed);*/
 
 			secondCounter += dTime;
 		}
@@ -476,16 +408,9 @@ void HelloWorld::StartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType 
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-		pauseButton->setVisible(true);
-		restartButton->setVisible(true);
-		auto winSize = Director::getInstance()->getVisibleSize();
-		GameManager::sharedGameManager()->isGameLive = true;
+		//auto winSize = Director::getInstance()->getVisibleSize();	
 
-		auto moveButtonTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f * 3, winSize.height * 0.5f));
-		auto moveBackgroundTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f * 3, winSize.height * 0.5f));
-
-		startButton->runAction(moveButtonTo);
-		startBackground->runAction(moveBackgroundTo);
+		LoadLevel3();
 	}
 }
 
@@ -515,14 +440,33 @@ void HelloWorld::RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventTyp
 		auto winSize = Director::getInstance()->getVisibleSize();
 		auto moveButtonTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 0.25));
 		auto moveBackgroundTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 0.25));
-		restartMenuButton->runAction(moveButtonTo);
-		restartBackground->runAction(moveBackgroundTo);
 	}
 }
 
 bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 {
-	Rect mSquare_5 = square_5->getBoundingBox();
+	for (int i = 0; i < Squares->getChildren().size(); i++)
+	{
+		Rect currentSquare = (Rect)Squares->getChildren().at(i)->getBoundingBox();
+
+		if (currentSquare.intersectsRect(collisionBox))
+		{
+			if (player->getBoundingBox().getMaxX() > currentSquare.getMinX() && player->getBoundingBox().getMaxX() - 5 < currentSquare.getMinX())
+			{
+				playerDirection = Direction::LEFT;
+				player->setPositionX(player->getPositionX() - 5);
+			}
+			else if (player->getBoundingBox().getMinX() < currentSquare.getMaxX() && player->getBoundingBox().getMinX() + 5 > currentSquare.getMaxX())
+			{
+				playerDirection = Direction::RIGHT;
+				player->setPositionX(player->getPositionX() + 5);
+			}
+			return true;
+		}
+	}
+	return false;
+
+	/*Rect mSquare_5 = square_5->getBoundingBox();
 	Rect mSquare_6 = square_6->getBoundingBox();
 	Rect mSquare_7 = square_7->getBoundingBox();
 	Rect mSquare_8 = square_8->getBoundingBox();
@@ -569,8 +513,9 @@ bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 		}
 		return true;
 	}
-	return false;
+	return false;*/
 }
+
 void HelloWorld::checkFloorCollision()
 {
 		for (int i = 0; i < player->getBoundingBox().size.width; i++)
@@ -708,8 +653,8 @@ void HelloWorld::CheckIfDead()
 		auto winSize = Director::getInstance()->getVisibleSize();
 		auto moveButtonTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
 		auto moveBackgroundTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
-		restartMenuButton->runAction(moveButtonTo);
-		restartBackground->runAction(moveBackgroundTo);
+		//restartMenuButton->runAction(moveButtonTo);
+		//restartBackground->runAction(moveBackgroundTo);
 
 		for (int i = 0; i < ScreenResolution.x - 1; i++)
 		{
@@ -719,4 +664,139 @@ void HelloWorld::CheckIfDead()
 			}
 		}
 	}
+}
+
+void HelloWorld::LoadStartMenu()
+{
+	auto rootNode = CSLoader::createNode("StartMenu.csb");
+	startMenuButton = (ui::Button*)rootNode->getChildByName("startMenuButton");
+	startMenuButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::StartPressed, this));
+	startBackground = (Sprite*)rootNode->getChildByName("startBackground");
+	addChild(rootNode);
+}
+
+void HelloWorld::LoadLevel2()
+{
+	//Initialize all level2 sprites/buttons
+	GameManager::sharedGameManager()->isGameLive = true;
+
+	/*auto myScene = Scene::create();
+	Director::getInstance()->replaceScene(TransitionFlipX::create(0.5, myScene));*/
+
+	auto rootNode = CSLoader::createNode("Level2.csb");
+	
+	ScreenResolution = Vec2(rootNode->getBoundingBox().getMaxX(), rootNode->getBoundingBox().getMaxY());//get the resolution of the screen.
+
+	player = (Sprite*)rootNode->getChildByName("Player");
+	playerStartPos = Vec2(player->getPosition().x, player->getPosition().y);
+	backgroundParallaxMain = (Sprite*)rootNode->getChildByName("BackgroundParallaxMain");
+	backgroundParallaxRight = (Sprite*)rootNode->getChildByName("BackgroundParallaxRight");
+
+	square_5 = (Sprite*)rootNode->getChildByName("square_5");
+	square_6 = (Sprite*)rootNode->getChildByName("square_6");
+	square_7 = (Sprite*)rootNode->getChildByName("square_7");
+	square_8 = (Sprite*)rootNode->getChildByName("square_8");
+	square_9 = (Sprite*)rootNode->getChildByName("square_9");
+	square_10 = (Sprite*)rootNode->getChildByName("square_10");
+	square_11 = (Sprite*)rootNode->getChildByName("square_11");
+	square_12 = (Sprite*)rootNode->getChildByName("square_12");
+	square_13 = (Sprite*)rootNode->getChildByName("square_13");
+	square_14 = (Sprite*)rootNode->getChildByName("square_14");
+	square_15 = (Sprite*)rootNode->getChildByName("square_15");
+
+	pauseButton = (ui::Button*)rootNode->getChildByName("pause");
+	pauseButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::PausePressed, this));
+	restartButton = (ui::Button*)rootNode->getChildByName("restart");
+	restartButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::RestartPressed, this));
+
+	drawLayer = new bool*[(int)ScreenResolution.x];//init the width of the array
+	for (int i = 0; i < ScreenResolution.x - 1; i++)
+	{
+		drawLayer[i] = new bool[(int)ScreenResolution.y];//init the height of the array
+	}
+
+	lineSize = 10;
+	moveSpeed = 2;
+
+	for (int i = 0; i < ScreenResolution.x - 1; i++)
+	{
+		for (int ii = 0; ii < ScreenResolution.y - 1; ii++)
+		{
+			drawLayer[i][ii] = false;//set each value int the array to false
+		}
+	}
+
+	for (int i = 0; i < 500; i++)
+	{
+		LineArray[i] = Vec2(0, 0);
+	}
+
+	lineArrayCount = 0;
+	playerDirection = Direction::RIGHT;
+	playerIsFalling = true;
+	secondCounter = 0;
+	lineDrawNode = DrawNode::create();
+
+	addChild(rootNode);
+	//addChild(background);
+	addChild(lineDrawNode);
+	addChild(player);
+}
+
+void HelloWorld::LoadLevel3()
+{
+	//Initialize all level3 sprites/buttons
+	GameManager::sharedGameManager()->isGameLive = true;
+
+	/*auto myScene = Scene::create();
+	Director::getInstance()->replaceScene(TransitionFlipX::create(0.5, myScene));*/
+
+	auto rootNode = CSLoader::createNode("Level3.csb");
+
+	ScreenResolution = Vec2(rootNode->getBoundingBox().getMaxX(), rootNode->getBoundingBox().getMaxY());//get the resolution of the screen.
+
+	player = (Sprite*)rootNode->getChildByName("Player");
+	playerStartPos = Vec2(player->getPosition().x, player->getPosition().y);
+	backgroundParallaxMain = (Sprite*)rootNode->getChildByName("BackgroundParallaxMain");
+	backgroundParallaxRight = (Sprite*)rootNode->getChildByName("BackgroundParallaxRight");
+
+	Squares = (Node*)rootNode->getChildByName("Squares");
+
+	pauseButton = (ui::Button*)rootNode->getChildByName("pause");
+	pauseButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::PausePressed, this));
+	restartButton = (ui::Button*)rootNode->getChildByName("restart");
+	restartButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::RestartPressed, this));
+
+	drawLayer = new bool*[(int)ScreenResolution.x];//init the width of the array
+	for (int i = 0; i < ScreenResolution.x - 1; i++)
+	{
+		drawLayer[i] = new bool[(int)ScreenResolution.y];//init the height of the array
+	}
+
+	lineSize = 10;
+	moveSpeed = 2;
+
+	for (int i = 0; i < ScreenResolution.x - 1; i++)
+	{
+		for (int ii = 0; ii < ScreenResolution.y - 1; ii++)
+		{
+			drawLayer[i][ii] = false;//set each value int the array to false
+		}
+	}
+
+	for (int i = 0; i < 500; i++)
+	{
+		LineArray[i] = Vec2(0, 0);
+	}
+
+	lineArrayCount = 0;
+	playerDirection = Direction::RIGHT;
+	playerIsFalling = true;
+	secondCounter = 0;
+	lineDrawNode = DrawNode::create();
+
+	addChild(rootNode);
+	//addChild(background);
+	addChild(lineDrawNode);
+	addChild(player);
 }
