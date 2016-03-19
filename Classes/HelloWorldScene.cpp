@@ -481,6 +481,8 @@ void HelloWorld::LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType 
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		auto winSize = Director::getInstance()->getVisibleSize();
+		MoveLevelSelectButtons = Vec2(0, 2000);
+		SelectLevelButtons->setPosition(MoveLevelSelectButtons);
 
 		switch (levelID)
 		{
@@ -538,55 +540,6 @@ bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 		}
 	}
 	return false;
-
-	/*Rect mSquare_5 = square_5->getBoundingBox();
-	Rect mSquare_6 = square_6->getBoundingBox();
-	Rect mSquare_7 = square_7->getBoundingBox();
-	Rect mSquare_8 = square_8->getBoundingBox();
-	Rect mSquare_9 = square_9->getBoundingBox();
-	Rect mSquare_10 = square_10->getBoundingBox();
-	Rect mSquare_11 = square_11->getBoundingBox();
-	Rect mSquare_12 = square_12->getBoundingBox();
-	Rect mSquare_13 = square_13->getBoundingBox();
-	Rect mSquare_14 = square_14->getBoundingBox();
-	Rect mSquare_15 = square_15->getBoundingBox();
-
-
-	if (mSquare_5.intersectsRect(collisionBox) || mSquare_6.intersectsRect(collisionBox) || mSquare_7.intersectsRect(collisionBox) || mSquare_8.intersectsRect(collisionBox) || mSquare_9.intersectsRect(collisionBox) || mSquare_10.intersectsRect(collisionBox) || mSquare_11.intersectsRect(collisionBox) || mSquare_12.intersectsRect(collisionBox) || mSquare_13.intersectsRect(collisionBox) || mSquare_14.intersectsRect(collisionBox) || mSquare_15.intersectsRect(collisionBox))
-	{
-		if (player->getBoundingBox().getMaxX() > mSquare_5.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_5.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_6.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_6.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_7.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_7.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_8.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_8.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_9.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_9.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_10.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_10.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_11.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_11.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_12.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_12.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_13.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_13.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_14.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_14.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_15.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_15.getMinX())
-		{
-				playerDirection = Direction::LEFT;
-				player->setPositionX(player->getPositionX() - 5);
-		}
-		else if (player->getBoundingBox().getMinX() < mSquare_5.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_5.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_6.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_6.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_7.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_7.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_8.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_8.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_9.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_9.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_10.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_10.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_11.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_11.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_12.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_12.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_13.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_13.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_14.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_14.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_15.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_15.getMaxX())
-		{
-			playerDirection = Direction::RIGHT;
-			player->setPositionX(player->getPositionX() + 5);
-		}
-		return true;
-	}
-	return false;*/
 }
 
 bool HelloWorld::checkEndBlockCollision(Rect collisionBox)
@@ -618,7 +571,6 @@ void HelloWorld::checkFloorCollision()
 			}
 		}
 
-
 		if (playerDirection == Direction::RIGHT)
 		{
 			for (int i = 0; i < player->getBoundingBox().size.height / 2; i++)
@@ -647,7 +599,6 @@ void HelloWorld::checkFloorCollision()
 
 			}
 		}
-
 
 		if (playerDirection == Direction::RIGHT)
 		{
@@ -678,57 +629,6 @@ void HelloWorld::checkFloorCollision()
 				}
 			}
 		}
-
-		//if (playerDirection == Direction::RIGHT)
-		//{
-		//	if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY()] == true)
-		//	{
-		//		if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//		{
-		//			player->setPositionY(player->getPositionY() + 3);
-
-		//			if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//			{
-		//				player->setPositionY(player->getPositionY() + 3);
-		//			}
-		//		}
-		//		player->setPositionY(player->getPositionY() + 3);
-		//	}
-		//}
-
-		//if (playerDirection == Direction::LEFT)
-		//{
-		//	if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY()] == true)
-		//	{
-		//		if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//		{
-		//			player->setPositionY(player->getPositionY() + 3);
-
-		//			if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//			{
-		//				player->setPositionY(player->getPositionY() + 3);
-		//			}
-		//		}
-		//		player->setPositionY(player->getPositionY() + 3);
-		//	}
-		//}
-
-		//if (playerDirection == Direction::RIGHT)
-		//{
-		//	//check for a direction change
-		//	if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMaxY() + 2] == true)
-		//	{
-		//		playerDirection = Direction::LEFT;
-		//	}
-		//}
-		//if (playerDirection == Direction::LEFT)
-		//{
-		//	//check for a direction change
-		//	if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMaxY() + 2] == true)
-		//	{
-		//		playerDirection = Direction::RIGHT;
-		//	}
-		//}
 }
 
 void HelloWorld::CheckIfDead(Rect collisionBox)
@@ -791,23 +691,15 @@ void HelloWorld::LoadLevelSelect()
 {
 	auto rootNode = CSLoader::createNode("LevelSelect.csb");
 
-	SelectLevel1 = (ui::Button*)rootNode->getChildByName("SelectLevel1");
-	SelectLevel1->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 0));
+	SelectLevelButtons = (Node*)rootNode->getChildByName("SelectLevelButtons");
+	LevelSelectButtonsStartPos = Vec2(SelectLevelButtons->getPosition().x, SelectLevelButtons->getPosition().y);
+	SelectLevelButtons->setPosition(LevelSelectButtonsStartPos);
 
-	SelectLevel2 = (ui::Button*)rootNode->getChildByName("SelectLevel2");
-	SelectLevel2->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 1));
-
-	SelectLevel3 = (ui::Button*)rootNode->getChildByName("SelectLevel3");
-	SelectLevel3->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 2));
-
-	SelectLevel4 = (ui::Button*)rootNode->getChildByName("SelectLevel4");
-	SelectLevel4->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 3));
-
-	SelectLevel5 = (ui::Button*)rootNode->getChildByName("SelectLevel5");
-	SelectLevel5->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 4));
-
-	SelectLevel6 = (ui::Button*)rootNode->getChildByName("SelectLevel6");
-	SelectLevel6->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 5));
+	for (int i = 0; i < SelectLevelButtons->getChildren().size(); i++)
+	{
+		ui::Button* currentLevelButton = (ui::Button*)SelectLevelButtons->getChildren().at(i);
+		currentLevelButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, i));
+	}
 
 	addChild(rootNode);
 }

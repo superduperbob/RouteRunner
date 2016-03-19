@@ -83,14 +83,14 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="72.1462" RightMargin="1797.8538" TopMargin="612.9912" BottomMargin="392.0088" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="72.1462" RightMargin="1797.8538" TopMargin="600.4912" BottomMargin="379.5088" ctype="SpriteObjectData">
             <Size X="50.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="97.1462" Y="429.5088" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0506" Y="0.3977" />
-            <PreSize X="0.0260" Y="0.0694" />
+            <PreSize X="0.0260" Y="0.0926" />
             <FileData Type="Normal" Path="Player_idle2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
@@ -147,7 +147,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="pause" ActionTag="1166662749" Tag="72" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1690.0000" RightMargin="154.0000" TopMargin="911.5000" BottomMargin="47.5000" TouchEnable="True" FontSize="14" ButtonText="Pause" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="46" Scale9Height="99" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="pause" ActionTag="1166662749" Tag="72" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1690.0000" RightMargin="154.0000" TopMargin="911.5000" BottomMargin="47.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="46" Scale9Height="99" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="76.0000" Y="121.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1728.0000" Y="108.0000" />

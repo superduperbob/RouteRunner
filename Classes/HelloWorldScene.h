@@ -98,11 +98,14 @@ private:
 	ui::Button* pauseButton;
 	ui::Button* restartButton;
 	Vec2		playerStartPos;
+	Vec2		LevelSelectButtonsStartPos;
+	Vec2		MoveLevelSelectButtons;
 
 	Node* Squares;
 	Node* Windows;
 	Node* Springs;
 	Node* Spikes;
+	Node* SelectLevelButtons;
 
 	string level_1 = "level1.csb";
 	string level_2 = "level2.csb";

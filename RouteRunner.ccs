@@ -35,6 +35,7 @@
         <Image Name="playButton.png" />
         <Image Name="restartButton.png" />
         <Image Name="pauseButton.png" />
+        <Image Name="robot.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
