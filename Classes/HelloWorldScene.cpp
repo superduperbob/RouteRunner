@@ -797,17 +797,17 @@ void HelloWorld::LoadLevelSelect()
 	SelectLevel2 = (ui::Button*)rootNode->getChildByName("SelectLevel2");
 	SelectLevel2->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 1));
 
-	SelectLevel3 = (ui::Button*)rootNode->getChildByName("SelectLevel1");
-	SelectLevel3->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 0));
+	SelectLevel3 = (ui::Button*)rootNode->getChildByName("SelectLevel3");
+	SelectLevel3->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 2));
 
-	SelectLevel4 = (ui::Button*)rootNode->getChildByName("SelectLevel1");
-	SelectLevel4->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 0));
+	SelectLevel4 = (ui::Button*)rootNode->getChildByName("SelectLevel4");
+	SelectLevel4->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 3));
 
-	SelectLevel5 = (ui::Button*)rootNode->getChildByName("SelectLevel1");
-	SelectLevel5->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 0));
+	SelectLevel5 = (ui::Button*)rootNode->getChildByName("SelectLevel5");
+	SelectLevel5->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 4));
 
-	SelectLevel6 = (ui::Button*)rootNode->getChildByName("SelectLevel1");
-	SelectLevel6->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 0));
+	SelectLevel6 = (ui::Button*)rootNode->getChildByName("SelectLevel6");
+	SelectLevel6->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, 5));
 	addChild(rootNode);
 }
 
