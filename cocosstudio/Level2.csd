@@ -39,17 +39,6 @@
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="window_1" ActionTag="-1936707646" Tag="184" IconVisible="False" LeftMargin="847.1526" RightMargin="672.8474" TopMargin="112.4034" BottomMargin="71.5966" ctype="SpriteObjectData">
-            <Size X="400.0000" Y="896.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1047.1526" Y="519.5966" />
-            <Scale ScaleX="0.6000" ScaleY="0.6000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5454" Y="0.4811" />
-            <PreSize X="0.2083" Y="0.8296" />
-            <FileData Type="Normal" Path="BasicBuildingV2DARKWindow.png" Plist="" />
-            <BlendFunc Src="770" Dst="771" />
-          </AbstractNodeData>
           <AbstractNodeData Name="Squares" ActionTag="480340300" Tag="40" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
             <Children>
@@ -147,6 +136,19 @@
           </AbstractNodeData>
           <AbstractNodeData Name="Windows" ActionTag="-2078653094" Tag="63" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
+            <Children>
+              <AbstractNodeData Name="window_1" ActionTag="-1936707646" Tag="184" IconVisible="False" LeftMargin="847.1526" RightMargin="-1247.1526" TopMargin="-967.5966" BottomMargin="71.5966" ctype="SpriteObjectData">
+                <Size X="400.0000" Y="896.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="1047.1526" Y="519.5966" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="Normal" Path="BasicBuildingV2DARKWindow.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+            </Children>
             <AnchorPoint />
             <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />

@@ -55,12 +55,7 @@ public:
 	void LoadStartMenu();
 	void LoadLevelSelect();
 	void LoadGameMenu();
-	void LoadLevel1();
-	void LoadLevel2();
-	void LoadLevel3();
-	void LoadLevel4();
-	void LoadLevel5();
-	void LoadLevel6();
+	void LoadLevel(string level);
 
 private:
 
@@ -108,6 +103,14 @@ private:
 	Node* Windows;
 	Node* Springs;
 	Node* Spikes;
+
+	string level_1 = "level1.csb";
+	string level_2 = "level2.csb";
+	string level_3 = "level3.csb";
+	string level_4 = "level4.csb";
+	string level_5 = "level5.csb";
+	string level_6 = "level6.csb";
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
