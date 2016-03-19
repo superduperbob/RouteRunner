@@ -38,21 +38,35 @@ public:
 	void StartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void CheckIfDead();
+	void LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID);
+	void CheckIfDead(Rect);
+	void PlayerDead();
 
 	void update(float);
 
 	bool checkPlayerCollision();
 	bool checkTerrainCollision(Rect);
 	void checkFloorCollision();
+	void checkSpringCollision(Rect);
+	bool checkEndBlockCollision(Rect);
 
 	void drawPoint(int x, int y);
 
 	void LoadStartMenu();
+	void LoadLevelSelect();
+	void LoadGameMenu();
+	void LoadLevel1();
 	void LoadLevel2();
 	void LoadLevel3();
+	void LoadLevel4();
+	void LoadLevel5();
+	void LoadLevel6();
 
 private:
+
+	void updateline(cocos2d::Touch* touch, cocos2d::Event* event);
+	void updateJetpackDirection(cocos2d::Touch* touch);
+
 	Sprite* player;
 	Direction playerDirection;
 	bool playerIsFalling;
@@ -69,17 +83,20 @@ private:
 	Vec2 LineArray[500];
 	int lineArrayCount;
 
-	cocos2d::Sprite* square_5;
-	cocos2d::Sprite* square_6;
-	cocos2d::Sprite* square_7;
-	cocos2d::Sprite* square_8;
-	cocos2d::Sprite* square_9;
-	cocos2d::Sprite* square_10;
-	cocos2d::Sprite* square_11;
-	cocos2d::Sprite* square_12;
-	cocos2d::Sprite* square_13;
-	cocos2d::Sprite* square_14;
-	cocos2d::Sprite* square_15;
+	int inputState;
+	bool jetpack;
+
+	cocos2d::Sprite* EndBlock;
+	ui::Button* SelectLevel1;
+	ui::Button* SelectLevel2;
+	ui::Button* SelectLevel3;
+	ui::Button* SelectLevel4;
+	ui::Button* SelectLevel5;
+	ui::Button* SelectLevel6;
+
+	ui::Button* backToSelect;
+	ui::Button* restartMenuButton;
+	ui::Button* resumeButton;
 	
 	cocos2d::Sprite* startBackground;
 	ui::Button* startMenuButton;
@@ -88,6 +105,9 @@ private:
 	Vec2		playerStartPos;
 
 	Node* Squares;
+	Node* Windows;
+	Node* Springs;
+	Node* Spikes;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
