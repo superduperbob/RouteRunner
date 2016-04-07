@@ -39,6 +39,61 @@
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
+          <AbstractNodeData Name="Squares" ActionTag="480340300" Tag="40" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <Children>
+              <AbstractNodeData Name="square_0" ActionTag="2092794472" Tag="42" IconVisible="False" LeftMargin="82.9357" RightMargin="-352.9357" TopMargin="-268.9729" BottomMargin="82.9729" ctype="SpriteObjectData">
+                <Size X="270.0000" Y="186.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="217.9357" Y="175.9729" />
+                <Scale ScaleX="1.6352" ScaleY="2.2909" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="Normal" Path="brick.jpg" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="square_3" ActionTag="1574669481" Tag="48" IconVisible="False" LeftMargin="1732.9114" RightMargin="-2002.9114" TopMargin="-275.4315" BottomMargin="89.4315" ctype="SpriteObjectData">
+                <Size X="270.0000" Y="186.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="1867.9114" Y="182.4315" />
+                <Scale ScaleX="1.8893" ScaleY="2.3418" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="Normal" Path="brick.jpg" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="square_2" ActionTag="-1498789332" Tag="157" IconVisible="False" LeftMargin="847.3738" RightMargin="-1247.3738" TopMargin="-696.6232" BottomMargin="-199.3768" ctype="SpriteObjectData">
+                <Size X="400.0000" Y="896.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="1047.3738" Y="248.6232" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="Normal" Path="BasicBuildingV2DARK.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="square_1" ActionTag="-991284364" Tag="156" IconVisible="False" LeftMargin="846.5087" RightMargin="-1246.5087" TopMargin="-1411.3586" BottomMargin="515.3586" ctype="SpriteObjectData">
+                <Size X="400.0000" Y="896.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="1046.5087" Y="963.3586" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="Normal" Path="BasicBuildingV2DARK.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+          </AbstractNodeData>
           <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="72.1462" RightMargin="1797.8538" TopMargin="612.9912" BottomMargin="392.0088" ctype="SpriteObjectData">
             <Size X="50.0000" Y="75.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -91,61 +146,6 @@
                 <PrePosition />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="Normal" Path="BasicBuildingV2DARKWindow.png" Plist="" />
-                <BlendFunc Src="770" Dst="771" />
-              </AbstractNodeData>
-            </Children>
-            <AnchorPoint />
-            <Position />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
-            <PreSize X="0.0000" Y="0.0000" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="Squares" ActionTag="480340300" Tag="40" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
-            <Size X="0.0000" Y="0.0000" />
-            <Children>
-              <AbstractNodeData Name="square_0" ActionTag="2092794472" Tag="42" IconVisible="False" LeftMargin="82.9357" RightMargin="-352.9357" TopMargin="-268.9729" BottomMargin="82.9729" ctype="SpriteObjectData">
-                <Size X="270.0000" Y="186.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="217.9357" Y="175.9729" />
-                <Scale ScaleX="1.6352" ScaleY="2.2909" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="Normal" Path="brick.jpg" Plist="" />
-                <BlendFunc Src="770" Dst="771" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="square_3" ActionTag="1574669481" Tag="48" IconVisible="False" LeftMargin="1732.9114" RightMargin="-2002.9114" TopMargin="-275.4315" BottomMargin="89.4315" ctype="SpriteObjectData">
-                <Size X="270.0000" Y="186.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="1867.9114" Y="182.4315" />
-                <Scale ScaleX="1.8893" ScaleY="2.3418" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="Normal" Path="brick.jpg" Plist="" />
-                <BlendFunc Src="770" Dst="771" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="square_2" ActionTag="-1498789332" Tag="157" IconVisible="False" LeftMargin="847.3738" RightMargin="-1247.3738" TopMargin="-696.6232" BottomMargin="-199.3768" ctype="SpriteObjectData">
-                <Size X="400.0000" Y="896.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="1047.3738" Y="248.6232" />
-                <Scale ScaleX="0.6000" ScaleY="0.6000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="Normal" Path="BasicBuildingV2DARK.png" Plist="" />
-                <BlendFunc Src="770" Dst="771" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="square_1" ActionTag="-991284364" Tag="156" IconVisible="False" LeftMargin="846.5087" RightMargin="-1246.5087" TopMargin="-1411.3586" BottomMargin="515.3586" ctype="SpriteObjectData">
-                <Size X="400.0000" Y="896.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="1046.5087" Y="963.3586" />
-                <Scale ScaleX="0.6000" ScaleY="0.6000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="Normal" Path="BasicBuildingV2DARK.png" Plist="" />
                 <BlendFunc Src="770" Dst="771" />
               </AbstractNodeData>
             </Children>

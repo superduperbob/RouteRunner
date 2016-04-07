@@ -3,6 +3,9 @@
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
+#
+//#include "LevelSelect.h"
+
 using namespace cocos2d;
 using namespace std;
 
@@ -22,7 +25,7 @@ class HelloWorld : public cocos2d::Layer
 {
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
-    static cocos2d::Scene* createScene();
+    static cocos2d::Scene* createScene(string level);
 
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();
@@ -30,15 +33,15 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 
-
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 	
-	void StartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	
 	void LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID);
+
 	void CheckIfDead(Rect);
 	void PlayerDead();
 
@@ -52,8 +55,8 @@ public:
 
 	void drawPoint(int x, int y);
 
-	void LoadStartMenu();
-	void LoadLevelSelect();
+	//void LoadStartMenu();
+	//void LoadLevelSelect();
 	void LoadGameMenu();
 	void LoadLevel(string level);
 
@@ -82,30 +85,19 @@ private:
 	bool jetpack;
 
 	cocos2d::Sprite* EndBlock;
-	ui::Button* SelectLevel1;
-	ui::Button* SelectLevel2;
-	ui::Button* SelectLevel3;
-	ui::Button* SelectLevel4;
-	ui::Button* SelectLevel5;
-	ui::Button* SelectLevel6;
 
-	ui::Button* backToSelect;
-	ui::Button* restartMenuButton;
-	ui::Button* resumeButton;
-	
-	cocos2d::Sprite* startBackground;
-	ui::Button* startMenuButton;
-	ui::Button* pauseButton;
+	//ui::Button* backToSelect;
+	//ui::Button* resumeButton;
 	ui::Button* restartButton;
+	
+	ui::Button* pauseButton;
+	ui::Button* restartMenuButton;
 	Vec2		playerStartPos;
-	Vec2		LevelSelectButtonsStartPos;
-	Vec2		MoveLevelSelectButtons;
 
 	Node* Squares;
 	Node* Windows;
 	Node* Springs;
 	Node* Spikes;
-	Node* SelectLevelButtons;
 
 	string level_1 = "level1.csb";
 	string level_2 = "level2.csb";

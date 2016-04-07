@@ -24,6 +24,15 @@
     <ClCompile Include="..\Classes\GameManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="StartMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelSelect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -36,6 +45,15 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMenu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMenu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelSelect.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

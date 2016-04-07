@@ -1,4 +1,4 @@
-#include "HelloWorldScene.h"
+﻿#include "HelloWorldScene.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "GameManager.h"
@@ -7,14 +7,15 @@ USING_NS_CC;
 
 using namespace cocostudio::timeline;
 
-Scene* HelloWorld::createScene()
+
+Scene* HelloWorld::createScene(string level)
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
     auto layer = HelloWorld::create();
-
+	layer->LoadLevel(level);
     // add layer as a child to scene
     scene->addChild(layer);
 
@@ -27,6 +28,7 @@ bool HelloWorld::init()
 {
     //////////////////////////////
     // 1. super init first
+	
     if ( !Layer::init() )
     {
         return false;
@@ -35,8 +37,6 @@ bool HelloWorld::init()
 
 	inputState = 0;
 	jetpack = false;
-
-	LoadStartMenu();
 
 	//call the touch functions when the touch listener detects a touch;
 	auto touchListener = EventListenerTouchOneByOne::create();
@@ -435,23 +435,14 @@ void HelloWorld::drawPoint(int x, int y)
 	}
 }
 
-void HelloWorld::StartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
-{
-	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
-	{
-		//auto winSize = Director::getInstance()->getVisibleSize();	
-
-		LoadLevelSelect();
-	}
-}
-
 void HelloWorld::PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	bool GameMenu = false;
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		GameManager::sharedGameManager()->isGameLive = !GameManager::sharedGameManager()->isGameLive;
-		LoadGameMenu();
+		
+		//LoadGameMenu();
 	}
 }
 
@@ -461,7 +452,7 @@ void HelloWorld::RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventTyp
 	{
 		//auto scene = Scene::create();
 		//Director::getInstance()->replaceScene(scene);
-		//Director::getInstance()->restart();
+		Director::getInstance()->restart();
 		//player->setPosition(Vec2(playerStartPos));
 		GameManager::sharedGameManager()->isDead = false;
 		//playerDirection = Direction::RIGHT;
@@ -473,27 +464,6 @@ void HelloWorld::RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventTyp
 		auto winSize = Director::getInstance()->getVisibleSize();
 		auto moveButtonTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 0.25));
 		auto moveBackgroundTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 0.25));
-	}
-}
-
-void HelloWorld::LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID){
-
-	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
-	{
-		auto winSize = Director::getInstance()->getVisibleSize();
-		MoveLevelSelectButtons = Vec2(0, 2000);
-		SelectLevelButtons->setPosition(MoveLevelSelectButtons);
-
-		switch (levelID)
-		{
-		case 0: LoadLevel(level_1); break;
-		case 1: LoadLevel(level_2); break;
-		case 2: LoadLevel(level_3); break;
-		case 3: LoadLevel(level_4); break;
-		case 4: LoadLevel(level_5); break;
-		case 5: LoadLevel(level_6); break;
-		default: break;
-		}
 	}
 }
 
@@ -540,6 +510,55 @@ bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 		}
 	}
 	return false;
+
+	/*Rect mSquare_5 = square_5->getBoundingBox();
+	Rect mSquare_6 = square_6->getBoundingBox();
+	Rect mSquare_7 = square_7->getBoundingBox();
+	Rect mSquare_8 = square_8->getBoundingBox();
+	Rect mSquare_9 = square_9->getBoundingBox();
+	Rect mSquare_10 = square_10->getBoundingBox();
+	Rect mSquare_11 = square_11->getBoundingBox();
+	Rect mSquare_12 = square_12->getBoundingBox();
+	Rect mSquare_13 = square_13->getBoundingBox();
+	Rect mSquare_14 = square_14->getBoundingBox();
+	Rect mSquare_15 = square_15->getBoundingBox();
+
+
+	if (mSquare_5.intersectsRect(collisionBox) || mSquare_6.intersectsRect(collisionBox) || mSquare_7.intersectsRect(collisionBox) || mSquare_8.intersectsRect(collisionBox) || mSquare_9.intersectsRect(collisionBox) || mSquare_10.intersectsRect(collisionBox) || mSquare_11.intersectsRect(collisionBox) || mSquare_12.intersectsRect(collisionBox) || mSquare_13.intersectsRect(collisionBox) || mSquare_14.intersectsRect(collisionBox) || mSquare_15.intersectsRect(collisionBox))
+	{
+		if (player->getBoundingBox().getMaxX() > mSquare_5.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_5.getMinX()
+			|| player->getBoundingBox().getMaxX() > mSquare_6.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_6.getMinX()
+			|| player->getBoundingBox().getMaxX() > mSquare_7.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_7.getMinX()
+			|| player->getBoundingBox().getMaxX() > mSquare_8.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_8.getMinX()
+			|| player->getBoundingBox().getMaxX() > mSquare_9.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_9.getMinX()
+			|| player->getBoundingBox().getMaxX() > mSquare_10.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_10.getMinX()
+			|| player->getBoundingBox().getMaxX() > mSquare_11.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_11.getMinX()
+			|| player->getBoundingBox().getMaxX() > mSquare_12.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_12.getMinX()
+			|| player->getBoundingBox().getMaxX() > mSquare_13.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_13.getMinX()
+			|| player->getBoundingBox().getMaxX() > mSquare_14.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_14.getMinX()
+			|| player->getBoundingBox().getMaxX() > mSquare_15.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_15.getMinX())
+		{
+				playerDirection = Direction::LEFT;
+				player->setPositionX(player->getPositionX() - 5);
+		}
+		else if (player->getBoundingBox().getMinX() < mSquare_5.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_5.getMaxX()
+			|| player->getBoundingBox().getMinX() < mSquare_6.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_6.getMaxX()
+			|| player->getBoundingBox().getMinX() < mSquare_7.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_7.getMaxX()
+			|| player->getBoundingBox().getMinX() < mSquare_8.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_8.getMaxX()
+			|| player->getBoundingBox().getMinX() < mSquare_9.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_9.getMaxX()
+			|| player->getBoundingBox().getMinX() < mSquare_10.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_10.getMaxX()
+			|| player->getBoundingBox().getMinX() < mSquare_11.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_11.getMaxX()
+			|| player->getBoundingBox().getMinX() < mSquare_12.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_12.getMaxX()
+			|| player->getBoundingBox().getMinX() < mSquare_13.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_13.getMaxX()
+			|| player->getBoundingBox().getMinX() < mSquare_14.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_14.getMaxX()
+			|| player->getBoundingBox().getMinX() < mSquare_15.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_15.getMaxX())
+		{
+			playerDirection = Direction::RIGHT;
+			player->setPositionX(player->getPositionX() + 5);
+		}
+		return true;
+	}
+	return false;*/
 }
 
 bool HelloWorld::checkEndBlockCollision(Rect collisionBox)
@@ -571,6 +590,7 @@ void HelloWorld::checkFloorCollision()
 			}
 		}
 
+
 		if (playerDirection == Direction::RIGHT)
 		{
 			for (int i = 0; i < player->getBoundingBox().size.height / 2; i++)
@@ -599,6 +619,7 @@ void HelloWorld::checkFloorCollision()
 
 			}
 		}
+
 
 		if (playerDirection == Direction::RIGHT)
 		{
@@ -629,6 +650,57 @@ void HelloWorld::checkFloorCollision()
 				}
 			}
 		}
+
+		//if (playerDirection == Direction::RIGHT)
+		//{
+		//	if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY()] == true)
+		//	{
+		//		if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY() + 1] == true)
+		//		{
+		//			player->setPositionY(player->getPositionY() + 3);
+
+		//			if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY() + 1] == true)
+		//			{
+		//				player->setPositionY(player->getPositionY() + 3);
+		//			}
+		//		}
+		//		player->setPositionY(player->getPositionY() + 3);
+		//	}
+		//}
+
+		//if (playerDirection == Direction::LEFT)
+		//{
+		//	if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY()] == true)
+		//	{
+		//		if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY() + 1] == true)
+		//		{
+		//			player->setPositionY(player->getPositionY() + 3);
+
+		//			if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY() + 1] == true)
+		//			{
+		//				player->setPositionY(player->getPositionY() + 3);
+		//			}
+		//		}
+		//		player->setPositionY(player->getPositionY() + 3);
+		//	}
+		//}
+
+		//if (playerDirection == Direction::RIGHT)
+		//{
+		//	//check for a direction change
+		//	if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMaxY() + 2] == true)
+		//	{
+		//		playerDirection = Direction::LEFT;
+		//	}
+		//}
+		//if (playerDirection == Direction::LEFT)
+		//{
+		//	//check for a direction change
+		//	if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMaxY() + 2] == true)
+		//	{
+		//		playerDirection = Direction::RIGHT;
+		//	}
+		//}
 }
 
 void HelloWorld::CheckIfDead(Rect collisionBox)
@@ -675,58 +747,15 @@ void HelloWorld::PlayerDead(){
 			drawLayer[i][ii] = false;//set each value int the array to false
 		}
 	}
-
-}
-
-void HelloWorld::LoadStartMenu()
-{
-	auto rootNode = CSLoader::createNode("StartMenu.csb");
-	startMenuButton = (ui::Button*)rootNode->getChildByName("startMenuButton");
-	startMenuButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::StartPressed, this));
-	startBackground = (Sprite*)rootNode->getChildByName("startBackground");
-	addChild(rootNode);
-}
-
-void HelloWorld::LoadLevelSelect()
-{
-	auto rootNode = CSLoader::createNode("LevelSelect.csb");
-
-	SelectLevelButtons = (Node*)rootNode->getChildByName("SelectLevelButtons");
-	LevelSelectButtonsStartPos = Vec2(SelectLevelButtons->getPosition().x, SelectLevelButtons->getPosition().y);
-	SelectLevelButtons->setPosition(LevelSelectButtonsStartPos);
-
-	for (int i = 0; i < SelectLevelButtons->getChildren().size(); i++)
-	{
-		ui::Button* currentLevelButton = (ui::Button*)SelectLevelButtons->getChildren().at(i);
-		currentLevelButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::LevelPressed, this, i));
-	}
-
-	addChild(rootNode);
-}
-
-void HelloWorld::LoadGameMenu()
-{
-	auto rootNode = CSLoader::createNode("GameMenu.csb");
-
-	backToSelect = (ui::Button*)rootNode->getChildByName("backToSelect");
-	backToSelect->addTouchEventListener(CC_CALLBACK_2(HelloWorld::StartPressed, this));
-
-	restartButton = (ui::Button*)rootNode->getChildByName("restartButton");
-	restartButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::StartPressed, this));
-
-	resumeButton = (ui::Button*)rootNode->getChildByName("resumeButton");
-	resumeButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::PausePressed, this));
-
-	addChild(rootNode);
 }
 
 void HelloWorld::LoadLevel(string level)
 {
 	GameManager::sharedGameManager()->isGameLive = true;
 	auto rootNode = CSLoader::createNode(level);
-
+	
 	//auto currentScene = Director::getInstance()->getRunningScene();
-
+    //this->getBoundingBox();
 	ScreenResolution = Vec2(rootNode->getBoundingBox().getMaxX(), rootNode->getBoundingBox().getMaxY());//get the resolution of the screen.
 
 	player = (Sprite*)rootNode->getChildByName("Player");
@@ -738,11 +767,12 @@ void HelloWorld::LoadLevel(string level)
 	Windows = (Node*)rootNode->getChildByName("Windows");
 	Springs = (Node*)rootNode->getChildByName("Springs");
 	Spikes = (Node*)rootNode->getChildByName("Spikes");
+//	pauseButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::PausePressed, this));
 
 	EndBlock = (Sprite*)rootNode->getChildByName("EndBlock");
 
 	pauseButton = (ui::Button*)rootNode->getChildByName("pause");
-	pauseButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::PausePressed, this));
+	
 	restartButton = (ui::Button*)rootNode->getChildByName("restart");
 	restartButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::RestartPressed, this));
 
