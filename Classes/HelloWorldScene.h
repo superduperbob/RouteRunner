@@ -3,6 +3,9 @@
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
+#
+//#include "LevelSelect.h"
+
 using namespace cocos2d;
 using namespace std;
 
@@ -22,7 +25,7 @@ class HelloWorld : public cocos2d::Layer
 {
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
-    static cocos2d::Scene* createScene();
+    static cocos2d::Scene* createScene(string level);
 
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();
@@ -30,25 +33,40 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 
-
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 	
-	void StartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void CheckIfDead();
+	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level);
+	void BackToSelectPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void NextLevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level);
+	
+	//void LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID);
+
+	void CheckIfDead(Rect);
+	void PlayerDead();
 
 	void update(float);
 
 	bool checkPlayerCollision();
 	bool checkTerrainCollision(Rect);
 	void checkFloorCollision();
+	void checkSpringCollision(Rect);
+	bool checkEndBlockCollision(Rect);
 
 	void drawPoint(int x, int y);
 
+	//void LoadStartMenu();
+	//void LoadLevelSelect();
+	void LoadGameMenu();
+	void LoadLevel(string level);
+
 private:
+
+	void updateline(cocos2d::Touch* touch, cocos2d::Event* event);
+	void updateJetpackDirection(cocos2d::Touch* touch);
+
 	Sprite* player;
 	Direction playerDirection;
 	bool playerIsFalling;
@@ -65,26 +83,39 @@ private:
 	Vec2 LineArray[500];
 	int lineArrayCount;
 
-	cocos2d::Sprite* square_5;
-	cocos2d::Sprite* square_6;
-	cocos2d::Sprite* square_7;
+	int inputState;
+	bool jetpack;
+	void ButtonSleep(ui::Button* button);
+	cocos2d::Sprite* EndBlock;
 
-	cocos2d::Sprite* square_8;
-	cocos2d::Sprite* square_9;
-	cocos2d::Sprite* square_10;
-	cocos2d::Sprite* square_11;
-	cocos2d::Sprite* square_12;
-	cocos2d::Sprite* square_13;
-	cocos2d::Sprite* square_14;
-	cocos2d::Sprite* square_15;
-
-	ui::Button* startButton;
-	ui::Button* pauseButton;
 	ui::Button* restartButton;
+	ui::Button* pauseButton;
 	ui::Button* restartMenuButton;
-	Sprite*		startBackground;
-	Sprite*		restartBackground;
+	ui::Button* ONextLevelButton;
+	ui::Button* OBackToSelectButton;
+
+	Vec2 OBackToSelectButtonStartPos;
+	Vec2 ONextLevelButtonStartPos;
+	Vec2 overlayBackgroundStartPos;
+
+	Sprite* overlayBackground;
+
 	Vec2		playerStartPos;
+
+	bool menuDown = false;
+
+	Node* Squares;
+	Node* Windows;
+	Node* Springs;
+	Node* Spikes;
+
+	string level_1 = "level1.csb";
+	string level_2 = "level2.csb";
+	string level_3 = "level3.csb";
+	string level_4 = "level4.csb";
+	string level_5 = "level5.csb";
+	string level_6 = "level6.csb";
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__

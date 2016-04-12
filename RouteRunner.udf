@@ -31,9 +31,16 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
+          <FilePathData Path="Level1.csd" />
           <FilePathData Path="Level2.csd" />
+          <FilePathData Path="Level3.csd" />
+          <FilePathData Path="Level4.csd" />
+          <FilePathData Path="Level5.csd" />
+          <FilePathData Path="Level6.csd" />
+          <FilePathData Path="StartMenu.csd" />
+          <FilePathData Path="LevelSelect.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="Level2.csd" />
+        <ActiveDocument Path="Level1.csd" />
       </Value>
     </Item>
   </Properties>
