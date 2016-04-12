@@ -37,7 +37,7 @@ void StartMenu::StartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType t
 	{
 		Scene* scene = LevelSelect::createScene();
 
-		Director::getInstance()->replaceScene(scene);
+		Director::getInstance()->replaceScene(TransitionSlideInR::create(0.3, scene));
 	}
 }
 

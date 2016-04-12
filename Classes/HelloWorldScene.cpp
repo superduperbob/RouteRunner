@@ -2,6 +2,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "GameManager.h"
+#include "LevelSelect.h"
 
 USING_NS_CC;
 
@@ -18,7 +19,6 @@ Scene* HelloWorld::createScene(string level)
 	layer->LoadLevel(level);
     // add layer as a child to scene
     scene->addChild(layer);
-
     // return the scene
     return scene;
 }
@@ -45,6 +45,8 @@ bool HelloWorld::init()
 	touchListener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
 	touchListener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
+
 
 	this->scheduleUpdate();
 
@@ -437,33 +439,64 @@ void HelloWorld::drawPoint(int x, int y)
 
 void HelloWorld::PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
-	bool GameMenu = false;
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		GameManager::sharedGameManager()->isGameLive = !GameManager::sharedGameManager()->isGameLive;
-		
-		//LoadGameMenu();
+
+		auto winSize = Director::getInstance()->getVisibleSize();
+		auto moveSelectTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.65f / 1.0));
+		auto moveNextTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.40f / 1.0));
+		auto moveBackgroundTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 1.0));
+
+		if (!menuDown)
+		{
+			pauseButton->setBright(false);
+			OBackToSelectButton->runAction(moveSelectTo);
+			ONextLevelButton->runAction(moveNextTo);		
+			overlayBackground->runAction(moveBackgroundTo);		
+			menuDown = true;
+		}
+		else
+		{
+			pauseButton->setBright(true);
+			OBackToSelectButton->stopAllActions();
+			ONextLevelButton->stopAllActions();
+			overlayBackground->stopAllActions();
+			ONextLevelButton->setPosition(ONextLevelButtonStartPos);
+			OBackToSelectButton->setPosition(OBackToSelectButtonStartPos);
+			overlayBackground->setPosition(overlayBackgroundStartPos);
+			menuDown = false;
+		}
 	}
 }
 
-void HelloWorld::RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+void HelloWorld::RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level)
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-		//auto scene = Scene::create();
-		//Director::getInstance()->replaceScene(scene);
-		Director::getInstance()->restart();
-		//player->setPosition(Vec2(playerStartPos));
-		GameManager::sharedGameManager()->isDead = false;
-		//playerDirection = Direction::RIGHT;
-		//playerFallSpeed = 0.0;
+		Scene* scene = HelloWorld::createScene(level);
 
-		auto currentScene = Director::getInstance()->getRunningScene();
-		Director::getInstance()->replaceScene(currentScene);
+		Director::getInstance()->replaceScene(TransitionMoveInR::create(0.5, scene));
+	}
+}
 
-		auto winSize = Director::getInstance()->getVisibleSize();
-		auto moveButtonTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 0.25));
-		auto moveBackgroundTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 0.25));
+//void HelloWorld::NextLevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level)
+//{
+//	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+//	{
+//		Scene* scene = HelloWorld::createScene(level);
+//
+//		Director::getInstance()->replaceScene(TransitionMoveInR::create(0.5, scene));
+//	}
+//}
+
+void HelloWorld::BackToSelectPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		Scene* scene = LevelSelect::createScene();
+
+		Director::getInstance()->replaceScene(TransitionSlideInL::create(0.3, scene));
 	}
 }
 
@@ -510,55 +543,6 @@ bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 		}
 	}
 	return false;
-
-	/*Rect mSquare_5 = square_5->getBoundingBox();
-	Rect mSquare_6 = square_6->getBoundingBox();
-	Rect mSquare_7 = square_7->getBoundingBox();
-	Rect mSquare_8 = square_8->getBoundingBox();
-	Rect mSquare_9 = square_9->getBoundingBox();
-	Rect mSquare_10 = square_10->getBoundingBox();
-	Rect mSquare_11 = square_11->getBoundingBox();
-	Rect mSquare_12 = square_12->getBoundingBox();
-	Rect mSquare_13 = square_13->getBoundingBox();
-	Rect mSquare_14 = square_14->getBoundingBox();
-	Rect mSquare_15 = square_15->getBoundingBox();
-
-
-	if (mSquare_5.intersectsRect(collisionBox) || mSquare_6.intersectsRect(collisionBox) || mSquare_7.intersectsRect(collisionBox) || mSquare_8.intersectsRect(collisionBox) || mSquare_9.intersectsRect(collisionBox) || mSquare_10.intersectsRect(collisionBox) || mSquare_11.intersectsRect(collisionBox) || mSquare_12.intersectsRect(collisionBox) || mSquare_13.intersectsRect(collisionBox) || mSquare_14.intersectsRect(collisionBox) || mSquare_15.intersectsRect(collisionBox))
-	{
-		if (player->getBoundingBox().getMaxX() > mSquare_5.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_5.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_6.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_6.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_7.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_7.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_8.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_8.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_9.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_9.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_10.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_10.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_11.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_11.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_12.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_12.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_13.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_13.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_14.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_14.getMinX()
-			|| player->getBoundingBox().getMaxX() > mSquare_15.getMinX() && player->getBoundingBox().getMaxX() - 5 < mSquare_15.getMinX())
-		{
-				playerDirection = Direction::LEFT;
-				player->setPositionX(player->getPositionX() - 5);
-		}
-		else if (player->getBoundingBox().getMinX() < mSquare_5.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_5.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_6.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_6.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_7.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_7.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_8.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_8.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_9.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_9.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_10.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_10.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_11.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_11.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_12.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_12.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_13.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_13.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_14.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_14.getMaxX()
-			|| player->getBoundingBox().getMinX() < mSquare_15.getMaxX() && player->getBoundingBox().getMinX() + 5 > mSquare_15.getMaxX())
-		{
-			playerDirection = Direction::RIGHT;
-			player->setPositionX(player->getPositionX() + 5);
-		}
-		return true;
-	}
-	return false;*/
 }
 
 bool HelloWorld::checkEndBlockCollision(Rect collisionBox)
@@ -577,130 +561,79 @@ bool HelloWorld::checkEndBlockCollision(Rect collisionBox)
 
 void HelloWorld::checkFloorCollision()
 {
-		for (int i = 0; i < player->getBoundingBox().size.width; i++)
+	for (int i = 0; i < player->getBoundingBox().size.width; i++)
+	{
+		if (drawLayer[(int)player->getBoundingBox().getMinX() + i][(int)player->getBoundingBox().getMinY() - 1] == true || drawLayer[(int)player->getBoundingBox().getMinX() + i][(int)player->getBoundingBox().getMinY() - 2] == true)
 		{
-			if (drawLayer[(int)player->getBoundingBox().getMinX() + i][(int)player->getBoundingBox().getMinY() - 1] == true || drawLayer[(int)player->getBoundingBox().getMinX() + i][(int)player->getBoundingBox().getMinY() - 2] == true)
-			{
-				playerIsFalling = false;
-				playerFallSpeed = 0.4;
-			}
-			else
-			{
-				playerIsFalling = true;
-			}
+			playerIsFalling = false;
+			playerFallSpeed = 0.4;
 		}
-
-
-		if (playerDirection == Direction::RIGHT)
+		else
 		{
-			for (int i = 0; i < player->getBoundingBox().size.height / 2; i++)
+			playerIsFalling = true;
+		}
+	}
+
+
+	if (playerDirection == Direction::RIGHT)
+	{
+		for (int i = 0; i < player->getBoundingBox().size.height / 2; i++)
+		{
+			for (int ii = 0; ii < 10; ii++)
 			{
-				for (int ii = 0; ii < 10; ii++)
+				if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1 + ii][(int)player->getBoundingBox().getMaxY() - i] == true)
 				{
-					if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1 + ii][(int)player->getBoundingBox().getMaxY() - i] == true)
-					{
-						playerDirection = Direction::LEFT;
-					}
+					playerDirection = Direction::LEFT;
 				}
+			}
 				
-			}
 		}
-		else if (playerDirection == Direction::LEFT)
+	}
+	else if (playerDirection == Direction::LEFT)
+	{
+		for (int i = 0; i < player->getBoundingBox().size.height / 2; i++)
 		{
-			for (int i = 0; i < player->getBoundingBox().size.height / 2; i++)
+			for (int ii = 0; ii < 10; ii++)
 			{
-				for (int ii = 0; ii < 10; ii++)
+				if (drawLayer[(int)player->getBoundingBox().getMinX() - 1 - ii][(int)player->getBoundingBox().getMaxY() - i] == true)
 				{
-					if (drawLayer[(int)player->getBoundingBox().getMinX() - 1 - ii][(int)player->getBoundingBox().getMaxY() - i] == true)
-					{
-						playerDirection = Direction::RIGHT;
-					}
+					playerDirection = Direction::RIGHT;
 				}
-
 			}
+
 		}
+	}
 
 
-		if (playerDirection == Direction::RIGHT)
+	if (playerDirection == Direction::RIGHT)
+	{
+		for (int i = 0; i < player->getBoundingBox().size.height / 2; i++)
 		{
-			for (int i = 0; i < player->getBoundingBox().size.height / 2; i++)
+			if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY() + i] == true)
 			{
-				if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY() + i] == true)
-				{
-					player->setPositionY(player->getPositionY() + 1);
-				}
-				if (drawLayer[(int)player->getBoundingBox().getMaxX() + 2][(int)player->getBoundingBox().getMinY() + i] == true)
-				{
-					player->setPositionY(player->getPositionY() + 1);
-				}
+				player->setPositionY(player->getPositionY() + 1);
+			}
+			if (drawLayer[(int)player->getBoundingBox().getMaxX() + 2][(int)player->getBoundingBox().getMinY() + i] == true)
+			{
+				player->setPositionY(player->getPositionY() + 1);
 			}
 		}
+	}
 
-		if (playerDirection == Direction::LEFT)
+	if (playerDirection == Direction::LEFT)
+	{
+		for (int i = 0; i < player->getBoundingBox().size.height / 2; i++)
 		{
-			for (int i = 0; i < player->getBoundingBox().size.height / 2; i++)
+			if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY() + i] == true)
 			{
-				if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY() + i] == true)
-				{
-					player->setPositionY(player->getPositionY() + 1);
-				}
-				if (drawLayer[(int)player->getBoundingBox().getMinX() - 2][(int)player->getBoundingBox().getMinY() + i] == true)
-				{
-					player->setPositionY(player->getPositionY() + 1);
-				}
+				player->setPositionY(player->getPositionY() + 1);
+			}
+			if (drawLayer[(int)player->getBoundingBox().getMinX() - 2][(int)player->getBoundingBox().getMinY() + i] == true)
+			{
+				player->setPositionY(player->getPositionY() + 1);
 			}
 		}
-
-		//if (playerDirection == Direction::RIGHT)
-		//{
-		//	if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY()] == true)
-		//	{
-		//		if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//		{
-		//			player->setPositionY(player->getPositionY() + 3);
-
-		//			if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//			{
-		//				player->setPositionY(player->getPositionY() + 3);
-		//			}
-		//		}
-		//		player->setPositionY(player->getPositionY() + 3);
-		//	}
-		//}
-
-		//if (playerDirection == Direction::LEFT)
-		//{
-		//	if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY()] == true)
-		//	{
-		//		if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//		{
-		//			player->setPositionY(player->getPositionY() + 3);
-
-		//			if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMinY() + 1] == true)
-		//			{
-		//				player->setPositionY(player->getPositionY() + 3);
-		//			}
-		//		}
-		//		player->setPositionY(player->getPositionY() + 3);
-		//	}
-		//}
-
-		//if (playerDirection == Direction::RIGHT)
-		//{
-		//	//check for a direction change
-		//	if (drawLayer[(int)player->getBoundingBox().getMaxX() + 1][(int)player->getBoundingBox().getMaxY() + 2] == true)
-		//	{
-		//		playerDirection = Direction::LEFT;
-		//	}
-		//}
-		//if (playerDirection == Direction::LEFT)
-		//{
-		//	//check for a direction change
-		//	if (drawLayer[(int)player->getBoundingBox().getMinX() - 1][(int)player->getBoundingBox().getMaxY() + 2] == true)
-		//	{
-		//		playerDirection = Direction::RIGHT;
-		//	}
-		//}
+	}
 }
 
 void HelloWorld::CheckIfDead(Rect collisionBox)
@@ -767,14 +700,27 @@ void HelloWorld::LoadLevel(string level)
 	Windows = (Node*)rootNode->getChildByName("Windows");
 	Springs = (Node*)rootNode->getChildByName("Springs");
 	Spikes = (Node*)rootNode->getChildByName("Spikes");
-//	pauseButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::PausePressed, this));
-
+	
 	EndBlock = (Sprite*)rootNode->getChildByName("EndBlock");
 
-	pauseButton = (ui::Button*)rootNode->getChildByName("pause");
+	pauseButton = (ui::Button*)rootNode->getChildByName("pause");	
+	pauseButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::PausePressed, this));
 	
 	restartButton = (ui::Button*)rootNode->getChildByName("restart");
-	restartButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::RestartPressed, this));
+	restartButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::RestartPressed, this, level));
+
+	//////Overlay/////
+	OBackToSelectButton = (ui::Button*)rootNode->getChildByName("backToLevelSelect");
+	OBackToSelectButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::BackToSelectPressed, this));
+	OBackToSelectButtonStartPos = Vec2(OBackToSelectButton->getPosition().x, OBackToSelectButton->getPosition().y);;
+
+	ONextLevelButton = (ui::Button*)rootNode->getChildByName("nextLevel");
+	//ONextLevelButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::NextLevelPressed, this));
+	ONextLevelButtonStartPos = Vec2(ONextLevelButton->getPosition().x, ONextLevelButton->getPosition().y);
+
+	overlayBackground = (Sprite*)rootNode->getChildByName("overlayBackground");
+	overlayBackgroundStartPos = Vec2(overlayBackground->getPosition().x, overlayBackground->getPosition().y);
+	///////////////////////////////////////////////////////////
 
 	drawLayer = new bool*[(int)ScreenResolution.x];//init the width of the array
 	for (int i = 0; i < ScreenResolution.x - 1; i++)
@@ -805,7 +751,6 @@ void HelloWorld::LoadLevel(string level)
 	lineDrawNode = DrawNode::create();
 
 	addChild(rootNode);
-	//addChild(background);
 	addChild(lineDrawNode);
 	addChild(player);
 }

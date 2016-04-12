@@ -31,9 +31,11 @@ private:
 	ui::Button* SelectLevel4;
 	ui::Button* SelectLevel5;
 	ui::Button* SelectLevel6;
+	ui::Button* backButton;
 
 	//void LoadLevel(string level);
 	void LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID);
+	void BackToStartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 
 	string level_1 = "level1.csb";
 	string level_2 = "level2.csb";
@@ -42,21 +44,21 @@ private:
 	string level_5 = "level5.csb";
 	string level_6 = "level6.csb";
 
-	Sprite* player;
-	Direction playerDirection;
-	bool playerIsFalling;
-	DrawNode* lineDrawNode;
-	bool **drawLayer;
-	Vec2 ScreenResolution;
-	float secondCounter;
-	Vec2 oldPoint;
-	float playerFallSpeed;
-	int lineSize;
-	Sprite* backgroundParallaxMain;
-	Sprite* backgroundParallaxRight;
-	float moveSpeed;
-	Vec2 LineArray[500];
-	int lineArrayCount;
+	//Sprite* player;
+	//Direction playerDirection;
+	//bool playerIsFalling;
+	//DrawNode* lineDrawNode;
+	//bool **drawLayer;
+	//Vec2 ScreenResolution;
+	//float secondCounter;
+	//Vec2 oldPoint;
+	//float playerFallSpeed;
+	//int lineSize;
+	//Sprite* backgroundParallaxMain;
+	//Sprite* backgroundParallaxRight;
+	//float moveSpeed;
+	//Vec2 LineArray[500];
+	//int lineArrayCount;
 };
 
 #endif

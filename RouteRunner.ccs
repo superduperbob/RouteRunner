@@ -31,10 +31,20 @@
         <Image Name="spring.png" />
         <Image Name="EndBlock.png" />
         <Image Name="LevelButton.png" />
-        <Project Name="GameMenu.csd" Type="Scene" />
         <Image Name="playButton.png" />
         <Image Name="restartButton.png" />
         <Image Name="pauseButton.png" />
+        <Image Name="playButtonDisable.png" />
+        <Image Name="1.png" />
+        <Image Name="2.png" />
+        <Image Name="3.png" />
+        <Image Name="4.png" />
+        <Image Name="5.png" />
+        <Image Name="6.png" />
+        <Image Name="nextLevel.png" />
+        <Image Name="nextLevelDisable.png" />
+        <Image Name="start.png" />
+        <Image Name="back.jpg" />
       </RootFolder>
     </Group>
   </SolutionFolder>

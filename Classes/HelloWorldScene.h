@@ -38,9 +38,11 @@ public:
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 	
 	void PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level);
+	void BackToSelectPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void NextLevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level);
 	
-	void LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID);
+	//void LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID);
 
 	void CheckIfDead(Rect);
 	void PlayerDead();
@@ -83,16 +85,24 @@ private:
 
 	int inputState;
 	bool jetpack;
-
+	void ButtonSleep(ui::Button* button);
 	cocos2d::Sprite* EndBlock;
 
-	//ui::Button* backToSelect;
-	//ui::Button* resumeButton;
 	ui::Button* restartButton;
-	
 	ui::Button* pauseButton;
 	ui::Button* restartMenuButton;
+	ui::Button* ONextLevelButton;
+	ui::Button* OBackToSelectButton;
+
+	Vec2 OBackToSelectButtonStartPos;
+	Vec2 ONextLevelButtonStartPos;
+	Vec2 overlayBackgroundStartPos;
+
+	Sprite* overlayBackground;
+
 	Vec2		playerStartPos;
+
+	bool menuDown = false;
 
 	Node* Squares;
 	Node* Windows;

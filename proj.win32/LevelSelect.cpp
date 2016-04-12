@@ -1,4 +1,5 @@
 #include "LevelSelect.h"
+#include "StartMenu.h"
 
 USING_NS_CC;
 
@@ -46,10 +47,14 @@ bool LevelSelect::init()
 	SelectLevel6 = (ui::Button*)rootNode->getChildByName("SelectLevel6");
 	SelectLevel6->addTouchEventListener(CC_CALLBACK_2(LevelSelect::LevelPressed, this, 5));
 
+	backButton = (ui::Button*)rootNode->getChildByName("backButton");
+	backButton->addTouchEventListener(CC_CALLBACK_2(LevelSelect::BackToStartPressed, this));
+
 	addChild(rootNode);
 
 }
-void LevelSelect::LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID){
+void LevelSelect::LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID)
+{
 
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
@@ -72,5 +77,15 @@ void LevelSelect::LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType
 		Director::getInstance()->replaceScene(scene);
 		
 		
+	}
+}
+
+void LevelSelect::BackToStartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		Scene* scene = StartMenu::createScene();
+
+		Director::getInstance()->replaceScene(TransitionSlideInL::create(0.3, scene) );
 	}
 }

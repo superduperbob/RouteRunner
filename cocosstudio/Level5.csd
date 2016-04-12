@@ -358,6 +358,17 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
+          <AbstractNodeData Name="overlayBackground" ActionTag="-995978581" Alpha="127" Tag="139" IconVisible="False" LeftMargin="384.0000" RightMargin="384.0000" TopMargin="-918.0000" BottomMargin="1350.0000" ctype="SpriteObjectData">
+            <Size X="1152.0000" Y="648.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="960.0000" Y="1674.0000" />
+            <Scale ScaleX="1.7000" ScaleY="1.7000" />
+            <CColor A="255" R="255" G="0" B="0" />
+            <PrePosition X="0.5000" Y="1.5500" />
+            <PreSize X="0.6000" Y="0.6000" />
+            <FileData Type="Normal" Path="restartScreen.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
           <AbstractNodeData Name="pause" ActionTag="-1527564363" Tag="131" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1690.0000" RightMargin="154.0000" TopMargin="911.5000" BottomMargin="47.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="46" Scale9Height="99" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="76.0000" Y="121.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -367,7 +378,7 @@
             <PrePosition X="0.9000" Y="0.1000" />
             <PreSize X="0.0396" Y="0.1120" />
             <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
+            <DisabledFileData Type="Normal" Path="playButton.png" Plist="" />
             <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
             <NormalFileData Type="Normal" Path="pauseButton.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
@@ -385,6 +396,36 @@
             <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
             <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
             <NormalFileData Type="Normal" Path="restartButton.png" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="backToLevelSelect" ActionTag="-1597831177" Tag="138" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="720.0000" RightMargin="720.0000" TopMargin="-810.0000" BottomMargin="1674.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="419" Scale9Height="178" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="480.0000" Y="216.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="960.0000" Y="1782.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="1.6500" />
+            <PreSize X="0.2500" Y="0.2000" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
+            <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
+            <NormalFileData Type="Normal" Path="LevelButton.png" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="nextLevel" ActionTag="-307614096" Tag="137" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="720.0000" RightMargin="720.0000" TopMargin="-540.0000" BottomMargin="1404.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="370" Scale9Height="178" DisplayState="False" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="480.0000" Y="216.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="960.0000" Y="1512.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="1.4000" />
+            <PreSize X="0.2500" Y="0.2000" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="Normal" Path="nextLevelDisable.png" Plist="" />
+            <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
+            <NormalFileData Type="Normal" Path="nextLevel.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
