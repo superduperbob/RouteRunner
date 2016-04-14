@@ -27,9 +27,6 @@
     <ClCompile Include="StartMenu.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="GameMenu.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="LevelSelect.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -48,9 +45,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="StartMenu.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMenu.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="LevelSelect.h">
