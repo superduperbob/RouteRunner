@@ -3,7 +3,7 @@
 
 #include "cocostudio/CocoStudio.h"
 #include "GameManager.h"
-#include "ui\CocosGUI.h"
+#include "ui/CocosGUI.h"
 #include "LevelSelect.h"
 
 using namespace cocostudio::timeline;

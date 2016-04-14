@@ -74,7 +74,7 @@ void HelloWorld::update(float dTime)
 
 		//PLAYER JETPACK CONTROL
 		if (jetpack){
-			if (ScreenResolution.x / 2 < oldPoint.x){
+			if (_ScreenResolution.x / 2 < oldPoint.x){
 
 				playerDirection = Direction::RIGHT;
 
@@ -377,7 +377,7 @@ void HelloWorld::drawPoint(int x, int y)
 	if (GameManager::sharedGameManager()->isGameLive && !GameManager::sharedGameManager()->isDead)
 	{
 		Vec2 drawPoint = Vec2(x, y);
-		if (drawPoint.x > 0 + lineSize && drawPoint.y > 0 + lineSize && drawPoint.x < ScreenResolution.x - lineSize && drawPoint.y < ScreenResolution.y - lineSize)
+		if (drawPoint.x > 0 + lineSize && drawPoint.y > 0 + lineSize && drawPoint.x < _ScreenResolution.x - lineSize && drawPoint.y < _ScreenResolution.y - lineSize)
 		{
 			if (drawLayer[(int)drawPoint.x][(int)drawPoint.y] == false)
 			{
@@ -639,7 +639,7 @@ void HelloWorld::checkFloorCollision()
 void HelloWorld::CheckIfDead(Rect collisionBox)
 {
 	//checks if player hits the edge of the screen
-	if (player->getPosition().y < 0 || (player->getBoundingBox().getMaxX() + 13) > ScreenResolution.x || (player->getBoundingBox().getMinX() - 13) < 0)
+	if (player->getPosition().y < 0 || (player->getBoundingBox().getMaxX() + 13) > _ScreenResolution.x || (player->getBoundingBox().getMinX() - 13) < 0)
 	{
 		PlayerDead();
 	}
@@ -667,15 +667,15 @@ void HelloWorld::PlayerDead(){
 
 	GameManager::sharedGameManager()->isDead = true;
 
-	auto winSize = Director::getInstance()->getVisibleSize();
-	auto moveButtonTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
-	auto moveBackgroundTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
+	//auto winSize = Director::getInstance()->getVisibleSize();
+	//auto moveButtonTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
+	//auto moveBackgroundTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
 	//restartMenuButton->runAction(moveButtonTo);
 	//restartBackground->runAction(moveBackgroundTo);
 
-	for (int i = 0; i < ScreenResolution.x - 1; i++)
+	for (int i = 0; i < _ScreenResolution.x - 1; i++)
 	{
-		for (int ii = 0; ii < ScreenResolution.y - 1; ii++)
+		for (int ii = 0; ii < _ScreenResolution.y - 1; ii++)
 		{
 			drawLayer[i][ii] = false;//set each value int the array to false
 		}
@@ -689,7 +689,7 @@ void HelloWorld::LoadLevel(string level)
 	
 	//auto currentScene = Director::getInstance()->getRunningScene();
     //this->getBoundingBox();
-	ScreenResolution = Vec2(rootNode->getBoundingBox().getMaxX(), rootNode->getBoundingBox().getMaxY());//get the resolution of the screen.
+    _ScreenResolution = Vec2(1920, 1080); //rootNode->getBoundingBox().getMaxX(), rootNode->getBoundingBox().getMaxY());//get the resolution of the screen.
 
 	player = (Sprite*)rootNode->getChildByName("Player");
 	playerStartPos = Vec2(player->getPosition().x, player->getPosition().y);
@@ -722,18 +722,18 @@ void HelloWorld::LoadLevel(string level)
 	overlayBackgroundStartPos = Vec2(overlayBackground->getPosition().x, overlayBackground->getPosition().y);
 	///////////////////////////////////////////////////////////
 
-	drawLayer = new bool*[(int)ScreenResolution.x];//init the width of the array
-	for (int i = 0; i < ScreenResolution.x - 1; i++)
+	drawLayer = new bool*[(int)_ScreenResolution.x];//init the width of the array
+	for (int i = 0; i < _ScreenResolution.x - 1; i++)
 	{
-		drawLayer[i] = new bool[(int)ScreenResolution.y];//init the height of the array
+		drawLayer[i] = new bool[(int)_ScreenResolution.y];//init the height of the array
 	}
 
 	lineSize = 10;
 	moveSpeed = 2;
 
-	for (int i = 0; i < ScreenResolution.x - 1; i++)
+	for (int i = 0; i < _ScreenResolution.x - 1; i++)
 	{
-		for (int ii = 0; ii < ScreenResolution.y - 1; ii++)
+		for (int ii = 0; ii < _ScreenResolution .y - 1; ii++)
 		{
 			drawLayer[i][ii] = false;//set each value int the array to false
 		}

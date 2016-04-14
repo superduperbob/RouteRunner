@@ -30,6 +30,8 @@ bool StartMenu::init()
 	startMenuButton->addTouchEventListener(CC_CALLBACK_2(StartMenu::StartPressed, this));
 	startBackground = (Sprite*)rootNode->getChildByName("startBackground");
 	addChild(rootNode);
+    
+    return true;
 }
 void StartMenu::StartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
@@ -37,7 +39,7 @@ void StartMenu::StartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType t
 	{
 		Scene* scene = LevelSelect::createScene();
 
-		Director::getInstance()->replaceScene(scene);
+		Director::getInstance()->replaceScene(TransitionSlideInR::create(0.3, scene));
 	}
 }
 
