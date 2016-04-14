@@ -66,26 +66,32 @@ private:
 
 	void updateline(cocos2d::Touch* touch, cocos2d::Event* event);
 	void updateJetpackDirection(cocos2d::Touch* touch);
-
-	Sprite* player;
+    void ButtonSleep(ui::Button* button);
+    
 	Direction playerDirection;
-	bool playerIsFalling;
+
 	DrawNode* lineDrawNode;
+    
 	bool **drawLayer;
-	Vec2 ScreenResolution;
+    bool playerIsFalling;
+    bool jetpack;
+    
+	Vec2 _ScreenResolution;
+    Vec2 oldPoint;
+    Vec2 LineArray[500];
+    
 	float secondCounter;
-	Vec2 oldPoint;
 	float playerFallSpeed;
-	int lineSize;
+    float moveSpeed;
+    
+    Sprite* player;
 	Sprite* backgroundParallaxMain;
 	Sprite* backgroundParallaxRight;
-	float moveSpeed;
-	Vec2 LineArray[500];
+    
 	int lineArrayCount;
-
+    int lineSize;
 	int inputState;
-	bool jetpack;
-	void ButtonSleep(ui::Button* button);
+    
 	cocos2d::Sprite* EndBlock;
 
 	ui::Button* restartButton;

@@ -1,4 +1,5 @@
 #include "LevelSelect.h"
+#include "StartMenu.h"
 
 USING_NS_CC;
 
@@ -46,28 +47,46 @@ bool LevelSelect::init()
 	SelectLevel6 = (ui::Button*)rootNode->getChildByName("SelectLevel6");
 	SelectLevel6->addTouchEventListener(CC_CALLBACK_2(LevelSelect::LevelPressed, this, 5));
 
-	addChild(rootNode);
+	backButton = (ui::Button*)rootNode->getChildByName("backButton");
+	backButton->addTouchEventListener(CC_CALLBACK_2(LevelSelect::BackToStartPressed, this));
 
+	addChild(rootNode);
+    
+    return true;
 }
-void LevelSelect::LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID){
+void LevelSelect::LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID)
+{
 
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-			Scene* scene = LevelSelect::createScene();
 
-			Director::getInstance()->replaceScene(scene);
-		
-		
+		string level;
+
 		switch (levelID)
 		{
-			
-		case 0: world->LoadLevel(level_1); break;
-		case 1: world->LoadLevel(level_2); break;
-		case 2: world->LoadLevel(level_3); break;
-		case 3: world->LoadLevel(level_4); break;
-		case 4: world->LoadLevel(level_5); break;
-		case 5: world->LoadLevel(level_6); break;
+		case 0: level = level_1; break;
+		case 1: level = level_2; break;
+		case 2: level = level_3; break;
+		case 3: level = level_4; break;
+		case 4: level = level_5; break;
+		case 5: level = level_6; break;
 		default: break;
 		}
+
+		Scene* scene = HelloWorld::createScene(level);
+
+		Director::getInstance()->replaceScene(scene);
+		
+		
+	}
+}
+
+void LevelSelect::BackToStartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		Scene* scene = StartMenu::createScene();
+
+		Director::getInstance()->replaceScene(TransitionSlideInL::create(0.3, scene) );
 	}
 }

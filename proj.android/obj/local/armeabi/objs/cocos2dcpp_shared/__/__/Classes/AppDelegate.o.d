@@ -432,7 +432,7 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/AppDelegate.o: \
  C:/Cocos/frameworks/cocos2d-x-3.9/cocos/editor-support/cocostudio/prebuilt-mk/../../cocostudio/ActionTimeline/CCBoneNode.h \
  C:/Cocos/frameworks/cocos2d-x-3.9/cocos/editor-support/cocostudio/prebuilt-mk/../../cocostudio/ActionTimeline/CSLoader.h \
  jni/../../Classes/GameManager.h \
- C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui\CocosGUI.h \
+ C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/CocosGUI.h \
  C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/UIButton.h \
  C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/UICheckBox.h \
  C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/UIAbstractCheckButton.h \
@@ -459,8 +459,7 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/AppDelegate.o: \
  C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/UIScale9Sprite.h \
  C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/UIEditBox/UIEditBox.h \
  C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/UILayoutComponent.h \
- jni/../../Classes/LevelSelect.h jni/../../Classes/HelloWorldScene.h \
- C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/CocosGUI.h
+ jni/../../Classes/LevelSelect.h jni/../../Classes/HelloWorldScene.h
 
 jni/../../Classes/AppDelegate.h:
 
@@ -1328,7 +1327,7 @@ C:/Cocos/frameworks/cocos2d-x-3.9/cocos/editor-support/cocostudio/prebuilt-mk/..
 
 jni/../../Classes/GameManager.h:
 
-C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui\CocosGUI.h:
+C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/CocosGUI.h:
 
 C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/UIButton.h:
 
@@ -1385,5 +1384,3 @@ C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/UILayoutComponen
 jni/../../Classes/LevelSelect.h:
 
 jni/../../Classes/HelloWorldScene.h:
-
-C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../ui/CocosGUI.h:

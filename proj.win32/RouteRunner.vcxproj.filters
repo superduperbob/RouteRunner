@@ -18,19 +18,16 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="StartMenu.cpp">
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="GameMenu.cpp">
+    <ClCompile Include="..\Classes\LevelSelect.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="LevelSelect.cpp">
+    <ClCompile Include="..\Classes\StartMenu.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,19 +38,16 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GameManager.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="StartMenu.h">
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="GameMenu.h">
+    <ClInclude Include="..\Classes\LevelSelect.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="LevelSelect.h">
+    <ClInclude Include="..\Classes\StartMenu.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
