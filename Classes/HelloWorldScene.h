@@ -25,7 +25,7 @@ class HelloWorld : public cocos2d::Layer
 {
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
-    static cocos2d::Scene* createScene(string level);
+    static cocos2d::Scene* createScene(int level);
 
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();
@@ -38,14 +38,17 @@ public:
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 	
 	void PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level);
+	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int level);
 	void BackToSelectPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void NextLevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level);
+	void NextLevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int level);
+	void DropDownMenu();
+	void EndMenu();
 	
 	//void LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID);
 
 	void CheckIfDead(Rect);
 	void PlayerDead();
+	void PlayerAlive();
 
 	void update(float);
 
@@ -60,7 +63,7 @@ public:
 	//void LoadStartMenu();
 	//void LoadLevelSelect();
 	void LoadGameMenu();
-	void LoadLevel(string level);
+	void LoadLevel(int level);
 
 private:
 
@@ -91,6 +94,7 @@ private:
 	int lineArrayCount;
     int lineSize;
 	int inputState;
+	int currentLevel;
     
 	cocos2d::Sprite* EndBlock;
 
@@ -115,13 +119,14 @@ private:
 	Node* Springs;
 	Node* Spikes;
 
-	string level_1 = "level1.csb";
-	string level_2 = "level2.csb";
-	string level_3 = "level3.csb";
-	string level_4 = "level4.csb";
-	string level_5 = "level5.csb";
-	string level_6 = "level6.csb";
-
+	vector<string> levels = vector<string>{
+		"1.csb",
+		"2.csb",
+		"3.csb",
+		"4.csb",
+		"5.csb",
+		"6.csb"
+	};
 };
 
 #endif // __HELLOWORLD_SCENE_H__

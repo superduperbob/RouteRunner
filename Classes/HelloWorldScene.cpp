@@ -3,13 +3,14 @@
 #include "ui/CocosGUI.h"
 #include "GameManager.h"
 #include "LevelSelect.h"
+#include <iostream>
 
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
 
 
-Scene* HelloWorld::createScene(string level)
+Scene* HelloWorld::createScene(int level)
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
@@ -88,7 +89,8 @@ void HelloWorld::update(float dTime)
 				playerFallSpeed += -0.25f;
 			}
 		}
-
+		
+		checkEndBlockCollision(player->getBoundingBox());
 		checkFloorCollision();
 		CheckIfDead(player->getBoundingBox());
 		checkSpringCollision(player->getBoundingBox());
@@ -440,60 +442,95 @@ void HelloWorld::drawPoint(int x, int y)
 void HelloWorld::PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
-	{
-		GameManager::sharedGameManager()->isGameLive = !GameManager::sharedGameManager()->isGameLive;
-
-		auto winSize = Director::getInstance()->getVisibleSize();
-		auto moveSelectTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.65f / 1.0));
-		auto moveNextTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.40f / 1.0));
-		auto moveBackgroundTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 1.0));
-
-		if (!menuDown)
-		{
-			pauseButton->setBright(false);
-			OBackToSelectButton->runAction(moveSelectTo);
-			ONextLevelButton->runAction(moveNextTo);		
-			overlayBackground->runAction(moveBackgroundTo);		
-			menuDown = true;
-		}
-		else
-		{
-			pauseButton->setBright(true);
-			OBackToSelectButton->stopAllActions();
-			ONextLevelButton->stopAllActions();
-			overlayBackground->stopAllActions();
-			ONextLevelButton->setPosition(ONextLevelButtonStartPos);
-			OBackToSelectButton->setPosition(OBackToSelectButtonStartPos);
-			overlayBackground->setPosition(overlayBackgroundStartPos);
-			menuDown = false;
-		}
+	{	
+		DropDownMenu();
 	}
 }
 
-void HelloWorld::RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level)
+void HelloWorld::DropDownMenu()
+{
+	auto winSize = Director::getInstance()->getVisibleSize();
+	auto moveSelectTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.65f / 1.0));
+	auto moveNextTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.40f / 1.0));
+	auto moveBackgroundTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 1.0));
+	if (!menuDown)
+	{
+		if (GameManager::sharedGameManager()->isDead == true)
+		{
+			pauseButton->setEnabled(false);
+			pauseButton->setVisible(false);
+		}
+		else
+		{
+			pauseButton->setBright(false);
+		}
+
+		OBackToSelectButton->runAction(moveSelectTo);
+		ONextLevelButton->runAction(moveNextTo);
+		overlayBackground->runAction(moveBackgroundTo);
+		menuDown = true;
+	}
+	else
+	{		
+		pauseButton->setBright(true);
+		OBackToSelectButton->stopAllActions();
+		ONextLevelButton->stopAllActions();
+		overlayBackground->stopAllActions();
+		ONextLevelButton->setPosition(ONextLevelButtonStartPos);
+		OBackToSelectButton->setPosition(OBackToSelectButtonStartPos);
+		overlayBackground->setPosition(overlayBackgroundStartPos);
+		menuDown = false;
+	}
+	GameManager::sharedGameManager()->isGameLive = !menuDown;
+}
+
+void HelloWorld::EndMenu()
+{
+	GameManager::sharedGameManager()->isGameLive = false;
+	auto winSize = Director::getInstance()->getVisibleSize();
+	auto moveSelectTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.65f / 1.0));
+	auto moveNextTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.40f / 1.0));
+	auto moveBackgroundTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 1.0));
+
+	ONextLevelButton->setEnabled(true);
+	pauseButton->setVisible(false);
+	pauseButton->setBright(false);
+	OBackToSelectButton->runAction(moveSelectTo);
+	ONextLevelButton->runAction(moveNextTo);
+	overlayBackground->runAction(moveBackgroundTo);
+	menuDown = true;
+}
+
+void HelloWorld::RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int level)
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
+		unscheduleUpdate();
+
 		Scene* scene = HelloWorld::createScene(level);
 
 		Director::getInstance()->replaceScene(TransitionMoveInR::create(0.5, scene));
 	}
 }
 
-//void HelloWorld::NextLevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level)
-//{
-//	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
-//	{
-//		Scene* scene = HelloWorld::createScene(level);
-//
-//		Director::getInstance()->replaceScene(TransitionMoveInR::create(0.5, scene));
-//	}
-//}
+void HelloWorld::NextLevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int level)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		unscheduleUpdate();
+
+			Scene* scene = HelloWorld::createScene(level + 1);
+
+			Director::getInstance()->replaceScene(TransitionMoveInR::create(0.5, scene));
+	}
+}
 
 void HelloWorld::BackToSelectPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
+		unscheduleUpdate();
+
 		Scene* scene = LevelSelect::createScene();
 
 		Director::getInstance()->replaceScene(TransitionSlideInL::create(0.3, scene));
@@ -549,10 +586,17 @@ bool HelloWorld::checkEndBlockCollision(Rect collisionBox)
 {
 	Rect mEndBlock = EndBlock->getBoundingBox();
 	if (mEndBlock.intersectsRect(collisionBox))
-	{
+	{	
 		if (player->getBoundingBox().getMaxX() > mEndBlock.getMinX() && player->getBoundingBox().getMaxX() - 5 < mEndBlock.getMinX())
 		{
-			PlayerDead();
+			if (currentLevel == levels.size() - 1)
+			{
+				DropDownMenu();
+			}
+			else
+			{
+				EndMenu();
+			}		
 		}
 		return true;
 	}
@@ -663,9 +707,32 @@ void HelloWorld::CheckIfDead(Rect collisionBox)
 
 }
 
-void HelloWorld::PlayerDead(){
-
+void HelloWorld::PlayerDead()
+{
 	GameManager::sharedGameManager()->isDead = true;
+	GameManager::sharedGameManager()->isGameLive = false;
+
+	//auto winSize = Director::getInstance()->getVisibleSize();
+	//auto moveButtonTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
+	//auto moveBackgroundTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
+	//restartMenuButton->runAction(moveButtonTo);
+	//restartBackground->runAction(moveBackgroundTo);
+
+	DropDownMenu();
+
+	for (int i = 0; i < _ScreenResolution.x - 1; i++)
+	{
+		for (int ii = 0; ii < _ScreenResolution.y - 1; ii++)
+		{
+			drawLayer[i][ii] = false;//set each value int the array to false
+		}
+	}
+}
+
+void HelloWorld::PlayerAlive()
+{
+	GameManager::sharedGameManager()->isDead = false;
+	GameManager::sharedGameManager()->isGameLive = true;
 
 	//auto winSize = Director::getInstance()->getVisibleSize();
 	//auto moveButtonTo = MoveTo::create(0.5, Vec2(winSize.width*0.5f, winSize.height / 0.5f * 0.25));
@@ -682,10 +749,13 @@ void HelloWorld::PlayerDead(){
 	}
 }
 
-void HelloWorld::LoadLevel(string level)
+void HelloWorld::LoadLevel(int level)
 {
-	GameManager::sharedGameManager()->isGameLive = true;
-	auto rootNode = CSLoader::createNode(level);
+	PlayerAlive();
+	//GameManager::sharedGameManager()->isGameLive = true;
+	//GameManager::sharedGameManager()->isDead = false;
+	auto rootNode = CSLoader::createNode(levels[level]);
+	currentLevel = level;
 	
 	//auto currentScene = Director::getInstance()->getRunningScene();
     //this->getBoundingBox();
@@ -715,7 +785,7 @@ void HelloWorld::LoadLevel(string level)
 	OBackToSelectButtonStartPos = Vec2(OBackToSelectButton->getPosition().x, OBackToSelectButton->getPosition().y);;
 
 	ONextLevelButton = (ui::Button*)rootNode->getChildByName("nextLevel");
-	//ONextLevelButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::NextLevelPressed, this));
+	ONextLevelButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::NextLevelPressed, this, level));
 	ONextLevelButtonStartPos = Vec2(ONextLevelButton->getPosition().x, ONextLevelButton->getPosition().y);
 
 	overlayBackground = (Sprite*)rootNode->getChildByName("overlayBackground");
