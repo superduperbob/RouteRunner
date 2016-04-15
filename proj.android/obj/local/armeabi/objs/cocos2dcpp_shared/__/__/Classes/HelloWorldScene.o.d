@@ -458,7 +458,8 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/HelloWorldScene.o: \
  C:/Cocos/frameworks/cocos2d-x-3.9/cocos/3d/prebuilt-mk/../../renderer/CCRenderer.h \
  C:/Cocos/frameworks/cocos2d-x-3.9/cocos/editor-support/cocostudio/prebuilt-mk/../../cocostudio/ActionTimeline/CCBoneNode.h \
  C:/Cocos/frameworks/cocos2d-x-3.9/cocos/editor-support/cocostudio/prebuilt-mk/../../cocostudio/ActionTimeline/CSLoader.h \
- jni/../../Classes/GameManager.h jni/../../Classes/LevelSelect.h
+ jni/../../Classes/GameManager.h jni/../../Classes/LevelSelect.h \
+ C:/Users/Matthew/Documents/Cocos/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.9/include/iostream
 
 jni/../../Classes/HelloWorldScene.h:
 
@@ -1379,3 +1380,5 @@ C:/Cocos/frameworks/cocos2d-x-3.9/cocos/editor-support/cocostudio/prebuilt-mk/..
 jni/../../Classes/GameManager.h:
 
 jni/../../Classes/LevelSelect.h:
+
+C:/Users/Matthew/Documents/Cocos/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:

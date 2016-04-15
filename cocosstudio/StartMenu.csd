@@ -27,7 +27,7 @@
             <PreSize X="0.2500" Y="0.2000" />
             <TextColor A="255" R="235" G="224" B="0" />
             <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
-            <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
+            <PressedFileData Type="Normal" Path="startPressee.png" Plist="" />
             <NormalFileData Type="Normal" Path="start.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />

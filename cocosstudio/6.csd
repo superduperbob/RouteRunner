@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="Level6" Type="Scene" ID="1ccfe5df-b84c-4686-8703-45005c2b5afd" Version="2.3.3.0" />
+  <PropertyGroup Name="6" Type="Scene" ID="1ccfe5df-b84c-4686-8703-45005c2b5afd" Version="2.3.3.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -92,10 +92,10 @@
             <FileData Type="Normal" Path="Player_idle2.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="EndBlock" ActionTag="329171701" Tag="61" IconVisible="False" LeftMargin="4440.5371" RightMargin="-2620.5371" TopMargin="455.1398" BottomMargin="324.8602" ctype="SpriteObjectData">
+          <AbstractNodeData Name="EndBlock" ActionTag="329171701" Tag="61" IconVisible="False" LeftMargin="4440.5361" RightMargin="-2620.5361" TopMargin="455.1406" BottomMargin="324.8594" ctype="SpriteObjectData">
             <Size X="100.0000" Y="300.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="4490.5371" Y="474.8602" />
+            <Position X="4490.5361" Y="474.8594" />
             <Scale ScaleX="0.6434" ScaleY="0.4870" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="2.3388" Y="0.4397" />
@@ -364,7 +364,7 @@
             <PreSize X="0.0437" Y="0.1120" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
-            <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
+            <PressedFileData Type="Normal" Path="restartButtonPressed.png" Plist="" />
             <NormalFileData Type="Normal" Path="restartButton.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -379,7 +379,7 @@
             <PreSize X="0.0396" Y="0.1120" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="Normal" Path="playButton.png" Plist="" />
-            <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
+            <PressedFileData Type="Normal" Path="blank.png" Plist="" />
             <NormalFileData Type="Normal" Path="pauseButton.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -394,7 +394,7 @@
             <PreSize X="0.2500" Y="0.2000" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
-            <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
+            <PressedFileData Type="Normal" Path="LevelButtonPressed.png" Plist="" />
             <NormalFileData Type="Normal" Path="LevelButton.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -409,7 +409,7 @@
             <PreSize X="0.2500" Y="0.2000" />
             <TextColor A="255" R="65" G="65" B="70" />
             <DisabledFileData Type="Normal" Path="nextLevelDisable.png" Plist="" />
-            <PressedFileData Type="Default" Path="Default/Button_Press.png" Plist="" />
+            <PressedFileData Type="Normal" Path="nextLevelPressed.png" Plist="" />
             <NormalFileData Type="Normal" Path="nextLevel.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
