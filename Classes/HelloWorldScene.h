@@ -40,9 +40,10 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 
-	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
-	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
-	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
+	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);//as soon as a touch is detected on screen.
+	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);//when a movement is detected
+	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);//when the players finger is removed form the screen
+	void onTouching();//while the player has their finger on the screen, does not have to be moving their finger.
 	
 	void PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level);
@@ -82,6 +83,7 @@ private:
 	bool **drawLayer;
     bool playerIsFalling;
     bool jetpack;
+	bool isTouching;//this boolean is true if the player is touching the screen, so we can call this during update
     
 	Vec2 _ScreenResolution;
     Vec2 oldPoint;

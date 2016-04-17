@@ -46,7 +46,7 @@ bool HelloWorld::init()
 	touchListener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-	difficulty = Difficulty::HARD;
+	difficulty = Difficulty::MEDIUM;
 
 	this->scheduleUpdate();
 
@@ -57,6 +57,8 @@ void HelloWorld::update(float dTime)
 {
 	if (GameManager::sharedGameManager()->isGameLive && !GameManager::sharedGameManager()->isDead)
 		{
+			if (isTouching)
+				onTouching();
 			
 		//PLAYER GRAVITY
 		if (playerIsFalling)
@@ -94,8 +96,8 @@ void HelloWorld::update(float dTime)
 		checkSpringCollision(player->getBoundingBox());
 		if (checkTerrainCollision(player->getBoundingBox()))
 		{
-			playerIsFalling = false;
-			playerFallSpeed = -0.1f;
+			//playerIsFalling = false;
+			//playerFallSpeed = -0.1f;
 
 		}
 
@@ -186,22 +188,14 @@ void HelloWorld::update(float dTime)
 			backgroundParallaxMain->setPositionX(backgroundParallaxMain->getPositionX() - moveSpeed * 0.65);
 			backgroundParallaxRight->setPositionX(backgroundParallaxRight->getPositionX() - moveSpeed * 0.65);
 
-			if (backgroundParallaxMain->getPositionX() <= -1920)
+			if (backgroundParallaxMain->getPositionX() <= -_ScreenResolution.x)
 			{
-				backgroundParallaxMain->setPositionX(1920 - (-1920 - backgroundParallaxMain->getPositionX()));
+				backgroundParallaxMain->setPositionX(_ScreenResolution.x - (-_ScreenResolution.x - backgroundParallaxMain->getPositionX()));
 			}
-			if (backgroundParallaxRight->getPositionX() <= -1920)
+			if (backgroundParallaxRight->getPositionX() <= -_ScreenResolution.x)
 			{
-				backgroundParallaxRight->setPositionX(1920 - (-1920 - backgroundParallaxMain->getPositionX()));
+				backgroundParallaxRight->setPositionX(_ScreenResolution.x - (-_ScreenResolution.x - backgroundParallaxMain->getPositionX()));
 			}
-
-			//float moveSpeed = 1.0f;
-
-
-			/*Squares->setPositionX(Squares->getPositionX() - squareSpeed);
-			Windows->setPositionX(Windows->getPositionX() - squareSpeed);
-			Springs->setPositionX(Springs->getPositionX() - squareSpeed);
-			Spikes->setPositionX(Spikes->getPositionX() - squareSpeed);*/
 
 
 			for (int i = 0; i < Squares->getChildren().size(); i++)
@@ -235,6 +229,7 @@ void HelloWorld::update(float dTime)
 bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	oldPoint = touch->getLocation();
+	isTouching = true;
 	switch (inputState)
 	{
 	case 0:
@@ -245,6 +240,101 @@ bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 		return 1;
 
 	default:return false;
+	}
+}
+
+void HelloWorld::onTouching()
+{
+	Vec2 newPoint = oldPoint;
+
+
+	//draw a line in pixels between the new point and the previous point
+	int x2 = newPoint.x;
+	int x1 = oldPoint.x;
+	int y2 = newPoint.y;
+	int y1 = oldPoint.y;
+
+	int x, y, dx1, dy1, px, py, xe, ye, i;
+	float dx, dy;
+	dx = x2 - x1;
+	dy = y2 - y1;
+	dx1 = fabs(dx);
+	dy1 = fabs(dy);
+	px = 2 * dy1 - dx1;
+	py = 2 * dx1 - dy1;
+	if (dy1 <= dx1)
+	{
+		if (dx >= 0)
+		{
+			x = x1;
+			y = y1;
+			xe = x2;
+		}
+		else
+		{
+			x = x2;
+			y = y2;
+			xe = x1;
+		}
+		drawPoint(x, y);////////////////
+		for (i = 0; x < xe; i++)
+		{
+			x = x + 1;
+			if (px < 0)
+			{
+				px = px + 2 * dy1;
+			}
+			else
+			{
+				if ((dx < 0 && dy < 0) || (dx>0 && dy>0))
+				{
+					y = y + 1;
+				}
+				else
+				{
+					y = y - 1;
+				}
+				px = px + 2 * (dy1 - dx1);
+			}
+			drawPoint(x, y);////////////////
+		}
+	}
+	else
+	{
+		if (dy >= 0)
+		{
+			x = x1;
+			y = y1;
+			ye = y2;
+		}
+		else
+		{
+			x = x2;
+			y = y2;
+			ye = y1;
+		}
+		drawPoint(x, y);////////////////
+		for (i = 0; y < ye; i++)
+		{
+			y = y + 1;
+			if (py <= 0)
+			{
+				py = py + 2 * dx1;
+			}
+			else
+			{
+				if ((dx < 0 && dy < 0) || (dx>0 && dy>0))
+				{
+					x = x + 1;
+				}
+				else
+				{
+					x = x - 1;
+				}
+				py = py + 2 * (dx1 - dy1);
+			}
+			drawPoint(x, y);////////////////
+		}
 	}
 }
 
@@ -266,6 +356,7 @@ void HelloWorld::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
 
 void HelloWorld::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 {
+	isTouching = false;
 	switch (inputState){
 
 	case 0:
@@ -525,7 +616,7 @@ void HelloWorld::checkSpringCollision(Rect collisionBox)
 		if (currentSpring.intersectsRect(player->getBoundingBox()))
 		{
 			playerFallSpeed *= -0.6f;
-			playerFallSpeed += -6;
+			playerFallSpeed -= 10;
 		}
 	}
 
@@ -537,25 +628,49 @@ void HelloWorld::checkSpringCollision(Rect collisionBox)
 	}*/
 }
 
-bool HelloWorld::checkTerrainCollision(Rect collisionBox)
+bool HelloWorld::checkTerrainCollision(Rect collisionBox)//this will only work with the player at the moment
 {
 	for (int i = 0; i < Squares->getChildren().size(); i++)
 	{
 		Rect currentSquare = (Rect)Squares->getChildren().at(i)->getBoundingBox();
+		Rect playerBox = Rect(Vec2(player->getPositionX()-10, player->getPositionY()), Size(player->getBoundingBox().size.width + 5, player->getBoundingBox().size.height/2));
 
-		if (currentSquare.intersectsRect(collisionBox))
+		if (currentSquare.intersectsRect(collisionBox))//comparing the modified collision box
 		{
-			if (player->getBoundingBox().getMaxX() > currentSquare.getMinX() && player->getBoundingBox().getMaxX() - 5 < currentSquare.getMinX())
+			if (playerBox.intersectsRect(currentSquare))
 			{
-				playerDirection = Direction::LEFT;
-				player->setPositionX(player->getPositionX() - 5);
+				if (playerDirection == Direction::LEFT)
+				{
+					playerDirection = Direction::RIGHT;
+					player->setPositionX(player->getPositionX() + moveSpeed);
+				}
+				else if (playerDirection == Direction::RIGHT)
+				{
+					playerDirection = Direction::LEFT;
+					player->setPositionX(player->getPositionX() - moveSpeed);
+				}
+				//if (playerBox.getMaxX() > currentSquare.getMinX() && playerBox.getMaxX() + moveSpeed < currentSquare.getMinX())
+				//{
+				//	playerDirection = Direction::LEFT;
+				//	player->setPositionX(player->getPositionX() - moveSpeed);
+				//}
+				//else if (playerBox.getMinX() < currentSquare.getMaxX() && playerBox.getMinX() - moveSpeed > currentSquare.getMaxX())
+				//{
+				//	playerDirection = Direction::RIGHT;
+				//	player->setPositionX(player->getPositionX() + moveSpeed);
+				//}
+				return true;
 			}
-			else if (player->getBoundingBox().getMinX() < currentSquare.getMaxX() && player->getBoundingBox().getMinX() + 5 > currentSquare.getMaxX())
+		}
+
+		if (collisionBox.intersectsRect(currentSquare))//comparing the full collision box
+		{
+			if (collisionBox.getMinY() < currentSquare.getMaxY() && collisionBox.getMinY() > (currentSquare.getMaxY() - 5))//if the bottom of the player is not as high as the collision box, but is close, set it to be the same height.
 			{
-				playerDirection = Direction::RIGHT;
-				player->setPositionX(player->getPositionX() + 5);
+				player->setPositionY(player->getPositionY() + 1);
+				playerIsFalling = false;
+				playerFallSpeed = -0.1f;
 			}
-			return true;
 		}
 	}
 	return false;
@@ -737,6 +852,8 @@ void HelloWorld::LoadLevel(string level)
 	overlayBackground = (Sprite*)rootNode->getChildByName("overlayBackground");
 	overlayBackgroundStartPos = Vec2(overlayBackground->getPosition().x, overlayBackground->getPosition().y);
 	///////////////////////////////////////////////////////////
+
+	isTouching = false;//set the touching to not be happening
 
 	drawLayer = new bool*[(int)_ScreenResolution.x];//init the width of the array
 	for (int i = 0; i < _ScreenResolution.x - 1; i++)
