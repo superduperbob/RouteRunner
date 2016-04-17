@@ -3,7 +3,8 @@
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
-#
+
+
 //#include "LevelSelect.h"
 
 using namespace cocos2d;
@@ -21,18 +22,11 @@ struct line
 	Vec2 endPos;
 };
 
-enum Difficulty
-{
-	EASY,
-	MEDIUM,
-	HARD,
-};
-
 class HelloWorld : public cocos2d::Layer
 {
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
-    static cocos2d::Scene* createScene(string level);
+    static cocos2d::Scene* createScene(int level);
 
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();
@@ -40,20 +34,22 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 
-	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);//as soon as a touch is detected on screen.
-	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);//when a movement is detected
-	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);//when the players finger is removed form the screen
-	void onTouching();//while the player has their finger on the screen, does not have to be moving their finger.
+	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
+	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
+	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 	
 	void PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level);
+	void RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int level);
 	void BackToSelectPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	void NextLevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, string level);
+	void NextLevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int level);
+	void DropDownMenu();
+	void EndMenu();
 	
 	//void LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID);
 
 	void CheckIfDead(Rect);
 	void PlayerDead();
+	void PlayerAlive();
 
 	void update(float);
 
@@ -68,7 +64,7 @@ public:
 	//void LoadStartMenu();
 	//void LoadLevelSelect();
 	void LoadGameMenu();
-	void LoadLevel(string level);
+	void LoadLevel(int level);
 
 private:
 
@@ -83,7 +79,6 @@ private:
 	bool **drawLayer;
     bool playerIsFalling;
     bool jetpack;
-	bool isTouching;//this boolean is true if the player is touching the screen, so we can call this during update
     
 	Vec2 _ScreenResolution;
     Vec2 oldPoint;
@@ -100,8 +95,7 @@ private:
 	int lineArrayCount;
     int lineSize;
 	int inputState;
-
-	Difficulty difficulty;
+	int currentLevel;
     
 	cocos2d::Sprite* EndBlock;
 
@@ -126,13 +120,16 @@ private:
 	Node* Springs;
 	Node* Spikes;
 
-	string level_1 = "level1.csb";
-	string level_2 = "level2.csb";
-	string level_3 = "level3.csb";
-	string level_4 = "level4.csb";
-	string level_5 = "level5.csb";
-	string level_6 = "level6.csb";
 
+
+	vector<string> levels = vector<string>{
+		"1.csb",
+		"2.csb",
+		"3.csb",
+		"4.csb",
+		"5.csb",
+		"6.csb"
+	};
 };
 
 #endif // __HELLOWORLD_SCENE_H__

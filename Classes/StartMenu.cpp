@@ -37,6 +37,7 @@ void StartMenu::StartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType t
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.wav");
 		Scene* scene = LevelSelect::createScene();
 
 		Director::getInstance()->replaceScene(TransitionSlideInR::create(0.3, scene));
