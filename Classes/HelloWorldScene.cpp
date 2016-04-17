@@ -443,6 +443,7 @@ void HelloWorld::PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType 
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{	
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.wav");
 		DropDownMenu();
 	}
 }
@@ -506,7 +507,7 @@ void HelloWorld::RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventTyp
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		unscheduleUpdate();
-
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("BackSound.wav");
 		Scene* scene = HelloWorld::createScene(level);
 
 		Director::getInstance()->replaceScene(TransitionMoveInR::create(0.5, scene));
@@ -518,10 +519,10 @@ void HelloWorld::NextLevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventT
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		unscheduleUpdate();
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.wav");
+		Scene* scene = HelloWorld::createScene(level + 1);
 
-			Scene* scene = HelloWorld::createScene(level + 1);
-
-			Director::getInstance()->replaceScene(TransitionMoveInR::create(0.5, scene));
+		Director::getInstance()->replaceScene(TransitionMoveInR::create(0.5, scene));
 	}
 }
 
@@ -530,7 +531,7 @@ void HelloWorld::BackToSelectPressed(Ref *pSender, cocos2d::ui::Widget::TouchEve
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		unscheduleUpdate();
-
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("BackSound.wav");
 		Scene* scene = LevelSelect::createScene();
 
 		Director::getInstance()->replaceScene(TransitionSlideInL::create(0.3, scene));
