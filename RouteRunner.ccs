@@ -6,7 +6,6 @@
         <Image Name="Player_idle.png" />
         <Image Name="BackgroundStatic.png" />
         <Image Name="BackgroundParallax.png" />
-        <Image Name="Player_idle2.png" />
         <Image Name="StartBackground.png" />
         <Image Name="restartScreen.png" />
         <Image Name="square1.png" />
@@ -24,7 +23,6 @@
         <Image Name="BasicBuildingV2Red.png" />
         <Image Name="brick.jpg" />
         <Image Name="ShitEndFlag.png" />
-        <Image Name="sky.jpg" />
         <Image Name="spikes.png" />
         <Project Name="6.csd" Type="Scene" />
         <Project Name="5.csd" Type="Scene" />
@@ -44,7 +42,6 @@
         <Image Name="nextLevel.png" />
         <Image Name="nextLevelDisable.png" />
         <Image Name="start.png" />
-        <Image Name="back.jpg" />
         <Image Name="LevelButtonPressed.png" />
         <Image Name="1Pressed.png" />
         <Image Name="2Pressed.png" />
@@ -58,6 +55,13 @@
         <Image Name="nextLevelPressed.png" />
         <Image Name="restartButtonPressed.png" />
         <Image Name="blank.png" />
+        <Image Name="Background2.png" />
+        <Image Name="sky.png" />
+        <Image Name="StartscreenBackgroundV3.png" />
+        <Image Name="LevelSelectBackground.png" />
+        <Project Name="SplashScreen.csd" Type="Scene" />
+        <Image Name="SplashIcon.png" />
+        <Image Name="Robot.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

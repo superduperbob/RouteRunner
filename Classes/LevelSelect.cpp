@@ -59,13 +59,10 @@ void LevelSelect::LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType
 
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-
-
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.wav");
 		Scene* scene = HelloWorld::createScene(levelID);
 
-		Director::getInstance()->replaceScene(scene);
-		
-		
+		Director::getInstance()->replaceScene(scene);	
 	}
 }
 
@@ -73,6 +70,7 @@ void LevelSelect::BackToStartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEve
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("BackSound.wav");
 		Scene* scene = StartMenu::createScene();
 
 		Director::getInstance()->replaceScene(TransitionSlideInL::create(0.3, scene) );

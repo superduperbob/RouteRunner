@@ -1,5 +1,7 @@
 obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/GameManager.o: \
  jni/../../Classes/GameManager.cpp jni/../../Classes/GameManager.h \
+ C:/Cocos/frameworks/cocos2d-x-3.9/cocos/audio/android/prebuilt-mk/../../include/SimpleAudioEngine.h \
+ C:/Cocos/frameworks/cocos2d-x-3.9/cocos/audio/android/prebuilt-mk/../../include/Export.h \
  C:/Users/Matthew/Documents/Cocos/android-ndk-r10e/platforms/android-19/arch-arm/usr/include/stdio.h \
  C:/Users/Matthew/Documents/Cocos/android-ndk-r10e/platforms/android-19/arch-arm/usr/include/sys/cdefs.h \
  C:/Users/Matthew/Documents/Cocos/android-ndk-r10e/platforms/android-19/arch-arm/usr/include/sys/cdefs_elf.h \
@@ -19,6 +21,10 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/GameManager.o: \
  C:/Users/Matthew/Documents/Cocos/android-ndk-r10e/platforms/android-19/arch-arm/usr/include/sys/sysmacros.h
 
 jni/../../Classes/GameManager.h:
+
+C:/Cocos/frameworks/cocos2d-x-3.9/cocos/audio/android/prebuilt-mk/../../include/SimpleAudioEngine.h:
+
+C:/Cocos/frameworks/cocos2d-x-3.9/cocos/audio/android/prebuilt-mk/../../include/Export.h:
 
 C:/Users/Matthew/Documents/Cocos/android-ndk-r10e/platforms/android-19/arch-arm/usr/include/stdio.h:
 

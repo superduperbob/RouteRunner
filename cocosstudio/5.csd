@@ -1,20 +1,20 @@
 <GameFile>
-  <PropertyGroup Name="Level5" Type="Scene" ID="c0005638-74a4-4b86-b97a-06082d67b0e0" Version="2.3.3.0" />
+  <PropertyGroup Name="5" Type="Scene" ID="c0005638-74a4-4b86-b97a-06082d67b0e0" Version="2.3.3.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
       <ObjectData Name="Scene" Tag="9" ctype="GameNodeObjectData">
         <Size X="1920.0000" Y="1080.0000" />
         <Children>
-          <AbstractNodeData Name="BackgroundStatic_1" ActionTag="1853135038" Tag="12" IconVisible="False" LeftMargin="-0.0582" RightMargin="1661.0582" TopMargin="870.9273" BottomMargin="15.0727" ctype="SpriteObjectData">
-            <Size X="259.0000" Y="194.0000" />
+          <AbstractNodeData Name="BackgroundStatic_1" ActionTag="1853135038" Tag="12" IconVisible="False" LeftMargin="-80.0000" RightMargin="741.0000" TopMargin="579.0000" BottomMargin="155.0000" ctype="SpriteObjectData">
+            <Size X="1259.0000" Y="346.0000" />
             <AnchorPoint />
-            <Position X="-0.0582" Y="15.0727" />
-            <Scale ScaleX="8.0195" ScaleY="5.5767" />
+            <Position X="-80.0000" Y="155.0000" />
+            <Scale ScaleX="1.8500" ScaleY="3.3000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0000" Y="0.0140" />
-            <PreSize X="0.1349" Y="0.1796" />
-            <FileData Type="Normal" Path="sky.jpg" Plist="" />
+            <PrePosition X="-0.0417" Y="0.1435" />
+            <PreSize X="0.6557" Y="0.3204" />
+            <FileData Type="Normal" Path="sky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="BackgroundParallaxRight" ActionTag="900215269" Tag="10" IconVisible="False" LeftMargin="1914.6643" RightMargin="-1914.6643" TopMargin="-0.0001" BottomMargin="0.0001" ctype="SpriteObjectData">
@@ -215,15 +215,15 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="72.1462" RightMargin="1797.8538" TopMargin="612.9912" BottomMargin="392.0088" ctype="SpriteObjectData">
-            <Size X="50.0000" Y="75.0000" />
+          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="74.1462" RightMargin="1799.8538" TopMargin="621.0000" BottomMargin="413.0000" ctype="SpriteObjectData">
+            <Size X="50.0000" Y="100.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="97.1462" Y="429.5088" />
+            <Position X="97.1462" Y="436.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0506" Y="0.3977" />
-            <PreSize X="0.0260" Y="0.0694" />
-            <FileData Type="Normal" Path="Player_idle2.png" Plist="" />
+            <PrePosition X="0.0506" Y="0.4037" />
+            <PreSize X="0.0240" Y="0.0426" />
+            <FileData Type="Normal" Path="Robot.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="EndBlock" ActionTag="329171701" Tag="61" IconVisible="False" LeftMargin="3676.2251" RightMargin="-1856.2251" TopMargin="444.8982" BottomMargin="335.1018" ctype="SpriteObjectData">
@@ -262,8 +262,8 @@
           <AbstractNodeData Name="Spikes" ActionTag="1924153523" Tag="70" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
             <Children>
-              <AbstractNodeData Name="spike_0" ActionTag="-2021625706" Tag="320" RotationSkewX="270.0000" RotationSkewY="270.0000" IconVisible="False" LeftMargin="1162.9982" RightMargin="-1558.9982" TopMargin="-1020.0000" BottomMargin="980.0000" ctype="SpriteObjectData">
-                <Size X="396.0000" Y="40.0000" />
+              <AbstractNodeData Name="spike_0" ActionTag="-2021625706" Tag="320" RotationSkewX="270.0000" RotationSkewY="270.0000" IconVisible="False" LeftMargin="1162.9982" RightMargin="-1558.9982" TopMargin="-1016.5000" BottomMargin="983.5000" ctype="SpriteObjectData">
+                <Size X="396.0000" Y="33.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="1360.9982" Y="1000.0000" />
                 <Scale ScaleX="1.4729" ScaleY="1.6040" />
@@ -273,8 +273,8 @@
                 <FileData Type="Normal" Path="spikes.png" Plist="" />
                 <BlendFunc Src="770" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="spike_1" ActionTag="434738271" Tag="319" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1227.8016" RightMargin="-1623.8016" TopMargin="-1020.0000" BottomMargin="980.0000" ctype="SpriteObjectData">
-                <Size X="396.0000" Y="40.0000" />
+              <AbstractNodeData Name="spike_1" ActionTag="434738271" Tag="319" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1227.8016" RightMargin="-1623.8016" TopMargin="-1016.5000" BottomMargin="983.5000" ctype="SpriteObjectData">
+                <Size X="396.0000" Y="33.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="1425.8016" Y="1000.0000" />
                 <Scale ScaleX="1.4729" ScaleY="1.6040" />
@@ -284,8 +284,8 @@
                 <FileData Type="Normal" Path="spikes.png" Plist="" />
                 <BlendFunc Src="770" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="spike_2" ActionTag="1864615147" Tag="322" RotationSkewX="270.0000" RotationSkewY="270.0000" IconVisible="False" LeftMargin="1163.0000" RightMargin="-1559.0000" TopMargin="-290.0000" BottomMargin="250.0000" ctype="SpriteObjectData">
-                <Size X="396.0000" Y="40.0000" />
+              <AbstractNodeData Name="spike_2" ActionTag="1864615147" Tag="322" RotationSkewX="270.0000" RotationSkewY="270.0000" IconVisible="False" LeftMargin="1163.0000" RightMargin="-1559.0000" TopMargin="-286.5000" BottomMargin="253.5000" ctype="SpriteObjectData">
+                <Size X="396.0000" Y="33.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="1361.0000" Y="270.0000" />
                 <Scale ScaleX="1.4729" ScaleY="1.6040" />
@@ -295,8 +295,8 @@
                 <FileData Type="Normal" Path="spikes.png" Plist="" />
                 <BlendFunc Src="770" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="spike_3" ActionTag="454585385" Tag="321" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1227.0000" RightMargin="-1623.0000" TopMargin="-290.0000" BottomMargin="250.0000" ctype="SpriteObjectData">
-                <Size X="396.0000" Y="40.0000" />
+              <AbstractNodeData Name="spike_3" ActionTag="454585385" Tag="321" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1227.0000" RightMargin="-1623.0000" TopMargin="-286.5000" BottomMargin="253.5000" ctype="SpriteObjectData">
+                <Size X="396.0000" Y="33.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="1425.0000" Y="270.0000" />
                 <Scale ScaleX="1.4729" ScaleY="1.6040" />
@@ -306,8 +306,8 @@
                 <FileData Type="Normal" Path="spikes.png" Plist="" />
                 <BlendFunc Src="770" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="spike_4" ActionTag="-2145170832" Tag="324" RotationSkewX="270.0000" RotationSkewY="270.0000" IconVisible="False" LeftMargin="1695.0564" RightMargin="-2091.0564" TopMargin="-843.5409" BottomMargin="803.5409" ctype="SpriteObjectData">
-                <Size X="396.0000" Y="40.0000" />
+              <AbstractNodeData Name="spike_4" ActionTag="-2145170832" Tag="324" RotationSkewX="270.0000" RotationSkewY="270.0000" IconVisible="False" LeftMargin="1695.0564" RightMargin="-2091.0564" TopMargin="-840.0409" BottomMargin="807.0409" ctype="SpriteObjectData">
+                <Size X="396.0000" Y="33.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="1893.0564" Y="823.5409" />
                 <Scale ScaleX="1.4729" ScaleY="1.6040" />
@@ -317,8 +317,8 @@
                 <FileData Type="Normal" Path="spikes.png" Plist="" />
                 <BlendFunc Src="770" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="spike_5" ActionTag="1244673524" Tag="323" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1759.8953" RightMargin="-2155.8953" TopMargin="-843.5573" BottomMargin="803.5573" ctype="SpriteObjectData">
-                <Size X="396.0000" Y="40.0000" />
+              <AbstractNodeData Name="spike_5" ActionTag="1244673524" Tag="323" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1759.8953" RightMargin="-2155.8953" TopMargin="-840.0573" BottomMargin="807.0573" ctype="SpriteObjectData">
+                <Size X="396.0000" Y="33.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="1957.8953" Y="823.5573" />
                 <Scale ScaleX="1.4729" ScaleY="1.6040" />
@@ -328,8 +328,8 @@
                 <FileData Type="Normal" Path="spikes.png" Plist="" />
                 <BlendFunc Src="770" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="spike_6" ActionTag="-99338607" Tag="325" RotationSkewX="270.0000" RotationSkewY="270.0000" IconVisible="False" LeftMargin="1692.5710" RightMargin="-2088.5710" TopMargin="-97.9149" BottomMargin="57.9149" ctype="SpriteObjectData">
-                <Size X="396.0000" Y="40.0000" />
+              <AbstractNodeData Name="spike_6" ActionTag="-99338607" Tag="325" RotationSkewX="270.0000" RotationSkewY="270.0000" IconVisible="False" LeftMargin="1692.5710" RightMargin="-2088.5710" TopMargin="-94.4149" BottomMargin="61.4149" ctype="SpriteObjectData">
+                <Size X="396.0000" Y="33.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="1890.5710" Y="77.9149" />
                 <Scale ScaleX="1.4729" ScaleY="1.6040" />
@@ -339,8 +339,8 @@
                 <FileData Type="Normal" Path="spikes.png" Plist="" />
                 <BlendFunc Src="770" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="spike_7" ActionTag="1175840283" Tag="326" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1756.9993" RightMargin="-2152.9993" TopMargin="-103.5638" BottomMargin="63.5638" ctype="SpriteObjectData">
-                <Size X="396.0000" Y="40.0000" />
+              <AbstractNodeData Name="spike_7" ActionTag="1175840283" Tag="326" RotationSkewX="90.0000" RotationSkewY="90.0000" IconVisible="False" LeftMargin="1756.9993" RightMargin="-2152.9993" TopMargin="-100.0638" BottomMargin="67.0638" ctype="SpriteObjectData">
+                <Size X="396.0000" Y="33.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="1954.9993" Y="83.5638" />
                 <Scale ScaleX="1.4729" ScaleY="1.6040" />
