@@ -69,6 +69,7 @@
         <Image Name="Hard.png" />
         <Image Name="HardPressed.png" />
         <Image Name="JetPackPickUp.png" />
+        <TTF Name="runescape_uf.ttf" />
       </RootFolder>
     </Group>
   </SolutionFolder>

@@ -26,6 +26,8 @@ bool StartMenu::init()
 	}
 	auto rootNode = CSLoader::createNode("StartMenu.csb");
 
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+
 	startMenuButton = (ui::Button*)rootNode->getChildByName("startMenuButton");
 	startMenuButton->addTouchEventListener(CC_CALLBACK_2(StartMenu::StartPressed, this));
 	startBackground = (Sprite*)rootNode->getChildByName("startBackground");

@@ -47,6 +47,11 @@ bool HelloWorld::init()
 	touchListener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
+	winMessage = "Level Completed!";
+	loseMessage = "Press restart to try again";
+
+	deletionPos = Vec2(0.10f, 0.10f);
+
 	this->scheduleUpdate();
 
     return true;
@@ -70,25 +75,7 @@ void HelloWorld::update(float dTime)
 		{
 			playerFallSpeed += 0.1;
 		}
-
-		//PLAYER JETPACK CONTROL
-		if (jetpack){
-			if (_ScreenResolution.x / 2 < oldPoint.x){
-
-				playerDirection = Direction::RIGHT;
-
-			}
-			else{
-
-				playerDirection = Direction::LEFT;
-
-			}
-			if (playerFallSpeed > -7.0f){
-				playerFallSpeed += -0.25f;
-			}
-		}
 		
-		checkPickupCollision(player->getBoundingBox());
 		checkEndBlockCollision(player->getBoundingBox());
 		checkFloorCollision();
 		CheckIfDead(player->getBoundingBox());
@@ -183,7 +170,6 @@ void HelloWorld::update(float dTime)
 
 			backgroundParallaxMain->setPositionX(backgroundParallaxMain->getPositionX() - moveSpeed*0.6);
 			backgroundParallaxRight->setPositionX(backgroundParallaxRight->getPositionX() - moveSpeed*0.6);
-			jetpackPickup->setPositionX(jetpackPickup->getPositionX() - moveSpeed);
 
 			if (backgroundParallaxMain->getPositionX() <= -1920)
 			{
@@ -275,10 +261,9 @@ void HelloWorld::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 	}
 }
 
-void HelloWorld::updateJetpackDirection(cocos2d::Touch* touch){
-
+void HelloWorld::updateJetpackDirection(cocos2d::Touch* touch)
+{
 	oldPoint = touch->getLocation();
-
 }
 
 void HelloWorld::updateline(cocos2d::Touch* touch, cocos2d::Event* event){
@@ -466,21 +451,25 @@ void HelloWorld::DropDownMenu()
 	auto moveSelectTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.65f / 1.0));
 	auto moveNextTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.40f / 1.0));
 	auto moveBackgroundTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 1.0));
+	auto moveLabelTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.8f / 1.0));
 	if (!menuDown)
 	{
 		if (GameManager::sharedGameManager()->isDead == true)
 		{
 			pauseButton->setEnabled(false);
 			pauseButton->setVisible(false);
+			messageLabel->setText(loseMessage);
 		}
 		else
 		{
 			pauseButton->setBright(false);
+			messageLabel->setText("");
 		}
 
 		OBackToSelectButton->runAction(moveSelectTo);
 		ONextLevelButton->runAction(moveNextTo);
 		overlayBackground->runAction(moveBackgroundTo);
+		messageLabel->runAction(moveLabelTo);
 		menuDown = true;
 	}
 	else
@@ -489,9 +478,11 @@ void HelloWorld::DropDownMenu()
 		OBackToSelectButton->stopAllActions();
 		ONextLevelButton->stopAllActions();
 		overlayBackground->stopAllActions();
+		messageLabel->stopAllActions();
 		ONextLevelButton->setPosition(ONextLevelButtonStartPos);
 		OBackToSelectButton->setPosition(OBackToSelectButtonStartPos);
 		overlayBackground->setPosition(overlayBackgroundStartPos);
+		messageLabel->setPosition(messageLabelStartPos);
 		menuDown = false;
 	}
 	GameManager::sharedGameManager()->isGameLive = !menuDown;
@@ -517,6 +508,9 @@ void HelloWorld::EndMenu()
 	auto moveSelectTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.65f / 1.0));
 	auto moveNextTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.40f / 1.0));
 	auto moveBackgroundTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 1.0));
+	auto moveLabelTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.8f / 1.0));
+
+	messageLabel->setText(winMessage);
 
 	ONextLevelButton->setEnabled(true);
 	pauseButton->setVisible(false);
@@ -524,6 +518,7 @@ void HelloWorld::EndMenu()
 	OBackToSelectButton->runAction(moveSelectTo);
 	ONextLevelButton->runAction(moveNextTo);
 	overlayBackground->runAction(moveBackgroundTo);
+	messageLabel->runAction(moveLabelTo);
 	menuDown = true;
 }
 
@@ -577,15 +572,6 @@ void HelloWorld::checkSpringCollision(Rect collisionBox)
 	}
 }
 
-//void HelloWorld::checkPickupCollision(Rect collisionBox)
-//{
-//	Rect jetpackPickupRect = jetpackPickup->getBoundingBox();
-//
-//	if (jetpackPickupRect.intersectsRect(player->getBoundingBox()))
-//	{
-//		jetpackPickup-
-//	}
-//}
 
 bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 {
@@ -719,7 +705,6 @@ void HelloWorld::checkFloorCollision()
 					playerDirection = Direction::RIGHT;
 				}
 			}
-
 		}
 	}
 
@@ -845,8 +830,6 @@ void HelloWorld::LoadLevel(int level)
 	Windows = (Node*)rootNode->getChildByName("Windows");
 	Springs = (Node*)rootNode->getChildByName("Springs");
 	Spikes = (Node*)rootNode->getChildByName("Spikes");
-
-	jetpackPickup = (Sprite*)rootNode->getChildByName("jetpackPickup");
 	
 	EndBlock = (Sprite*)rootNode->getChildByName("EndBlock");
 
@@ -867,6 +850,10 @@ void HelloWorld::LoadLevel(int level)
 
 	overlayBackground = (Sprite*)rootNode->getChildByName("overlayBackground");
 	overlayBackgroundStartPos = Vec2(overlayBackground->getPosition().x, overlayBackground->getPosition().y);
+
+	messageLabel = (ui::Text*)rootNode->getChildByName("messageLabel");
+	messageLabelStartPos = Vec2(messageLabel->getPosition().x, messageLabel->getPosition().y);
+
 	///////////////////////////////////////////////////////////
 
 	drawLayer = new bool*[(int)_ScreenResolution.x];//init the width of the array
@@ -894,7 +881,6 @@ void HelloWorld::LoadLevel(int level)
 	lineArrayCount = 0;
 	playerDirection = Direction::RIGHT;
 	playerIsFalling = true;
-	secondCounter = 0;
 	lineDrawNode = DrawNode::create();
 
 	addChild(rootNode);

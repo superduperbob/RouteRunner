@@ -15,7 +15,6 @@ GameManager* GameManager::sharedGameManager()
 
 GameManager::GameManager()
 {
-	
 	isGameLive = false;
 	isDead = false;
 	difficulty = Difficulty::MEDIUM;

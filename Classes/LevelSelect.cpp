@@ -30,6 +30,7 @@ bool LevelSelect::init()
 
 	//rootNode->setPosition(0, 0);
 	
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 
 	SelectLevel1 = (ui::Button*)rootNode->getChildByName("SelectLevel1");
 	SelectLevel1->addTouchEventListener(CC_CALLBACK_2(LevelSelect::LevelPressed, this, 0));
@@ -88,6 +89,7 @@ void LevelSelect::LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType
 		Scene* scene = HelloWorld::createScene(levelID);
 
 		Director::getInstance()->replaceScene(scene);	
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("Blip_Stream.mp3");
 	}
 }
 

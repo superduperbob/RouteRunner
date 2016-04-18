@@ -17,27 +17,49 @@
             <FileData Type="Normal" Path="sky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BackgroundParallaxRight" ActionTag="900215269" Tag="10" IconVisible="False" LeftMargin="1920.0000" RightMargin="-1920.0000" ctype="SpriteObjectData">
-            <Size X="1920.0000" Y="1080.0000" />
+          <AbstractNodeData Name="BackgroundParallaxRight" ActionTag="900215269" Tag="10" IconVisible="False" LeftMargin="1920.0000" RightMargin="-1000.0000" TopMargin="616.0000" ctype="SpriteObjectData">
+            <Size X="1000.0000" Y="464.0000" />
             <AnchorPoint />
             <Position X="1920.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <Scale ScaleX="2.0000" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="1.0000" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.5208" Y="0.4296" />
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BackgroundParallaxMain" ActionTag="692734661" Tag="11" IconVisible="False" LeftMargin="14.1959" RightMargin="-14.1959" TopMargin="-13.1984" BottomMargin="13.1984" ctype="SpriteObjectData">
-            <Size X="1920.0000" Y="1080.0000" />
+          <AbstractNodeData Name="BackgroundParallaxMain" ActionTag="692734661" Tag="11" IconVisible="False" LeftMargin="14.1959" RightMargin="905.8041" TopMargin="602.8016" BottomMargin="13.1984" ctype="SpriteObjectData">
+            <Size X="1000.0000" Y="464.0000" />
             <AnchorPoint />
             <Position X="14.1959" Y="13.1984" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <Scale ScaleX="2.0000" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0074" Y="0.0122" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.5208" Y="0.4296" />
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Windows" ActionTag="-2078653094" Tag="63" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <Children>
+              <AbstractNodeData Name="window_1" ActionTag="-1936707646" Tag="184" IconVisible="False" LeftMargin="847.1526" RightMargin="-1247.1526" TopMargin="-967.5966" BottomMargin="71.5966" ctype="SpriteObjectData">
+                <Size X="400.0000" Y="896.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="1047.1526" Y="519.5966" />
+                <Scale ScaleX="0.6000" ScaleY="0.6000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="Normal" Path="BasicBuildingV2DARKWindow.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
           <AbstractNodeData Name="Squares" ActionTag="480340300" Tag="40" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
@@ -94,38 +116,16 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="74.1462" RightMargin="1799.8538" TopMargin="621.0000" BottomMargin="413.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="72.1462" RightMargin="1797.8538" TopMargin="594.0000" BottomMargin="386.0000" ctype="SpriteObjectData">
             <Size X="50.0000" Y="100.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="97.1462" Y="436.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0506" Y="0.4037" />
-            <PreSize X="0.0240" Y="0.0426" />
+            <PreSize X="0.0260" Y="0.0926" />
             <FileData Type="Normal" Path="Robot.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="Windows" ActionTag="-2078653094" Tag="63" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
-            <Size X="0.0000" Y="0.0000" />
-            <Children>
-              <AbstractNodeData Name="window_1" ActionTag="-1936707646" Tag="184" IconVisible="False" LeftMargin="847.1526" RightMargin="-1247.1526" TopMargin="-967.5966" BottomMargin="71.5966" ctype="SpriteObjectData">
-                <Size X="400.0000" Y="896.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="1047.1526" Y="519.5966" />
-                <Scale ScaleX="0.6000" ScaleY="0.6000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="Normal" Path="BasicBuildingV2DARKWindow.png" Plist="" />
-                <BlendFunc Src="770" Dst="771" />
-              </AbstractNodeData>
-            </Children>
-            <AnchorPoint />
-            <Position />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
-            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
           <AbstractNodeData Name="EndBlock" ActionTag="329171701" Tag="61" IconVisible="False" LeftMargin="1876.2438" RightMargin="-56.2438" TopMargin="463.0117" BottomMargin="316.9883" ctype="SpriteObjectData">
             <Size X="100.0000" Y="300.0000" />
@@ -224,6 +224,18 @@
             <DisabledFileData Type="Normal" Path="nextLevelDisable.png" Plist="" />
             <PressedFileData Type="Normal" Path="nextLevelPressed.png" Plist="" />
             <NormalFileData Type="Normal" Path="nextLevel.png" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="messageLabel" ActionTag="903936748" Tag="179" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="960.0000" RightMargin="960.0000" TopMargin="-972.0000" BottomMargin="2052.0000" FontSize="72" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="960.0000" Y="2052.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="1.9000" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="runescape_uf.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>

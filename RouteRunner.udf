@@ -35,8 +35,13 @@
           <FilePathData Path="StartMenu.csd" />
           <FilePathData Path="SplashScreen.csd" />
           <FilePathData Path="LevelSelect.csd" />
+          <FilePathData Path="2.csd" />
+          <FilePathData Path="3.csd" />
+          <FilePathData Path="4.csd" />
+          <FilePathData Path="5.csd" />
+          <FilePathData Path="6.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="1.csd" />
+        <ActiveDocument Path="2.csd" />
       </Value>
     </Item>
   </Properties>

@@ -203,16 +203,17 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="jetpackPickup" ActionTag="2123274486" Tag="19" IconVisible="False" LeftMargin="699.0000" RightMargin="1191.0000" TopMargin="452.0000" BottomMargin="592.0000" ctype="SpriteObjectData">
-            <Size X="30.0000" Y="36.0000" />
+          <AbstractNodeData Name="messageLabel" ActionTag="726984448" Tag="178" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="960.0000" RightMargin="960.0000" TopMargin="-972.0000" BottomMargin="2052.0000" FontSize="72" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="0.0000" Y="0.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="714.0000" Y="610.0000" />
-            <Scale ScaleX="1.5000" ScaleY="1.5000" />
+            <Position X="960.0000" Y="2052.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3719" Y="0.5648" />
-            <PreSize X="0.0156" Y="0.0333" />
-            <FileData Type="Normal" Path="JetPackPickUp.png" Plist="" />
-            <BlendFunc Src="770" Dst="771" />
+            <PrePosition X="0.5000" Y="1.9000" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="runescape_uf.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

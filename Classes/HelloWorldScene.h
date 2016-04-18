@@ -57,7 +57,7 @@ public:
 	bool checkTerrainCollision(Rect collisionBox);
 	void checkFloorCollision();
 	void checkSpringCollision(Rect collisionBox);
-	void checkPickupCollision(Rect collisionBox);
+	void checkPickUpsCollision(Rect collisionBox);
 	bool checkEndBlockCollision(Rect);
 
 	void drawPoint(int x, int y);
@@ -79,11 +79,12 @@ private:
     
 	bool **drawLayer;
     bool playerIsFalling;
-    bool jetpack;
+	bool jetpack;
     
 	Vec2 _ScreenResolution;
     Vec2 oldPoint;
     Vec2 LineArray[500];
+	Vec2 deletionPos;
     
 	float secondCounter;
 	float playerFallSpeed;
@@ -98,7 +99,7 @@ private:
 	int inputState;
 	int currentLevel;
     
-	cocos2d::Sprite* EndBlock;
+	Sprite* EndBlock;
 
 	ui::Button* restartButton;
 	ui::Button* pauseButton;
@@ -109,8 +110,13 @@ private:
 	Vec2 OBackToSelectButtonStartPos;
 	Vec2 ONextLevelButtonStartPos;
 	Vec2 overlayBackgroundStartPos;
+	Vec2 messageLabelStartPos;
 
 	Sprite* overlayBackground;
+
+	ui::Text*	messageLabel;
+	string		loseMessage;
+	string		winMessage;
 
 	Vec2		playerStartPos;
 
@@ -120,8 +126,6 @@ private:
 	Node* Windows;
 	Node* Springs;
 	Node* Spikes;
-
-	Sprite* jetpackPickup;
 
 	vector<string> levels = vector<string>{
 		"1.csb",

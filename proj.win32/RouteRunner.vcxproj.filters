@@ -30,9 +30,6 @@
     <ClCompile Include="..\Classes\StartMenu.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SplashScreen.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -51,9 +48,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\StartMenu.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SplashScreen.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
