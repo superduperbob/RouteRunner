@@ -32,10 +32,14 @@ private:
 	ui::Button* SelectLevel5;
 	ui::Button* SelectLevel6;
 	ui::Button* backButton;
+	ui::Button* easyButton;
+	ui::Button* normalButton;
+	ui::Button* hardButton;
 
 	//void LoadLevel(string level);
 	void LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int levelID);
 	void BackToStartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void DifficultyLevel(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int difficulty);
 
 	string level_1 = "Level1.csb";
 	string level_2 = "Level2.csb";

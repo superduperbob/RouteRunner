@@ -1,5 +1,6 @@
 #include "LevelSelect.h"
 #include "StartMenu.h"
+#include "GameManager.h"
 
 USING_NS_CC;
 
@@ -28,6 +29,7 @@ bool LevelSelect::init()
 	auto rootNode = CSLoader::createNode("LevelSelect.csb");
 
 	//rootNode->setPosition(0, 0);
+	
 
 	SelectLevel1 = (ui::Button*)rootNode->getChildByName("SelectLevel1");
 	SelectLevel1->addTouchEventListener(CC_CALLBACK_2(LevelSelect::LevelPressed, this, 0));
@@ -49,6 +51,29 @@ bool LevelSelect::init()
 
 	backButton = (ui::Button*)rootNode->getChildByName("backButton");
 	backButton->addTouchEventListener(CC_CALLBACK_2(LevelSelect::BackToStartPressed, this));
+
+	easyButton = (ui::Button*)rootNode->getChildByName("easyButton");
+	easyButton->addTouchEventListener(CC_CALLBACK_2(LevelSelect::DifficultyLevel, this, 1));
+
+	normalButton = (ui::Button*)rootNode->getChildByName("normalButton");
+	normalButton->addTouchEventListener(CC_CALLBACK_2(LevelSelect::DifficultyLevel, this, 2));
+
+	hardButton = (ui::Button*)rootNode->getChildByName("hardButton");
+	hardButton->addTouchEventListener(CC_CALLBACK_2(LevelSelect::DifficultyLevel, this, 3));
+
+	switch (GameManager::sharedGameManager()->GetDifficulty())
+	{
+	case 1:
+		easyButton->setBright(false);
+		break;
+	case 2:
+		normalButton->setBright(false);
+		break;
+	case 3:
+		hardButton->setBright(false);
+		break;
+	}
+	
 
 	addChild(rootNode);
     
@@ -74,5 +99,31 @@ void LevelSelect::BackToStartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEve
 		Scene* scene = StartMenu::createScene();
 
 		Director::getInstance()->replaceScene(TransitionSlideInL::create(0.3, scene) );
+	}
+}
+
+void LevelSelect::DifficultyLevel(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int difficulty)
+{
+	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
+	{
+		easyButton->setBright(true);
+		normalButton->setBright(true);
+		hardButton->setBright(true);
+
+		if (difficulty == 1)
+		{
+			GameManager::sharedGameManager()->setDifficulty(1);
+			easyButton->setBright(false);
+		}	
+		if (difficulty == 2)
+		{
+			GameManager::sharedGameManager()->setDifficulty(2);
+			normalButton->setBright(false);
+		}
+		if (difficulty == 3)
+		{
+			GameManager::sharedGameManager()->setDifficulty(3);
+			hardButton->setBright(false);
+		}
 	}
 }

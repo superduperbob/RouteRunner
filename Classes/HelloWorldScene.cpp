@@ -47,8 +47,6 @@ bool HelloWorld::init()
 	touchListener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-
-
 	this->scheduleUpdate();
 
     return true;
@@ -85,7 +83,7 @@ void HelloWorld::update(float dTime)
 				playerDirection = Direction::LEFT;
 
 			}
-			if (playerFallSpeed > -5.0f){
+			if (playerFallSpeed > -7.0f){
 				playerFallSpeed += -0.25f;
 			}
 		}
@@ -96,8 +94,8 @@ void HelloWorld::update(float dTime)
 		checkSpringCollision(player->getBoundingBox());
 		if (checkTerrainCollision(player->getBoundingBox()))
 		{
-			playerIsFalling = false;
-			playerFallSpeed = -0.1f;
+			//playerIsFalling = false;
+			//playerFallSpeed = -0.1f;
 
 		}
 
@@ -106,7 +104,7 @@ void HelloWorld::update(float dTime)
 		if (playerDirection == Direction::LEFT)
 		{
 			player->setFlippedX(true);
-			player->setPositionX(player->getPositionX() - moveSpeed - 1);
+			player->setPositionX(player->getPositionX() - moveSpeed - 3);
 		}
 
 		if (playerDirection == Direction::RIGHT)
@@ -119,7 +117,18 @@ void HelloWorld::update(float dTime)
 
 			for (int i = 0; i < 500 - 1; i++)
 			{
-				lineDrawNode->drawPoint(LineArray[i], 10, Color4F(1.0f, 1.0f, 0.0f, 1.0f));
+				switch (GameManager::sharedGameManager()->GetDifficulty())
+				{
+				case 1 :
+					lineDrawNode->drawPoint(LineArray[i], 10, Color4F(0.062f, 0.388f, 0.176f, 1.0f));
+					break;
+				case 2:
+					lineDrawNode->drawPoint(LineArray[i], 10, Color4F(1.0f, 1.0f, 0.0f, 1.0f));
+					break;
+				case 3:
+					lineDrawNode->drawPoint(LineArray[i], 10, Color4F(0.694f, 0.835f, 0.878f, 1.0f));
+					break;
+				}
 				if (LineArray[i].x > 5 && LineArray[i].y > 5)
 				{
 					drawLayer[(int)LineArray[i].x - 1][(int)LineArray[i].y] = false;
@@ -138,16 +147,18 @@ void HelloWorld::update(float dTime)
 
 					drawLayer[(int)LineArray[i].x][(int)LineArray[i].y] = false;
 
-					drawLayer[(int)LineArray[i].x-1][(int)LineArray[i].y + 2] = false;
-					drawLayer[(int)LineArray[i].x+1][(int)LineArray[i].y + 2] = false;
+					drawLayer[(int)LineArray[i].x - 1][(int)LineArray[i].y + 2] = false;
+					drawLayer[(int)LineArray[i].x + 1][(int)LineArray[i].y + 2] = false;
 					drawLayer[(int)LineArray[i].x][(int)LineArray[i].y + 2] = false;
 
-					drawLayer[(int)LineArray[i].x-1][(int)LineArray[i].y - 2] = false;
-					drawLayer[(int)LineArray[i].x+1][(int)LineArray[i].y - 2] = false;
+					drawLayer[(int)LineArray[i].x - 1][(int)LineArray[i].y - 2] = false;
+					drawLayer[(int)LineArray[i].x + 1][(int)LineArray[i].y - 2] = false;
 					drawLayer[(int)LineArray[i].x][(int)LineArray[i].y - 2] = false;
 
-					
-					LineArray[i].x = LineArray[i].x - 1;
+					if (LineArray[i].x - moveSpeed >= 0)
+					{
+						LineArray[i].x = LineArray[i].x - moveSpeed;
+					}
 
 
 					drawLayer[(int)LineArray[i].x - 1][(int)LineArray[i].y] = true;
@@ -169,8 +180,8 @@ void HelloWorld::update(float dTime)
 				
 			}
 
-			backgroundParallaxMain->setPositionX(backgroundParallaxMain->getPositionX() - moveSpeed / 2);
-			backgroundParallaxRight->setPositionX(backgroundParallaxRight->getPositionX() - moveSpeed / 2);
+			backgroundParallaxMain->setPositionX(backgroundParallaxMain->getPositionX() - moveSpeed*0.6);
+			backgroundParallaxRight->setPositionX(backgroundParallaxRight->getPositionX() - moveSpeed*0.6);
 
 			if (backgroundParallaxMain->getPositionX() <= -1920)
 			{
@@ -180,8 +191,6 @@ void HelloWorld::update(float dTime)
 			{
 				backgroundParallaxRight->setPositionX(1920 - (-1920 - backgroundParallaxMain->getPositionX()));
 			}
-
-			float moveSpeed = 1.0f;
 
 
 			/*Squares->setPositionX(Squares->getPositionX() - squareSpeed);
@@ -450,6 +459,7 @@ void HelloWorld::PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType 
 
 void HelloWorld::DropDownMenu()
 {
+	
 	auto winSize = Director::getInstance()->getVisibleSize();
 	auto moveSelectTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.65f / 1.0));
 	auto moveNextTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.40f / 1.0));
@@ -487,6 +497,19 @@ void HelloWorld::DropDownMenu()
 
 void HelloWorld::EndMenu()
 {
+	for (int i = 0; i < _ScreenResolution.x - 1; i++)
+	{
+		for (int ii = 0; ii < _ScreenResolution.y - 1; ii++)
+		{
+			drawLayer[i][ii] = false;
+		}
+	}
+	for (int i = 0; i < 500; i++)
+	{
+		LineArray[i] = Vec2(0, 0);
+	}
+	player->setVisible(false);
+
 	GameManager::sharedGameManager()->isGameLive = false;
 	auto winSize = Director::getInstance()->getVisibleSize();
 	auto moveSelectTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.65f / 1.0));
@@ -564,27 +587,73 @@ bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 	for (int i = 0; i < Squares->getChildren().size(); i++)
 	{
 		Rect currentSquare = (Rect)Squares->getChildren().at(i)->getBoundingBox();
+		Rect playerBox = Rect(Vec2(player->getBoundingBox().origin.x, player->getBoundingBox().origin.y + (player->getBoundingBox().size.height/2)), Size(player->getBoundingBox().size.width, player->getBoundingBox().size.height));
 
-		if (currentSquare.intersectsRect(collisionBox))
+
+		if (playerBox.intersectsRect(currentSquare))//comparing the modified collision box
 		{
-			if (player->getBoundingBox().getMaxX() > currentSquare.getMinX() && player->getBoundingBox().getMaxX() - 5 < currentSquare.getMinX())
-			{
-				playerDirection = Direction::LEFT;
-				player->setPositionX(player->getPositionX() - 5);
-			}
-			else if (player->getBoundingBox().getMinX() < currentSquare.getMaxX() && player->getBoundingBox().getMinX() + 5 > currentSquare.getMaxX())
+			if (playerDirection == Direction::LEFT)
 			{
 				playerDirection = Direction::RIGHT;
-				player->setPositionX(player->getPositionX() + 5);
+				player->setPositionX(player->getPositionX() + moveSpeed);
 			}
+			else if (playerDirection == Direction::RIGHT)
+			{
+				playerDirection = Direction::LEFT;
+				player->setPositionX(player->getPositionX() - moveSpeed);
+			}
+			//if (playerBox.getMaxX() > currentSquare.getMinX() && playerBox.getMaxX() + moveSpeed < currentSquare.getMinX())
+			//{
+			//	playerDirection = Direction::LEFT;
+			//	player->setPositionX(player->getPositionX() - moveSpeed);
+			//}
+			//else if (playerBox.getMinX() < currentSquare.getMaxX() && playerBox.getMinX() - moveSpeed > currentSquare.getMaxX())
+			//{
+			//	playerDirection = Direction::RIGHT;
+			//	player->setPositionX(player->getPositionX() + moveSpeed);
+			//}
 			return true;
+		}
+
+		if (collisionBox.intersectsRect(currentSquare))//comparing the full collision box
+		{
+			if (collisionBox.getMinY() < currentSquare.getMaxY() && collisionBox.getMinY() > (currentSquare.getMaxY() - 5))//if the bottom of the player is not as high as the collision box, but is close, set it to be the same height.
+			{
+				player->setPositionY(player->getPositionY() + 1);
+				//player->setPositionY(currentSquare.getMaxY());
+				playerIsFalling = false;
+				playerFallSpeed = -0.1f;
+			}
 		}
 	}
 	return false;
+
+	//for (int i = 0; i < Squares->getChildren().size(); i++)
+	//{
+	//	Rect currentSquare = (Rect)Squares->getChildren().at(i)->getBoundingBox();
+
+	//	if (currentSquare.intersectsRect(collisionBox))
+	//	{
+	//		if (player->getBoundingBox().getMaxX() > currentSquare.getMinX() && player->getBoundingBox().getMaxX() - 5 < currentSquare.getMinX())
+	//		{
+	//			playerDirection = Direction::LEFT;
+	//			player->setPositionX(player->getPositionX() - 5);
+	//		}
+	//		else if (player->getBoundingBox().getMinX() < currentSquare.getMaxX() && player->getBoundingBox().getMinX() + 5 > currentSquare.getMaxX())
+	//		{
+	//			playerDirection = Direction::RIGHT;
+	//			player->setPositionX(player->getPositionX() + 5);
+	//		}
+	//		return true;
+	//	}
+	//}
+	//return false;
 }
 
 bool HelloWorld::checkEndBlockCollision(Rect collisionBox)
 {
+
+
 	Rect mEndBlock = EndBlock->getBoundingBox();
 	if (mEndBlock.intersectsRect(collisionBox))
 	{	
@@ -824,4 +893,18 @@ void HelloWorld::LoadLevel(int level)
 	addChild(rootNode);
 	addChild(lineDrawNode);
 	addChild(player);
+
+	//this will change the level's content to move at different speeds depending on the difficulty
+	switch (GameManager::sharedGameManager()->GetDifficulty())//1 = EASY, 2 = MEDIUM, 3 = HARD
+	{
+	case 1:
+		moveSpeed = 1.0f;
+		break;
+	case 2:
+		moveSpeed = 2.0f;
+		break;
+	case 3:
+		moveSpeed = 3.0f;
+		break;
+	}
 }
