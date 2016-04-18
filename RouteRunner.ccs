@@ -1,5 +1,5 @@
 <Solution>
-  <PropertyGroup Name="RouteRunner" Version="2.3.3.0" Type="CocosStudio" />
+  <PropertyGroup Name="ROUTER~3" Version="2.3.3.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
@@ -62,6 +62,13 @@
         <Project Name="SplashScreen.csd" Type="Scene" />
         <Image Name="SplashIcon.png" />
         <Image Name="Robot.png" />
+        <Image Name="Easy.png" />
+        <Image Name="Normal.png" />
+        <Image Name="EasyPressed.png" />
+        <Image Name="NormalPressed.png" />
+        <Image Name="Hard.png" />
+        <Image Name="HardPressed.png" />
+        <Image Name="JetPackPickUp.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

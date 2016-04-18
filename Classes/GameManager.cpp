@@ -50,17 +50,20 @@ GameManager::~GameManager()
 
 }
 
-//void GameManager::UpdateScore(int increment)
-//{
-//	this->score += increment;
-//}
-//
-//void GameManager::ResetScore()
-//{
-//	score = 0;
-//}
-//
-//int GameManager::GetScore()
-//{
-//	return score;
-//}
+/**** uncommited ****/
+void GameManager::UpdateScore(int increment)
+{
+	this->score += increment;
+}
+
+void GameManager::ResetScore()
+{
+	score = 0;
+}
+
+int GameManager::GetScore()
+{
+	return score;
+}
+
+/**** uncommited ****/

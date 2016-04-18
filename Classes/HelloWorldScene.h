@@ -4,7 +4,6 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
-
 //#include "LevelSelect.h"
 
 using namespace cocos2d;
@@ -54,9 +53,10 @@ public:
 	void update(float);
 
 	bool checkPlayerCollision();
-	bool checkTerrainCollision(Rect);
+	bool checkTerrainCollision(Rect collisionBox);
 	void checkFloorCollision();
-	void checkSpringCollision(Rect);
+	void checkSpringCollision(Rect collisionBox);
+	void checkPickupCollision(Rect collisionBox);
 	bool checkEndBlockCollision(Rect);
 
 	void drawPoint(int x, int y);
@@ -96,6 +96,9 @@ private:
     int lineSize;
 	int inputState;
 	int currentLevel;
+
+	//added
+	float jetTime = 0.0f;
     
 	cocos2d::Sprite* EndBlock;
 
@@ -120,7 +123,9 @@ private:
 	Node* Springs;
 	Node* Spikes;
 
-
+	//added
+	Node* Coins;
+	Sprite* jetpackPickup;
 
 	vector<string> levels = vector<string>{
 		"1.csb",

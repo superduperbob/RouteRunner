@@ -55,8 +55,7 @@ bool HelloWorld::init()
 void HelloWorld::update(float dTime)
 {
 	if (GameManager::sharedGameManager()->isGameLive && !GameManager::sharedGameManager()->isDead)
-		{
-			
+	{
 		//PLAYER GRAVITY
 		if (playerIsFalling)
 		{
@@ -87,7 +86,17 @@ void HelloWorld::update(float dTime)
 				playerFallSpeed += -0.25f;
 			}
 		}
+		if (jetTime > 0.0f){
+			jetTime -= dTime;
+			if (jetTime <= 0.0f){
+				inputState = 0;
+				jetpack = false;
+				playerIsFalling = true;
+				playerFallSpeed = -2;
+			}
+		}
 		
+		checkPickupCollision(player->getBoundingBox());
 		checkEndBlockCollision(player->getBoundingBox());
 		checkFloorCollision();
 		CheckIfDead(player->getBoundingBox());
@@ -182,6 +191,9 @@ void HelloWorld::update(float dTime)
 
 			backgroundParallaxMain->setPositionX(backgroundParallaxMain->getPositionX() - moveSpeed*0.6);
 			backgroundParallaxRight->setPositionX(backgroundParallaxRight->getPositionX() - moveSpeed*0.6);
+			
+			if (jetpackPickup)
+				jetpackPickup->setPositionX(jetpackPickup->getPositionX() - moveSpeed);
 
 			if (backgroundParallaxMain->getPositionX() <= -1920)
 			{
@@ -200,7 +212,7 @@ void HelloWorld::update(float dTime)
 
 
 			for (int i = 0; i < Squares->getChildren().size(); i++)
-			{
+			{	
 				Sprite* currentSquare = (Sprite*)Squares->getChildren().at(i);
 				currentSquare->setPositionX(currentSquare->getPositionX() - moveSpeed);
 			}
@@ -219,6 +231,11 @@ void HelloWorld::update(float dTime)
 			for (int i = 0; i < Spikes->getChildren().size(); i++){
 				Sprite* currentSpikes = (Sprite*)Spikes->getChildren().at(i);
 				currentSpikes->setPositionX(currentSpikes->getPositionX() - moveSpeed);
+			}
+			//added
+			for (int i = 0; i < Coins->getChildren().size(); i++){
+				Sprite* currentCoin = (Sprite*)Coins->getChildren().at(i);
+				currentCoin->setPositionX(currentCoin->getPositionX() - moveSpeed);
 			}
 
 			EndBlock->setPositionX(EndBlock->getPositionX() - moveSpeed);
@@ -573,13 +590,36 @@ void HelloWorld::checkSpringCollision(Rect collisionBox)
 			playerFallSpeed += -6;
 		}
 	}
+}
 
-	//Rect mSpring_0 = spring_0->getBoundingBox();
+void HelloWorld::checkPickupCollision(Rect collisionBox)
+{
+	//added
 
-	/*if (mSpring_0.intersectsRect(player->getBoundingBox())){
-		playerFallSpeed *= -0.6f;
-		playerFallSpeed += -6;
-	}*/
+	//checks if players hits Coins
+	for (int i = 0; i < Coins->getChildren().size(); i++)
+	{
+		Rect currentCoin = (Rect)Coins->getChildren().at(i)->getBoundingBox();
+
+		if (currentCoin.intersectsRect(collisionBox) && Coins->getChildren().at(i)->isVisible()){
+			Coins->getChildren().at(i)->setVisible(false);
+			GameManager::sharedGameManager()->UpdateScore(1);
+		}
+	}
+
+	//checks if players hits JetPack
+	if (jetpackPickup)
+	{
+		Rect jetpackPickupRect = jetpackPickup->getBoundingBox();
+
+		if (jetpackPickupRect.intersectsRect(player->getBoundingBox()))
+		{
+			jetpackPickup->setVisible(false);
+			inputState = 1;
+			jetTime = 8.0f;
+		}
+	}
+	//added
 }
 
 bool HelloWorld::checkTerrainCollision(Rect collisionBox)
@@ -587,7 +627,7 @@ bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 	for (int i = 0; i < Squares->getChildren().size(); i++)
 	{
 		Rect currentSquare = (Rect)Squares->getChildren().at(i)->getBoundingBox();
-		Rect playerBox = Rect(Vec2(player->getBoundingBox().origin.x, player->getBoundingBox().origin.y + (player->getBoundingBox().size.height/2)), Size(player->getBoundingBox().size.width, player->getBoundingBox().size.height));
+		Rect playerBox = Rect(Vec2(player->getBoundingBox().origin.x, (player->getBoundingBox().origin.y) + (player->getBoundingBox().size.height*0.3)), Size(player->getBoundingBox().size.width, player->getBoundingBox().size.height*0.7));
 
 
 		if (playerBox.intersectsRect(currentSquare))//comparing the modified collision box
@@ -627,7 +667,6 @@ bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 		}
 	}
 	return false;
-
 	//for (int i = 0; i < Squares->getChildren().size(); i++)
 	//{
 	//	Rect currentSquare = (Rect)Squares->getChildren().at(i)->getBoundingBox();
@@ -840,6 +879,10 @@ void HelloWorld::LoadLevel(int level)
 	Windows = (Node*)rootNode->getChildByName("Windows");
 	Springs = (Node*)rootNode->getChildByName("Springs");
 	Spikes = (Node*)rootNode->getChildByName("Spikes");
+
+	//added
+	Coins = (Node*)rootNode->getChildByName("Coins");
+	jetpackPickup = (Sprite*)rootNode->getChildByName("jetpackPickup");
 	
 	EndBlock = (Sprite*)rootNode->getChildByName("EndBlock");
 
@@ -893,6 +936,9 @@ void HelloWorld::LoadLevel(int level)
 	addChild(rootNode);
 	addChild(lineDrawNode);
 	addChild(player);
+
+	//added
+	GameManager::sharedGameManager()->ResetScore();
 
 	//this will change the level's content to move at different speeds depending on the difficulty
 	switch (GameManager::sharedGameManager()->GetDifficulty())//1 = EASY, 2 = MEDIUM, 3 = HARD

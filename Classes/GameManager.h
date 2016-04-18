@@ -21,9 +21,11 @@ public:
 	bool isGameLive;
 	bool isDead;
 	
-	//void UpdateScore(int increment);
-	//void ResetScore();
-	//int GetScore();
+	/**** uncommited ****/
+	void UpdateScore(int increment);
+	void ResetScore();
+	int GetScore();
+	/**** uncommited ****/
 
 	int GetDifficulty();
 	void setDifficulty(int);
@@ -33,7 +35,10 @@ private:
 	static GameManager* instance;
 	Difficulty difficulty;
 	
-	//int score;
+
+	/**** uncommited ****/
+	int score;
+	/**** uncommited ****/
 };
 
 #endif 

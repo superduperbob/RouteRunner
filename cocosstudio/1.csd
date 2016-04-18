@@ -17,25 +17,25 @@
             <FileData Type="Normal" Path="sky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BackgroundParallaxRight" ActionTag="900215269" Tag="10" IconVisible="False" LeftMargin="1920.0000" RightMargin="-1920.0000" ctype="SpriteObjectData">
-            <Size X="1920.0000" Y="1080.0000" />
+          <AbstractNodeData Name="BackgroundParallaxRight" ActionTag="900215269" Tag="10" IconVisible="False" LeftMargin="1920.0000" RightMargin="-1000.0000" TopMargin="616.0000" ctype="SpriteObjectData">
+            <Size X="1000.0000" Y="464.0000" />
             <AnchorPoint />
             <Position X="1920.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <Scale ScaleX="2.0000" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="1.0000" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.5208" Y="0.4296" />
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BackgroundParallaxMain" ActionTag="692734661" Tag="11" IconVisible="False" LeftMargin="15.1039" RightMargin="-15.1039" TopMargin="-15.1061" BottomMargin="15.1061" ctype="SpriteObjectData">
-            <Size X="1920.0000" Y="1080.0000" />
+          <AbstractNodeData Name="BackgroundParallaxMain" ActionTag="692734661" Tag="11" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="15.1680" RightMargin="904.8320" TopMargin="600.8800" BottomMargin="15.1200" ctype="SpriteObjectData">
+            <Size X="1000.0000" Y="464.0000" />
             <AnchorPoint />
-            <Position X="15.1039" Y="15.1061" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <Position X="15.1680" Y="15.1200" />
+            <Scale ScaleX="2.0000" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0079" Y="0.0140" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.5208" Y="0.4296" />
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
@@ -83,14 +83,14 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="74.1462" RightMargin="1799.8538" TopMargin="621.0000" BottomMargin="413.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="72.1462" RightMargin="1797.8538" TopMargin="594.0000" BottomMargin="386.0000" ctype="SpriteObjectData">
             <Size X="50.0000" Y="100.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="97.1462" Y="436.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0506" Y="0.4037" />
-            <PreSize X="0.0240" Y="0.0426" />
+            <PreSize X="0.0260" Y="0.0926" />
             <FileData Type="Normal" Path="Robot.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
@@ -158,7 +158,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="backToLevelSelect" ActionTag="1504264100" Tag="19" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="720.0000" RightMargin="720.0000" TopMargin="-810.0000" BottomMargin="1674.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="419" Scale9Height="178" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="backToLevelSelect" Visible="False" ActionTag="1504264100" Tag="19" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" LeftMargin="720.0000" RightMargin="720.0000" TopMargin="-810.0000" BottomMargin="1674.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="419" Scale9Height="178" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="480.0000" Y="216.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="960.0000" Y="1782.0000" />
@@ -202,6 +202,39 @@
             <NormalFileData Type="Normal" Path="restartButton.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="jetpackPickup" ActionTag="2123274486" Tag="19" IconVisible="False" LeftMargin="699.0000" RightMargin="1191.0000" TopMargin="452.0000" BottomMargin="592.0000" ctype="SpriteObjectData">
+            <Size X="30.0000" Y="36.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="714.0000" Y="610.0000" />
+            <Scale ScaleX="1.5000" ScaleY="1.5000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3719" Y="0.5648" />
+            <PreSize X="0.0156" Y="0.0333" />
+            <FileData Type="Normal" Path="JetPackPickUp.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Coins" ActionTag="-1096330781" Tag="20" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <Children>
+              <AbstractNodeData Name="tempCoin" ActionTag="344714081" Tag="183" IconVisible="False" LeftMargin="1146.1478" RightMargin="-1246.1478" TopMargin="-648.0739" BottomMargin="548.0739" ctype="SpriteObjectData">
+                <Size X="100.0000" Y="100.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="1196.1478" Y="598.0739" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="Normal" Path="tempSpring.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
