@@ -88,6 +88,7 @@ void HelloWorld::update(float dTime)
 			}
 		}
 		
+		checkPickupCollision(player->getBoundingBox());
 		checkEndBlockCollision(player->getBoundingBox());
 		checkFloorCollision();
 		CheckIfDead(player->getBoundingBox());
@@ -182,6 +183,7 @@ void HelloWorld::update(float dTime)
 
 			backgroundParallaxMain->setPositionX(backgroundParallaxMain->getPositionX() - moveSpeed*0.6);
 			backgroundParallaxRight->setPositionX(backgroundParallaxRight->getPositionX() - moveSpeed*0.6);
+			jetpackPickup->setPositionX(jetpackPickup->getPositionX() - moveSpeed);
 
 			if (backgroundParallaxMain->getPositionX() <= -1920)
 			{
@@ -200,7 +202,7 @@ void HelloWorld::update(float dTime)
 
 
 			for (int i = 0; i < Squares->getChildren().size(); i++)
-			{
+			{	
 				Sprite* currentSquare = (Sprite*)Squares->getChildren().at(i);
 				currentSquare->setPositionX(currentSquare->getPositionX() - moveSpeed);
 			}
@@ -573,14 +575,17 @@ void HelloWorld::checkSpringCollision(Rect collisionBox)
 			playerFallSpeed += -6;
 		}
 	}
-
-	//Rect mSpring_0 = spring_0->getBoundingBox();
-
-	/*if (mSpring_0.intersectsRect(player->getBoundingBox())){
-		playerFallSpeed *= -0.6f;
-		playerFallSpeed += -6;
-	}*/
 }
+
+//void HelloWorld::checkPickupCollision(Rect collisionBox)
+//{
+//	Rect jetpackPickupRect = jetpackPickup->getBoundingBox();
+//
+//	if (jetpackPickupRect.intersectsRect(player->getBoundingBox()))
+//	{
+//		jetpackPickup-
+//	}
+//}
 
 bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 {
@@ -840,6 +845,8 @@ void HelloWorld::LoadLevel(int level)
 	Windows = (Node*)rootNode->getChildByName("Windows");
 	Springs = (Node*)rootNode->getChildByName("Springs");
 	Spikes = (Node*)rootNode->getChildByName("Spikes");
+
+	jetpackPickup = (Sprite*)rootNode->getChildByName("jetpackPickup");
 	
 	EndBlock = (Sprite*)rootNode->getChildByName("EndBlock");
 

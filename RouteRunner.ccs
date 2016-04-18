@@ -68,6 +68,7 @@
         <Image Name="NormalPressed.png" />
         <Image Name="Hard.png" />
         <Image Name="HardPressed.png" />
+        <Image Name="JetPackPickUp.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

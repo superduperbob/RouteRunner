@@ -17,25 +17,25 @@
             <FileData Type="Normal" Path="sky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BackgroundParallaxRight" ActionTag="900215269" Tag="10" IconVisible="False" LeftMargin="1920.0000" RightMargin="-1920.0000" ctype="SpriteObjectData">
-            <Size X="1920.0000" Y="1080.0000" />
+          <AbstractNodeData Name="BackgroundParallaxRight" ActionTag="900215269" Tag="10" IconVisible="False" LeftMargin="1920.0000" RightMargin="-1000.0000" TopMargin="616.0000" ctype="SpriteObjectData">
+            <Size X="1000.0000" Y="464.0000" />
             <AnchorPoint />
             <Position X="1920.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <Scale ScaleX="2.0000" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="1.0000" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.5208" Y="0.4296" />
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BackgroundParallaxMain" ActionTag="692734661" Tag="11" IconVisible="False" LeftMargin="15.1039" RightMargin="-15.1039" TopMargin="-15.1061" BottomMargin="15.1061" ctype="SpriteObjectData">
-            <Size X="1920.0000" Y="1080.0000" />
+          <AbstractNodeData Name="BackgroundParallaxMain" ActionTag="692734661" Tag="11" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="15.1680" RightMargin="904.8320" TopMargin="600.8800" BottomMargin="15.1200" ctype="SpriteObjectData">
+            <Size X="1000.0000" Y="464.0000" />
             <AnchorPoint />
-            <Position X="15.1039" Y="15.1061" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <Position X="15.1680" Y="15.1200" />
+            <Scale ScaleX="2.0000" ScaleY="2.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0079" Y="0.0140" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.5208" Y="0.4296" />
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
@@ -83,14 +83,14 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="74.1462" RightMargin="1799.8538" TopMargin="621.0000" BottomMargin="413.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="72.1462" RightMargin="1797.8538" TopMargin="594.0000" BottomMargin="386.0000" ctype="SpriteObjectData">
             <Size X="50.0000" Y="100.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="97.1462" Y="436.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0506" Y="0.4037" />
-            <PreSize X="0.0240" Y="0.0426" />
+            <PreSize X="0.0260" Y="0.0926" />
             <FileData Type="Normal" Path="Robot.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
@@ -202,6 +202,17 @@
             <NormalFileData Type="Normal" Path="restartButton.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="jetpackPickup" ActionTag="2123274486" Tag="19" IconVisible="False" LeftMargin="699.0000" RightMargin="1191.0000" TopMargin="452.0000" BottomMargin="592.0000" ctype="SpriteObjectData">
+            <Size X="30.0000" Y="36.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="714.0000" Y="610.0000" />
+            <Scale ScaleX="1.5000" ScaleY="1.5000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.3719" Y="0.5648" />
+            <PreSize X="0.0156" Y="0.0333" />
+            <FileData Type="Normal" Path="JetPackPickUp.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
         </Children>
       </ObjectData>
