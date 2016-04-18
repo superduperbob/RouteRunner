@@ -54,9 +54,10 @@ public:
 	void update(float);
 
 	bool checkPlayerCollision();
-	bool checkTerrainCollision(Rect);
+	bool checkTerrainCollision(Rect collisionBox);
 	void checkFloorCollision();
-	void checkSpringCollision(Rect);
+	void checkSpringCollision(Rect collisionBox);
+	void checkPickupCollision(Rect collisionBox);
 	bool checkEndBlockCollision(Rect);
 
 	void drawPoint(int x, int y);
@@ -120,7 +121,7 @@ private:
 	Node* Springs;
 	Node* Spikes;
 
-
+	Sprite* jetpackPickup;
 
 	vector<string> levels = vector<string>{
 		"1.csb",

@@ -81,14 +81,14 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="74.1462" RightMargin="1799.8538" TopMargin="621.0000" BottomMargin="413.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="72.0000" RightMargin="1798.0000" TopMargin="594.0000" BottomMargin="386.0000" ctype="SpriteObjectData">
             <Size X="50.0000" Y="100.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="97.1462" Y="436.0000" />
+            <Position X="97.0000" Y="436.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.0506" Y="0.4037" />
-            <PreSize X="0.0240" Y="0.0426" />
+            <PrePosition X="0.0505" Y="0.4037" />
+            <PreSize X="0.0260" Y="0.0926" />
             <FileData Type="Normal" Path="Robot.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>

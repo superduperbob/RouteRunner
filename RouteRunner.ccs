@@ -62,6 +62,13 @@
         <Project Name="SplashScreen.csd" Type="Scene" />
         <Image Name="SplashIcon.png" />
         <Image Name="Robot.png" />
+        <Image Name="Easy.png" />
+        <Image Name="Normal.png" />
+        <Image Name="EasyPressed.png" />
+        <Image Name="NormalPressed.png" />
+        <Image Name="Hard.png" />
+        <Image Name="HardPressed.png" />
+        <Image Name="JetPackPickUp.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

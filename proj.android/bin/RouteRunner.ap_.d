@@ -43,8 +43,12 @@ C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\brick.jpg \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\ConfirmSound.wav \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\Default \
+C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\Easy.png \
+C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\EasyPressed.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\flag.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\GameMenu.csb \
+C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\Hard.png \
+C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\HardPressed.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\HelloWorld.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\Level1.csb \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\Level2.csb \
@@ -64,6 +68,8 @@ C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\nextLevel.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\nextLevelDisable.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\nextLevelPressed.png \
+C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\Normal.png \
+C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\NormalPressed.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\pauseButton.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\playButton.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\Player_idle.png \
@@ -108,13 +114,16 @@ C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\BuildingOpacity.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\CPUV2.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\Easy.png \
+C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\EasyPressed.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\Hard.png \
+C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\HardPressed.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\JetPackPickUp.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\Level Select.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\New Piskel (8).png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\New_Piskel_(11).png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\Next Level.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\Normal.png \
+C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\NormalPressed.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\Pause.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\Play.png \
 C:\Users\Matthew\Dropbox\Uni\Year2\TGP\Term2\RouteRunner\proj.android\assets\res\New\replay.png \
