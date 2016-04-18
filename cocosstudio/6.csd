@@ -17,25 +17,25 @@
             <FileData Type="Normal" Path="sky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BackgroundParallaxRight" ActionTag="900215269" Tag="10" IconVisible="False" LeftMargin="1912.6033" RightMargin="-1912.6033" TopMargin="13.9305" BottomMargin="-13.9306" ctype="SpriteObjectData">
-            <Size X="1920.0000" Y="1080.0000" />
+          <AbstractNodeData Name="BackgroundParallaxRight" ActionTag="900215269" Tag="10" IconVisible="False" LeftMargin="1912.6033" RightMargin="-992.6033" TopMargin="629.9306" BottomMargin="-13.9306" ctype="SpriteObjectData">
+            <Size X="1000.0000" Y="464.0000" />
             <AnchorPoint />
             <Position X="1912.6033" Y="-13.9306" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.9961" Y="-0.0129" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.5208" Y="0.4296" />
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BackgroundParallaxMain" ActionTag="692734661" Tag="11" IconVisible="False" LeftMargin="15.5919" RightMargin="-15.5919" TopMargin="-13.1984" BottomMargin="13.1984" ctype="SpriteObjectData">
-            <Size X="1920.0000" Y="1080.0000" />
+          <AbstractNodeData Name="BackgroundParallaxMain" ActionTag="692734661" Tag="11" IconVisible="False" LeftMargin="15.5919" RightMargin="904.4081" TopMargin="602.8016" BottomMargin="13.1984" ctype="SpriteObjectData">
+            <Size X="1000.0000" Y="464.0000" />
             <AnchorPoint />
             <Position X="15.5919" Y="13.1984" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0081" Y="0.0122" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.5208" Y="0.4296" />
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
@@ -413,6 +413,15 @@
             <NormalFileData Type="Normal" Path="nextLevel.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Coins" ActionTag="-198199712" Tag="185" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

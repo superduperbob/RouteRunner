@@ -97,6 +97,8 @@ private:
     int lineSize;
 	int inputState;
 	int currentLevel;
+
+	float jetTime = 0.0f;
     
 	cocos2d::Sprite* EndBlock;
 
@@ -121,6 +123,7 @@ private:
 	Node* Springs;
 	Node* Spikes;
 
+	Node* Coins;
 	Sprite* jetpackPickup;
 
 	vector<string> levels = vector<string>{

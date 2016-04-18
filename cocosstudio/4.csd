@@ -17,25 +17,25 @@
             <FileData Type="Normal" Path="sky.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BackgroundParallaxRight" ActionTag="900215269" Tag="10" IconVisible="False" LeftMargin="1914.6643" RightMargin="-1914.6643" TopMargin="-0.0001" BottomMargin="0.0001" ctype="SpriteObjectData">
-            <Size X="1920.0000" Y="1080.0000" />
+          <AbstractNodeData Name="BackgroundParallaxRight" ActionTag="900215269" Tag="10" IconVisible="False" LeftMargin="1914.6643" RightMargin="-994.6643" TopMargin="615.9999" BottomMargin="0.0001" ctype="SpriteObjectData">
+            <Size X="1000.0000" Y="464.0000" />
             <AnchorPoint />
             <Position X="1914.6643" Y="0.0001" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.9972" Y="0.0000" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.5208" Y="0.4296" />
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BackgroundParallaxMain" ActionTag="692734661" Tag="11" IconVisible="False" LeftMargin="15.5919" RightMargin="-15.5919" TopMargin="-13.1984" BottomMargin="13.1984" ctype="SpriteObjectData">
-            <Size X="1920.0000" Y="1080.0000" />
+          <AbstractNodeData Name="BackgroundParallaxMain" ActionTag="692734661" Tag="11" IconVisible="False" LeftMargin="15.5919" RightMargin="904.4081" TopMargin="602.8016" BottomMargin="13.1984" ctype="SpriteObjectData">
+            <Size X="1000.0000" Y="464.0000" />
             <AnchorPoint />
             <Position X="15.5919" Y="13.1984" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0081" Y="0.0122" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.5208" Y="0.4296" />
             <FileData Type="Normal" Path="BackgroundParallax.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
@@ -171,14 +171,14 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="74.1462" RightMargin="1799.8538" TopMargin="621.0000" BottomMargin="413.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Player" ActionTag="1022583455" Tag="44" IconVisible="False" LeftMargin="72.1462" RightMargin="1797.8538" TopMargin="594.0000" BottomMargin="386.0000" ctype="SpriteObjectData">
             <Size X="50.0000" Y="100.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="97.1462" Y="436.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.0506" Y="0.4037" />
-            <PreSize X="0.0240" Y="0.0426" />
+            <PreSize X="0.0260" Y="0.0926" />
             <FileData Type="Normal" Path="Robot.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
@@ -371,6 +371,15 @@
             <NormalFileData Type="Normal" Path="nextLevel.png" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Coins" ActionTag="-695373061" Tag="108" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

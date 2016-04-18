@@ -183,7 +183,9 @@ void HelloWorld::update(float dTime)
 
 			backgroundParallaxMain->setPositionX(backgroundParallaxMain->getPositionX() - moveSpeed*0.6);
 			backgroundParallaxRight->setPositionX(backgroundParallaxRight->getPositionX() - moveSpeed*0.6);
-			jetpackPickup->setPositionX(jetpackPickup->getPositionX() - moveSpeed);
+
+			if (jetpackPickup)
+				jetpackPickup->setPositionX(jetpackPickup->getPositionX() - moveSpeed);
 
 			if (backgroundParallaxMain->getPositionX() <= -1920)
 			{
@@ -221,6 +223,10 @@ void HelloWorld::update(float dTime)
 			for (int i = 0; i < Spikes->getChildren().size(); i++){
 				Sprite* currentSpikes = (Sprite*)Spikes->getChildren().at(i);
 				currentSpikes->setPositionX(currentSpikes->getPositionX() - moveSpeed);
+			}
+			for (int i = 0; i < Coins->getChildren().size(); i++){
+				Sprite* currentCoin = (Sprite*)Coins->getChildren().at(i);
+				currentCoin->setPositionX(currentCoin->getPositionX() - moveSpeed);
 			}
 
 			EndBlock->setPositionX(EndBlock->getPositionX() - moveSpeed);
@@ -577,22 +583,42 @@ void HelloWorld::checkSpringCollision(Rect collisionBox)
 	}
 }
 
-//void HelloWorld::checkPickupCollision(Rect collisionBox)
-//{
-//	Rect jetpackPickupRect = jetpackPickup->getBoundingBox();
-//
-//	if (jetpackPickupRect.intersectsRect(player->getBoundingBox()))
-//	{
-//		jetpackPickup-
-//	}
-//}
+void HelloWorld::checkPickupCollision(Rect collisionBox)
+{
+	//added
+
+	//checks if players hits Coins
+	for (int i = 0; i < Coins->getChildren().size(); i++)
+	{
+		Rect currentCoin = (Rect)Coins->getChildren().at(i)->getBoundingBox();
+
+		if (currentCoin.intersectsRect(collisionBox) && Coins->getChildren().at(i)->isVisible()){
+			Coins->getChildren().at(i)->setVisible(false);
+			GameManager::sharedGameManager()->UpdateScore(1);
+		}
+	}
+
+	//checks if players hits JetPack
+	if (jetpackPickup)
+	{
+		Rect jetpackPickupRect = jetpackPickup->getBoundingBox();
+
+		if (jetpackPickupRect.intersectsRect(player->getBoundingBox()))
+		{
+			jetpackPickup->setVisible(false);
+			inputState = 1;
+			jetTime = 8.0f;
+		}
+	}
+	//added
+}
 
 bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 {
 	for (int i = 0; i < Squares->getChildren().size(); i++)
 	{
 		Rect currentSquare = (Rect)Squares->getChildren().at(i)->getBoundingBox();
-		Rect playerBox = Rect(Vec2(player->getBoundingBox().origin.x, player->getBoundingBox().origin.y + (player->getBoundingBox().size.height/2)), Size(player->getBoundingBox().size.width, player->getBoundingBox().size.height));
+		Rect playerBox = Rect(Vec2(player->getBoundingBox().origin.x, (player->getBoundingBox().origin.y) + (player->getBoundingBox().size.height*0.3)), Size(player->getBoundingBox().size.width, player->getBoundingBox().size.height*0.7));
 
 
 		if (playerBox.intersectsRect(currentSquare))//comparing the modified collision box
@@ -758,7 +784,7 @@ void HelloWorld::checkFloorCollision()
 void HelloWorld::CheckIfDead(Rect collisionBox)
 {
 	//checks if player hits the edge of the screen
-	if (player->getPosition().y < 0 || (player->getBoundingBox().getMaxX() + 13) > _ScreenResolution.x || (player->getBoundingBox().getMinX() - 13) < 0)
+	if (player->getPosition().y < 0 || (player->getBoundingBox().getMaxX() + 13 + moveSpeed) > _ScreenResolution.x || (player->getBoundingBox().getMinX() - 13 - moveSpeed) < 0)
 	{
 		PlayerDead();
 	}
@@ -845,6 +871,8 @@ void HelloWorld::LoadLevel(int level)
 	Windows = (Node*)rootNode->getChildByName("Windows");
 	Springs = (Node*)rootNode->getChildByName("Springs");
 	Spikes = (Node*)rootNode->getChildByName("Spikes");
+	Coins = (Node*)rootNode->getChildByName("Coins");
+
 
 	jetpackPickup = (Sprite*)rootNode->getChildByName("jetpackPickup");
 	
@@ -900,6 +928,9 @@ void HelloWorld::LoadLevel(int level)
 	addChild(rootNode);
 	addChild(lineDrawNode);
 	addChild(player);
+
+	//added 
+	GameManager::sharedGameManager()->ResetScore();
 
 	//this will change the level's content to move at different speeds depending on the difficulty
 	switch (GameManager::sharedGameManager()->GetDifficulty())//1 = EASY, 2 = MEDIUM, 3 = HARD

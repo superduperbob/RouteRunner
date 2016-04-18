@@ -19,6 +19,7 @@ GameManager::GameManager()
 	isGameLive = false;
 	isDead = false;
 	difficulty = Difficulty::MEDIUM;
+	score = 0;
 }
 
 int GameManager::GetDifficulty()
@@ -50,17 +51,17 @@ GameManager::~GameManager()
 
 }
 
-//void GameManager::UpdateScore(int increment)
-//{
-//	this->score += increment;
-//}
-//
-//void GameManager::ResetScore()
-//{
-//	score = 0;
-//}
-//
-//int GameManager::GetScore()
-//{
-//	return score;
-//}
+void GameManager::UpdateScore(int increment)
+{
+	this->score += increment;
+}
+
+void GameManager::ResetScore()
+{
+	score = 0;
+}
+
+int GameManager::GetScore()
+{
+	return score;
+}

@@ -203,16 +203,38 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="jetpackPickup" ActionTag="2123274486" Tag="19" IconVisible="False" LeftMargin="699.0000" RightMargin="1191.0000" TopMargin="452.0000" BottomMargin="592.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="jetpackPickup" ActionTag="2123274486" Tag="19" IconVisible="False" LeftMargin="1012.0002" RightMargin="877.9998" TopMargin="539.9999" BottomMargin="504.0001" ctype="SpriteObjectData">
             <Size X="30.0000" Y="36.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="714.0000" Y="610.0000" />
+            <Position X="1027.0002" Y="522.0001" />
             <Scale ScaleX="1.5000" ScaleY="1.5000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.3719" Y="0.5648" />
+            <PrePosition X="0.5349" Y="0.4833" />
             <PreSize X="0.0156" Y="0.0333" />
             <FileData Type="Normal" Path="JetPackPickUp.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Coins" ActionTag="-339616961" Tag="20" IconVisible="True" RightMargin="1920.0000" TopMargin="1080.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <Children>
+              <AbstractNodeData Name="coin_1" ActionTag="-1229622018" Tag="21" IconVisible="False" LeftMargin="882.0836" RightMargin="-912.0836" TopMargin="-478.9816" BottomMargin="442.9816" ctype="SpriteObjectData">
+                <Size X="30.0000" Y="36.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="897.0836" Y="460.9816" />
+                <Scale ScaleX="0.9479" ScaleY="0.9479" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="Normal" Path="CPUV2.png" Plist="" />
+                <BlendFunc Src="770" Dst="771" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

@@ -69,6 +69,7 @@
         <Image Name="Hard.png" />
         <Image Name="HardPressed.png" />
         <Image Name="JetPackPickUp.png" />
+        <Image Name="CPUV2.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>
