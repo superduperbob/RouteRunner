@@ -30,7 +30,7 @@ bool LevelSelect::init()
 
 	//rootNode->setPosition(0, 0);
 	
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+	//CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 
 	SelectLevel1 = (ui::Button*)rootNode->getChildByName("SelectLevel1");
 	SelectLevel1->addTouchEventListener(CC_CALLBACK_2(LevelSelect::LevelPressed, this, 0));
@@ -85,11 +85,11 @@ void LevelSelect::LevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType
 
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.wav");
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.mp3");
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("Blip_Stream.mp3", true);
 		Scene* scene = HelloWorld::createScene(levelID);
 
 		Director::getInstance()->replaceScene(scene);	
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("Blip_Stream.mp3");
 	}
 }
 
@@ -97,7 +97,7 @@ void LevelSelect::BackToStartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEve
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("BackSound.wav");
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.mp3");
 		Scene* scene = StartMenu::createScene();
 
 		Director::getInstance()->replaceScene(TransitionSlideInL::create(0.3, scene) );

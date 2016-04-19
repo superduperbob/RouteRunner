@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
+#include "SimpleAudioEngine.h"
+#include <string>
 
 
 //#include "LevelSelect.h"
@@ -57,13 +59,11 @@ public:
 	bool checkTerrainCollision(Rect collisionBox);
 	void checkFloorCollision();
 	void checkSpringCollision(Rect collisionBox);
-	void checkPickUpsCollision(Rect collisionBox);
+	void checkPickupCollision(Rect collisionBox);
 	bool checkEndBlockCollision(Rect);
 
 	void drawPoint(int x, int y);
 
-	//void LoadStartMenu();
-	//void LoadLevelSelect();
 	void LoadGameMenu();
 	void LoadLevel(int level);
 
@@ -79,7 +79,7 @@ private:
     
 	bool **drawLayer;
     bool playerIsFalling;
-	bool jetpack;
+    bool jetpack;
     
 	Vec2 _ScreenResolution;
     Vec2 oldPoint;
@@ -98,25 +98,32 @@ private:
     int lineSize;
 	int inputState;
 	int currentLevel;
+	int maxPosScore;
+
+	float jetTime = 0.0f;
     
-	Sprite* EndBlock;
+	cocos2d::Sprite* EndBlock;
 
 	ui::Button* restartButton;
 	ui::Button* pauseButton;
 	ui::Button* restartMenuButton;
 	ui::Button* ONextLevelButton;
 	ui::Button* OBackToSelectButton;
+	Sprite*		scoreBox;
 
 	Vec2 OBackToSelectButtonStartPos;
 	Vec2 ONextLevelButtonStartPos;
 	Vec2 overlayBackgroundStartPos;
 	Vec2 messageLabelStartPos;
-
-	Sprite* overlayBackground;
+	Vec2 scoreLabelStartPos;
+	Vec2 scoreBoxStartPos;
 
 	ui::Text*	messageLabel;
+	ui::Text*	scoreLabel;
 	string		loseMessage;
 	string		winMessage;
+
+	Sprite* overlayBackground;
 
 	Vec2		playerStartPos;
 
@@ -126,6 +133,9 @@ private:
 	Node* Windows;
 	Node* Springs;
 	Node* Spikes;
+
+	Node* Coins;
+	Sprite* jetpackPickup;
 
 	vector<string> levels = vector<string>{
 		"1.csb",

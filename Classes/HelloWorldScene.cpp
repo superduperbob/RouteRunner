@@ -35,6 +35,7 @@ bool HelloWorld::init()
         return false;
     }    
 	GameManager::sharedGameManager()->isGameLive = false;
+	GameManager::sharedGameManager()->ResetScore();
 
 	inputState = 0;
 	jetpack = false;
@@ -50,7 +51,7 @@ bool HelloWorld::init()
 	winMessage = "Level Completed!";
 	loseMessage = "Press restart to try again";
 
-	deletionPos = Vec2(0.10f, 0.10f);
+	deletionPos = Vec2(-100, -100);
 
 	this->scheduleUpdate();
 
@@ -75,7 +76,25 @@ void HelloWorld::update(float dTime)
 		{
 			playerFallSpeed += 0.1;
 		}
-		
+
+		//PLAYER JETPACK CONTROL
+		if (jetpack)
+		{
+			if (_ScreenResolution.x / 2 < oldPoint.x)
+			{
+				playerDirection = Direction::RIGHT;
+			}
+			else
+			{
+				playerDirection = Direction::LEFT;
+			}
+			if (playerFallSpeed > -7.0f)
+			{
+				playerFallSpeed += -0.75f;
+			}
+		}
+
+		checkPickupCollision(player->getBoundingBox());
 		checkEndBlockCollision(player->getBoundingBox());
 		checkFloorCollision();
 		CheckIfDead(player->getBoundingBox());
@@ -84,7 +103,6 @@ void HelloWorld::update(float dTime)
 		{
 			//playerIsFalling = false;
 			//playerFallSpeed = -0.1f;
-
 		}
 
 
@@ -171,6 +189,9 @@ void HelloWorld::update(float dTime)
 			backgroundParallaxMain->setPositionX(backgroundParallaxMain->getPositionX() - moveSpeed*0.6);
 			backgroundParallaxRight->setPositionX(backgroundParallaxRight->getPositionX() - moveSpeed*0.6);
 
+			if (jetpackPickup)
+				jetpackPickup->setPositionX(jetpackPickup->getPositionX() - moveSpeed);
+
 			if (backgroundParallaxMain->getPositionX() <= -1920)
 			{
 				backgroundParallaxMain->setPositionX(1920 - (-1920 - backgroundParallaxMain->getPositionX()));
@@ -208,10 +229,16 @@ void HelloWorld::update(float dTime)
 				Sprite* currentSpikes = (Sprite*)Spikes->getChildren().at(i);
 				currentSpikes->setPositionX(currentSpikes->getPositionX() - moveSpeed);
 			}
+			for (int i = 0; i < Coins->getChildren().size(); i++){
+				Sprite* currentCoin = (Sprite*)Coins->getChildren().at(i);
+				currentCoin->setPositionX(currentCoin->getPositionX() - moveSpeed);
+			}
 
 			EndBlock->setPositionX(EndBlock->getPositionX() - moveSpeed);
 
 			secondCounter += dTime;
+			
+			jetTime -= dTime;
 		}
 }
 
@@ -261,9 +288,10 @@ void HelloWorld::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 	}
 }
 
-void HelloWorld::updateJetpackDirection(cocos2d::Touch* touch)
-{
+void HelloWorld::updateJetpackDirection(cocos2d::Touch* touch){
+
 	oldPoint = touch->getLocation();
+
 }
 
 void HelloWorld::updateline(cocos2d::Touch* touch, cocos2d::Event* event){
@@ -439,7 +467,7 @@ void HelloWorld::PausePressed(Ref *pSender, cocos2d::ui::Widget::TouchEventType 
 {
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{	
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.wav");
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.mp3");
 		DropDownMenu();
 	}
 }
@@ -452,24 +480,31 @@ void HelloWorld::DropDownMenu()
 	auto moveNextTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.40f / 1.0));
 	auto moveBackgroundTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 1.0));
 	auto moveLabelTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.8f / 1.0));
+	auto moveScoreLabelTo = MoveTo::create(0.3, Vec2(winSize.width*0.53f, winSize.height * 0.2f / 1.0));
+	auto moveScoreBoxTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.2f / 1.0));
 	if (!menuDown)
 	{
 		if (GameManager::sharedGameManager()->isDead == true)
 		{
 			pauseButton->setEnabled(false);
 			pauseButton->setVisible(false);
-			messageLabel->setText(loseMessage);
+			messageLabel->setString(loseMessage);
 		}
 		else
 		{
 			pauseButton->setBright(false);
-			messageLabel->setText("");
+			messageLabel->setString("");
 		}
+		
+
+		scoreLabel->setString(StringUtils::format("%d",GameManager::sharedGameManager()->GetScore()) + "/" + StringUtils::format("%d",maxPosScore));
 
 		OBackToSelectButton->runAction(moveSelectTo);
 		ONextLevelButton->runAction(moveNextTo);
 		overlayBackground->runAction(moveBackgroundTo);
 		messageLabel->runAction(moveLabelTo);
+		scoreLabel->runAction(moveScoreLabelTo);
+		scoreBox->runAction(moveScoreBoxTo);
 		menuDown = true;
 	}
 	else
@@ -479,10 +514,14 @@ void HelloWorld::DropDownMenu()
 		ONextLevelButton->stopAllActions();
 		overlayBackground->stopAllActions();
 		messageLabel->stopAllActions();
+		scoreBox->stopAllActions();
+		scoreLabel->stopAllActions();
 		ONextLevelButton->setPosition(ONextLevelButtonStartPos);
 		OBackToSelectButton->setPosition(OBackToSelectButtonStartPos);
 		overlayBackground->setPosition(overlayBackgroundStartPos);
 		messageLabel->setPosition(messageLabelStartPos);
+		scoreLabel->setPosition(scoreLabelStartPos);
+		scoreBox->setPosition(scoreBoxStartPos);
 		menuDown = false;
 	}
 	GameManager::sharedGameManager()->isGameLive = !menuDown;
@@ -509,8 +548,11 @@ void HelloWorld::EndMenu()
 	auto moveNextTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.40f / 1.0));
 	auto moveBackgroundTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.5f / 1.0));
 	auto moveLabelTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.8f / 1.0));
+	auto moveScoreLabelTo = MoveTo::create(0.3, Vec2(winSize.width*0.53f, winSize.height * 0.2f / 1.0));
+	auto moveScoreBoxTo = MoveTo::create(0.3, Vec2(winSize.width*0.5f, winSize.height * 0.2f / 1.0));
 
-	messageLabel->setText(winMessage);
+	messageLabel->setString(winMessage);
+	scoreLabel->setString(StringUtils::format("%d", GameManager::sharedGameManager()->GetScore()) + "/" + StringUtils::format("%d", maxPosScore));
 
 	ONextLevelButton->setEnabled(true);
 	pauseButton->setVisible(false);
@@ -519,6 +561,8 @@ void HelloWorld::EndMenu()
 	ONextLevelButton->runAction(moveNextTo);
 	overlayBackground->runAction(moveBackgroundTo);
 	messageLabel->runAction(moveLabelTo);
+	scoreLabel->runAction(moveScoreLabelTo);
+	scoreBox->runAction(moveScoreBoxTo);
 	menuDown = true;
 }
 
@@ -527,7 +571,7 @@ void HelloWorld::RestartPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventTyp
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		unscheduleUpdate();
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("BackSound.wav");
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.mp3");
 		Scene* scene = HelloWorld::createScene(level);
 
 		Director::getInstance()->replaceScene(TransitionMoveInR::create(0.5, scene));
@@ -539,7 +583,7 @@ void HelloWorld::NextLevelPressed(Ref *pSender, cocos2d::ui::Widget::TouchEventT
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		unscheduleUpdate();
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.wav");
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.mp3");
 		Scene* scene = HelloWorld::createScene(level + 1);
 
 		Director::getInstance()->replaceScene(TransitionMoveInR::create(0.5, scene));
@@ -551,8 +595,10 @@ void HelloWorld::BackToSelectPressed(Ref *pSender, cocos2d::ui::Widget::TouchEve
 	if (type == cocos2d::ui::Widget::TouchEventType::ENDED)
 	{
 		unscheduleUpdate();
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("BackSound.wav");
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("ConfirmSound.mp3");
 		Scene* scene = LevelSelect::createScene();
+
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->stopAllEffects();
 
 		Director::getInstance()->replaceScene(TransitionSlideInL::create(0.3, scene));
 	}
@@ -566,19 +612,57 @@ void HelloWorld::checkSpringCollision(Rect collisionBox)
 
 		if (currentSpring.intersectsRect(player->getBoundingBox()))
 		{
-			playerFallSpeed *= -0.6f;
+			playerFallSpeed *= -0.8f;
 			playerFallSpeed += -6;
 		}
 	}
 }
 
+void HelloWorld::checkPickupCollision(Rect collisionBox)
+{
+	//added
+
+	//checks if players hits Coins
+	for (int i = 0; i < Coins->getChildren().size(); i++)
+	{
+		Rect currentCoin = (Rect)Coins->getChildren().at(i)->getBoundingBox();
+
+		if (currentCoin.intersectsRect(collisionBox) && Coins->getChildren().at(i)->isVisible()){
+			Coins->getChildren().at(i)->setPosition(deletionPos);
+			GameManager::sharedGameManager()->UpdateScore(1);
+			CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("Collected.mp3");
+		}
+	}
+
+	//checks if players hits JetPack
+	if (jetpackPickup)
+	{
+		Rect jetpackPickupRect = jetpackPickup->getBoundingBox();
+
+		if (jetpackPickupRect.intersectsRect(player->getBoundingBox()))
+		{
+			jetpackPickup->setPosition(deletionPos);
+			inputState = 1;
+			jetTime = 3.0f;
+			CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("RocketNoise.mp3", true);
+			player->setTexture("robotJet.png");
+		}
+		if (jetTime < 0)
+		{
+			inputState = 0;
+			CocosDenshion::SimpleAudioEngine::sharedEngine()->stopAllEffects();
+			player->setTexture("robot.png");
+		}
+	}
+	//added
+}
 
 bool HelloWorld::checkTerrainCollision(Rect collisionBox)
 {
 	for (int i = 0; i < Squares->getChildren().size(); i++)
 	{
 		Rect currentSquare = (Rect)Squares->getChildren().at(i)->getBoundingBox();
-		Rect playerBox = Rect(Vec2(player->getBoundingBox().origin.x, player->getBoundingBox().origin.y + (player->getBoundingBox().size.height/2)), Size(player->getBoundingBox().size.width, player->getBoundingBox().size.height));
+		Rect playerBox = Rect(Vec2(player->getBoundingBox().origin.x, (player->getBoundingBox().origin.y) + (player->getBoundingBox().size.height*0.3)), Size(player->getBoundingBox().size.width, player->getBoundingBox().size.height*0.7));
 
 
 		if (playerBox.intersectsRect(currentSquare))//comparing the modified collision box
@@ -705,6 +789,7 @@ void HelloWorld::checkFloorCollision()
 					playerDirection = Direction::RIGHT;
 				}
 			}
+
 		}
 	}
 
@@ -743,7 +828,7 @@ void HelloWorld::checkFloorCollision()
 void HelloWorld::CheckIfDead(Rect collisionBox)
 {
 	//checks if player hits the edge of the screen
-	if (player->getPosition().y < 0 || (player->getBoundingBox().getMaxX() + 13) > _ScreenResolution.x || (player->getBoundingBox().getMinX() - 13) < 0)
+	if (player->getPosition().y < 0 || (player->getBoundingBox().getMaxX() + 13 + moveSpeed) > _ScreenResolution.x || (player->getBoundingBox().getMinX() - 13 - moveSpeed) < 0)
 	{
 		PlayerDead();
 	}
@@ -830,6 +915,11 @@ void HelloWorld::LoadLevel(int level)
 	Windows = (Node*)rootNode->getChildByName("Windows");
 	Springs = (Node*)rootNode->getChildByName("Springs");
 	Spikes = (Node*)rootNode->getChildByName("Spikes");
+	Coins = (Node*)rootNode->getChildByName("Coins");
+
+	maxPosScore = Coins->getChildren().size();
+
+	jetpackPickup = (Sprite*)rootNode->getChildByName("jetpackPickup");
 	
 	EndBlock = (Sprite*)rootNode->getChildByName("EndBlock");
 
@@ -853,6 +943,12 @@ void HelloWorld::LoadLevel(int level)
 
 	messageLabel = (ui::Text*)rootNode->getChildByName("messageLabel");
 	messageLabelStartPos = Vec2(messageLabel->getPosition().x, messageLabel->getPosition().y);
+
+	scoreLabel = (ui::Text*)rootNode->getChildByName("scoreLabel");
+	scoreLabelStartPos = Vec2(scoreLabel->getPosition().x, scoreLabel->getPosition().y);
+
+	scoreBox = (Sprite*)rootNode->getChildByName("scoreBox");
+	scoreBoxStartPos = Vec2(scoreBox->getPosition().x, scoreBox->getPosition().y);
 
 	///////////////////////////////////////////////////////////
 
@@ -881,11 +977,15 @@ void HelloWorld::LoadLevel(int level)
 	lineArrayCount = 0;
 	playerDirection = Direction::RIGHT;
 	playerIsFalling = true;
+	secondCounter = 0;
 	lineDrawNode = DrawNode::create();
 
 	addChild(rootNode);
 	addChild(lineDrawNode);
 	addChild(player);
+
+	//added 
+	//GameManager::sharedGameManager()->ResetScore();
 
 	//this will change the level's content to move at different speeds depending on the difficulty
 	switch (GameManager::sharedGameManager()->GetDifficulty())//1 = EASY, 2 = MEDIUM, 3 = HARD
