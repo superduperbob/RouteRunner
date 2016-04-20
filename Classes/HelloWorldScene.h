@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
+#include "SimpleAudioEngine.h"
+#include <string>
 
 
 //#include "LevelSelect.h"
@@ -62,8 +64,6 @@ public:
 
 	void drawPoint(int x, int y);
 
-	//void LoadStartMenu();
-	//void LoadLevelSelect();
 	void LoadGameMenu();
 	void LoadLevel(int level);
 
@@ -84,6 +84,7 @@ private:
 	Vec2 _ScreenResolution;
     Vec2 oldPoint;
     Vec2 LineArray[500];
+	Vec2 deletionPos;
     
 	float secondCounter;
 	float playerFallSpeed;
@@ -97,6 +98,7 @@ private:
     int lineSize;
 	int inputState;
 	int currentLevel;
+	int maxPosScore;
 
 	float jetTime = 0.0f;
     
@@ -107,10 +109,19 @@ private:
 	ui::Button* restartMenuButton;
 	ui::Button* ONextLevelButton;
 	ui::Button* OBackToSelectButton;
+	Sprite*		scoreBox;
 
 	Vec2 OBackToSelectButtonStartPos;
 	Vec2 ONextLevelButtonStartPos;
 	Vec2 overlayBackgroundStartPos;
+	Vec2 messageLabelStartPos;
+	Vec2 scoreLabelStartPos;
+	Vec2 scoreBoxStartPos;
+
+	ui::Text*	messageLabel;
+	ui::Text*	scoreLabel;
+	string		loseMessage;
+	string		winMessage;
 
 	Sprite* overlayBackground;
 

@@ -1,7 +1,6 @@
 #ifndef GameManager_h
 #define GameManager_h
 #include "SimpleAudioEngine.h"
-
 #include <stdio.h>
 
 class GameManager

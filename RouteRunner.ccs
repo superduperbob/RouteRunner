@@ -70,6 +70,9 @@
         <Image Name="HardPressed.png" />
         <Image Name="JetPackPickUp.png" />
         <Image Name="CPUV2.png" />
+        <Image Name="robot.png" />
+        <TTF Name="runescape_uf.ttf" />
+        <Image Name="score.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

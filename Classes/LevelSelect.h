@@ -5,6 +5,7 @@
 #include "GameManager.h"
 #include "ui/CocosGUI.h"
 #include "HelloWorldScene.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocostudio::timeline;
 using namespace cocos2d;
@@ -47,22 +48,6 @@ private:
 	string level_4 = "Level4.csb";
 	string level_5 = "Level5.csb";
 	string level_6 = "Level6.csb";
-
-	//Sprite* player;
-	//Direction playerDirection;
-	//bool playerIsFalling;
-	//DrawNode* lineDrawNode;
-	//bool **drawLayer;
-	//Vec2 ScreenResolution;
-	//float secondCounter;
-	//Vec2 oldPoint;
-	//float playerFallSpeed;
-	//int lineSize;
-	//Sprite* backgroundParallaxMain;
-	//Sprite* backgroundParallaxRight;
-	//float moveSpeed;
-	//Vec2 LineArray[500];
-	//int lineArrayCount;
 };
 
 #endif

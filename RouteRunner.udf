@@ -3,8 +3,8 @@
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="VS" />
-        <IsLastPublish Value="True" />
-        <LastRunType Value="Windows" />
+        <IsLastPublish Value="False" />
+        <LastRunType Value="Android" />
       </Value>
     </Item>
     <Item Key="PackageParamsKey">
@@ -18,7 +18,7 @@
         <iOS_Target Value="RouteRunner-mobile" />
         <iOS_BundleID Value="" />
         <Platform Value="Android" />
-        <RunPlatform Value="Windows" />
+        <RunPlatform Value="Android" />
         <FrameworkVersion Value="cocos2d-x-3.9" />
         <IsDebugKeystore Value="True" />
         <KeystorePassword Value="" />
@@ -32,16 +32,8 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="1.csd" />
-          <FilePathData Path="StartMenu.csd" />
-          <FilePathData Path="SplashScreen.csd" />
-          <FilePathData Path="LevelSelect.csd" />
-          <FilePathData Path="2.csd" />
-          <FilePathData Path="3.csd" />
-          <FilePathData Path="4.csd" />
-          <FilePathData Path="5.csd" />
-          <FilePathData Path="6.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="2.csd" />
+        <ActiveDocument Path="1.csd" />
       </Value>
     </Item>
   </Properties>
